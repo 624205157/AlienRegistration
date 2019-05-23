@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--暂时无效文件-->
+<paths>
+    <external-path path="Android/data/com.zhhl.alienregistration/" name="files_root" />
+    <external-path path="." name="external_storage_root" />
+</paths>
+

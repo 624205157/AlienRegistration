@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>申请事由</title>
+    <link href="../style/default.css" type="text/css" rel="stylesheet" />
+    <link href="../style/layout.css" type="text/css" rel="stylesheet" />
+    <link href="../style/list.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+	<script type="text/javascript" src="../../script/jit_crj/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.cookie.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		
+		var xcyzjlx= $.cookie('xcyzjlx');
+		alert(xcyzjlx);
+		// 标示是否显示护照首申
+		var ptxs = "0";
+		// 标示是否显示港澳首申
+		var gaxs = "0";
+		// 标示是否显示台湾首申
+		var twxs = "0";
+		$(document).ready(function(){
+            //$('.selected_icon').hide();
+             $(".btn_frame li a").click(function(){
+            	 $('.selected_icon').hide();
+                 $(this).next('.selected_icon').toggle();
+             })
+        })
+        // 初始化页面
+		$(function() {
+			// 初始化提示信息
+			var str = "";
+			// 准备URL和参数列表
+			var url = "http://192.168.1.123:80/crj/after/findMTsxxByWJ.do?random=" + Math.random();
+			var listParams = {
+					"type" : xcyzjlx
+			};
+			$.ajaxSettings.async = false; 
+			// 发出请求并处理返回数据
+			$.getJSON(url, listParams, function(json) {
+				$.each(json.data, function(i, result) {
+					//q.toFixed(result.name);
+					//var name = result.name;
+					var name  = result.name;
+					str += "<li id = 'h1'><a href='##' onclick='next(\""+name+"\")' class='btn_style'>";
+					//str +=  ;
+					/* str += "</td><td><input type='file'/></td>" */
+					//str += ")' class='btn_style'>"
+					str +=result.type ;
+					
+					str += "</a><span id='span_gz' class='selected_icon'><img src='../../html/image/icon/Selected.png' alt='' /> </span></li>";
+				});
+			});
+			var tbOjb = $(str);
+  			tbOjb.appendTo($("#listId"));
+		})
+        function next(type){
+        	$("#ly ",window.parent.document).val(type); 
+			if(type=='06'){
+				 if(xcyzjlx=='s1zqz'){
+					 $("#gj",window.parent.document).val(2);
+					window.location.href="ss_twrxx.jsp?type="+type;
+				}else if(xcyzjlx=='s2zqz'){
+					$("#gj",window.parent.document).val(2);
+					window.location.href="ss_twrxx.jsp?type="+type;
+				}else if(xcyzjlx=='srswljlxk'){
+					$("#gj",window.parent.document).val(2);
+					window.location.href="ss_twrxx.jsp?type="+type;
+				}else if(xcyzjlx=='q1zqz'){
+					window.location.href="ss_guoji.jsp?type="+type;
+				}else if(xcyzjlx=='q2zqz'){
+					window.location.href="ss_guoji.jsp?type="+type;
+				}else if(xcyzjlx=='tjljlxk'){
+					window.location.href="ss_guoji.jsp?type="+type;
+				}else{
+					window.location.href="ss_guoji.jsp?type="+type;
+				}
+				
+			}else{
+				window.location.href="ss_date.jsp?type="+type;
+			}
+			
+		}
+	</script>
+	</script>
+    
+    <style type="text/css">
+        .aui-list .aui-list-item-media {
+            width: 6rem;
+        }
+        .aui-media-list .aui-list-item-inner {
+            display: block;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        .aui-list-item-input input[type='date'] { border: 1px solid #d6d6d6; padding-left: 5px;}
+        .aui-bar-nav { position: fixed;}
+    </style>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav">
+    <a class="aui-pull-left aui-btn">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">申请事由</div>
+</header>
+    <!-- <div class="aui-content" style="padding-top: 2.25rem">
+    
+        <section class="aui-content-padded">
+            <div class="aui-card-list"  style="padding-bottom: 0.8%;padding-top: 0.8rem;">
+                <div class="aui-card-list-header">
+                    请选择您申请的事由
+                </div>
+                <div class=" aui-margin-b-15">
+                    <ul class="aui-list aui-media-list">
+                        <li class="aui-list-item aui-list-item-middle">
+                            <div class="aui-media-list-item-inner">
+                                <div class="aui-list-item-media" style="width: 2.5rem;">
+                                    <img src="../image/icon_defi.png" class="aui-img-round aui-list-img-sm">
+                                </div>
+                                <div class="aui-list-item-inner aui-list-item-arrow">
+                                    	探亲
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item aui-list-item-middle">
+                            <div class="aui-media-list-item-inner">
+                                <div class="aui-list-item-media" style="width: 2.5rem;">
+                                    <img src="../image/icon_defi.png" class="aui-img-round aui-list-img-sm">
+                                </div>
+                                <div class="aui-list-item-inner aui-list-item-arrow">
+                                   		 学习
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item aui-list-item-middle">
+                            <div class="aui-media-list-item-inner">
+                                <div class="aui-list-item-media" style="width: 2.5rem;">
+                                    <img src="../image/icon_defi.png" class="aui-img-round aui-list-img-sm">
+                                </div>
+                                <div class="aui-list-item-inner aui-list-item-arrow">
+                                    私人事物
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item aui-list-item-middle">
+                            <div class="aui-media-list-item-inner">
+                                <div class="aui-list-item-media" style="width: 2.5rem;">
+                                    <img src="../image/icon_defi.png" class="aui-img-round aui-list-img-sm">
+                                </div>
+                                <div class="aui-list-item-inner aui-list-item-arrow">
+                                    寄养
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="aui-bar aui-bar-tab" id="footer">
+        <div class="aui-bar-tab-item" tapmode onclick="window.location.href='demo_news_today_frm.html'">
+            <div class="aui-dot"></div>
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-bar-tab-label">来华提醒</div>
+        </div>
+        <div class="aui-bar-tab-item aui-active" tapmode onclick="window.location.href='lyqz_form.html'">
+            <i class="aui-iconfont aui-icon-edit"></i>
+            <div class="aui-bar-tab-label">个人旅游签注</div>
+        </div>
+    </footer>
+    <div style="position: fixed; left: 50% ;bottom: -15px; margin-left: -40px; width: 80px; height: 80px; z-index: 10;"><img src="../image/menu_icon1.png" alt="" style="width: 100%"/> </div>
+     -->
+
+	<div id="wrap">
+	   <!-- <div>
+	        <div class="header_bg"><a href="<%=basePath%>qiantai/shenqing/sqfirst1.jsp" target="top">办证中心</a></div>
+	        <div class="login_title"><h1><img src="../image/title/logo1.png" alt="吉林省公安厅出入境管理局" /></h1></div>
+	    </div> -->
+	    <div id="list">
+	        <div id="list_">
+	            <div id="main_right">
+	                <div class="title_bg"><span>外国人签证申请</span></div>
+	                <!-- 框架 -->
+	                <div class="process_box">
+	                    <div >
+	                        <!-- <span id="main_right_xxtz_title_left">申请</span> -->
+	                    </div>
+	                    <div class="prompt_wrap">
+	                        <img src="../../html/image/icon/icon_figure.png" alt="" />
+	                        <p class="hint_font"><span id="tsnr">请问您申请事由是？/Why do you apply for the visa?</span><img src="../../html/image/icon/icon_point.png" alt="" class="point_img" /> </p>
+	                    </div>
+	                    <div class="mian_box">
+	                        <div class="table_box" >
+	                            <ul class="btn_frame" id="listId">
+	                               
+	                            </ul>
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- 框架 end -->
+	            </div>
+	
+	        </div>
+	    </div>
+	
+	</div>
+
+
+
+</body>
+<script type="text/javascript" src="../../script/api.js" ></script>
+<script type="text/javascript">
+</script>
+</html>

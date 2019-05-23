@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>吉林省公安厅出入境管理局－登录</title>
+	<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+	<link href="../../script/jit_crj/style/default.css" type="text/css" rel="stylesheet" />
+	<link href="../style/layout.css" type="text/css" rel="stylesheet" />
+	<link href="../style/commont.css" type="text/css" rel="stylesheet" />
+	<link href="../style/list.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="../../script/jit_crj/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../script/jit_crj/js/hover.js"></script>
+	<!-- 私有js -->
+	<script type="text/javascript" src="../../script/jit_crj/js/1sfrz.js"></script>
+	<!-- 短信认证 -->
+	<script type="text/javascript" src="../../script/jit_crj/js/duanxin.js"></script>
+	<style>
+/* 		html { background:url(../image/images/bg_01.jpg) no-repeat center center fixed;} */
+	</style>
+	
+	<script type="text/javascript">
+	
+	
+	function selectDictionary() {
+		var sls = document.getElementById("sls").value;
+		if (sls == 'mql') {
+			$("#xcyyxqz").html("停留期至/Expiry date of stay duration：");
+		}else{
+			$("#xcyyxqz").html("现持签证有效期至/The expiration date of your existing visa：");
+		}
+	}
+	//初始化页面
+	$(function() {
+		$("#xcyyxqz").html("现持签证有效期至/The expiration date of your existing visa：");
+		
+		// 初始化受理地所在市信息
+		var sls = document.getElementById("sls");
+		sls.options.add(new Option("请选择/Please select","")); 
+		var url = "http://221.8.52.247:8445/jit_crj/crj/after/MTsxxAction_queryMTsxxTreeByWGPid.do?random=" + Math.random();
+		var listParams = {
+				"Pid" : "5c01a1daf842817f31b41daffdd51f22"
+	 	};
+		$.getJSON(url,listParams, function(json){ 
+			$.each(json.data, function(i,result) {
+				var slscode = result.type+","+result.ydTsxx;
+				var slsname = result.name;
+				sls.options.add(new Option(slsname,slscode));
+				//document.getElementById("sls").value = namecity;
+				//str + = "<li id = 'h1'><a href='##' class='btn_style'>";
+				
+			});	
+			//sls.options.add(new Option("持其他种类签证或居留许可","qt")); 
+		});
+		
+		findxzqh();
+		
+	});
+	
+	function findxzqh(){
+		
+		var njld = document.getElementById("njld");
+		njld.options.add(new Option("请选择/Please select","")); 
+		var url = "http://221.8.52.247:8445/jit_crj/webProtal/findDictionaryByType.do?random=" + Math.random();
+		var listParams = {
+				"pid" : "22000000"
+	 	};
+		$.getJSON(url,listParams, function(json){ 
+			$.each(json.data, function(i,result) {
+				var slscode = result.dicCode;
+				var slsname = result.dicName;
+				njld.options.add(new Option(slsname,slscode));
+			});	
+		});
+		
+	}
+	
+	
+	function UpperCase(id){   
+		  document.getElementById(id).value = document.getElementById(id).value.toUpperCase();   
+		}
+	
+   
+	</script>
+</head>
+<body>
+<input id='toup' type="hidden" value=''></input>
+<!-- wrap -->
+ 
+<!-- 	<div> -->
+<!-- 		<div class="header_bg"><a href="#this">  </a><a href="login_.jsp"></a></div>        -->
+<!--         <div class="login_title"><h1><img src="../image/title/logo1.png" alt="吉林省公安厅出入境管理局" /></h1></div>  -->
+<!--     </div> -->
+    <div id="list">
+    	<div id="list_"> 
+            <div class="login inpor_box" id="login_pop">
+                <div class="login_box inpor_box">
+                     <h2 class="login_tit"><span>请进行身份认证/Identity Authentication</span></h2>
+                     <div class="from_box">
+                     <dl class="from_box_dl">
+                         <dt><label for="tel" >英文姓/English surname：</label></dt>
+                         <dd><input type="text" id="surname" name="surname" class="input_user" onkeyup="UpperCase('surname');"/></dd>
+                     </dl>
+                     
+                     <dl class="from_box_dl">
+                         <dt><label for="tel" >英文名/First name：</label></dt>
+                         <dd><input type="text" id="givenName" name="givenName" id="givenName" class="input_user"  onkeyup="UpperCase('givenName');"  /></dd>
+                     </dl>
+                     
+                     <dl class="from_box_dl">
+                          <dt><label for="psw1" >护照号码/Passport no：</label></dt>
+                          <dd><input type="text" id="passportNo" name="passportNo" class="input_psw" maxlength="20" onkeyup="UpperCase('passportNo');"/></dd>
+                     </dl>
+                     
+                     <dl class="from_box_dl"> 
+                          <dt><label for="tel" >护照有效日期/Passport expiration date：</label></dt> 
+                          <dd><input type="text" id="validUntil" name="validUntil"  class="Wdate easyui-validatebox" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});"/></dd>
+                     </dl> 
+                     <dl class="from_box_dl"> 
+                          <dt><label for="tel" >现持签证种类/Category of your existing visa：</label></dt> 
+                          <dd> 
+				     	     <select id="sls" name="sls" class="from_box_dl"  style="width:400px;height:30px;font-size: 16px text-align:center" onchange="selectDictionary()">
+				     	                                               </select></dd>
+                     </dl>
+                      <dl class="from_box_dl"> 
+                          <dt><label for="tel" >拟停居留地：</label></dt> 
+                          <dd> 
+				     	     <select id="njld" name="njld" class="from_box_dl"  style="width:400px;height:30px;font-size: 16px text-align:center" onchange="selectDictionary()">
+				     	                                               </select></dd>
+                     </dl>  
+                     <dl class="from_box_dl"  > 
+                          <dt ><label for="tel" id="xcyyxqz"></label></dt> 
+                          <dd><input type="text" id="xcyqzUntil" name="xcyqzUntil"  class="Wdate easyui-validatebox" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});"/></dd>
+                     </dl> 
+                     <dl class="from_box_dl">
+                          <dt><label for="name" >手机号码/Mobile NO.：</label></dt>
+                          <dd> <input type="text" id="phone" name="phone" class="phone_" maxlength="11"/></dd>
+                     </dl>
+                        
+                        
+                     <dl class="from_box_dl">
+                         <dt><label for="name" >验证码/Verification code：</label></dt>
+                         <dd><input type="text" id="code" name="code" class="phone_" />
+		                     <input type="button" value="获取验证码/Click to obtain verification code" onclick="settimeWG(this)"  style="height:35px;color:green"/>
+		                 </dd>
+                     </dl>
+                   
+                      </div>  <div id="listId"></div>
+                     <div class="steps_btn demo-list padding_btm20">
+                            <p class="btn_padding"><a class="btn_sty btn_orange" onclick="nextstep()">下一步/Next</a></p>
+                        </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		
+	};
+</script>
+</html>

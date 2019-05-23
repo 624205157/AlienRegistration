@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        .mui-table-view-cell:after { left: 11px; }
+        .mui-table-view-cell{ padding: 12px 15px; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">外国人签证申请</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:53px;">
+        <!-- 存放停留事由 -->
+        <ul class="mui-table-view mui-table-view-radio" id="listId">
+            <li class="mui-table-view-cell me-name">请选择您要申请的签证种类？</li>
+            <li class="mui-table-view-cell" data-name="1">
+                <a class="mui-navigate-right">
+                    R字签证延期
+                </a>
+            </li>
+            <li class="mui-table-view-cell" data-name="2">
+                <a class="mui-navigate-right">
+                    工作类居留许可
+                </a>
+            </li>
+        </ul>
+        <!-- 存放停留事由-end -->
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="js/add_script.js"></script>
+<script>
+    mui.init();
+    var crjbasePath=  'http://221.8.52.247:8445/jit_crj/';
+    // 标示是否显示护照首申
+    var type = GetQueryString('type');
+    // 标示是否显示港澳首申
+    var gaxs = "0";
+    // 标示是否显示台湾首申
+    var twxs = "0";
+    var list = document.querySelector('.mui-table-view.mui-table-view-radio');
+    list.addEventListener('selected',function(e){
+        var obj = e.detail.el;
+        var reasonName = obj.getAttribute('data-name');
+        checkVisaKind(reasonName);
+    });
+</script>
+</html>

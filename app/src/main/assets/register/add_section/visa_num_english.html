@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        .me-name {text-indent:0!important; padding:15px 25px!important;}
+        .me-tips { position:relative!important; margin-bottom:0!important; top: 5px!important; left: 37px!important; text-align: left!important; font-size: 0.26rem; }
+        .write { width: 5rem!important; }
+        .mui-table-view { margin-bottom: 75px; }
+        .red-time { width: 150px!important; top: 35%!important; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">Visa application for foreigners</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell me-name">Please confirm whether the identification information is correct</li>
+                    <li class="mui-table-view-cell mui-media btn1">
+                        <a a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon6.jpg"></div>
+                            <div class="mui-media-body me-list-con">Number of visa<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result1" value="" placeholder="Please choose" style="width: 3.2rem!important;"/>
+                            <input  type="hidden" class="me-tips write infor1" id="nationality" name="nationality" value="" placeholder="" style="width: 3.2rem!important;"/>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="nextstep" data-state="1" style="margin:10px auto;">Next</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="js/add_script_english.js"></script>
+<script>
+	var crjbasePath= 'http://221.8.52.247:8445/jit_crj/';;
+	// 标示是否显示护照首申
+	var type = GetQueryString('type');
+	// 标示是否显示港澳首申
+	var ly = GetQueryString('ly');  
+	// 标示是否显示台湾首申
+	var zjlx = GetQueryString('zjlx');
+	
+	var gj = GetQueryString('gj');
+	
+	//不知明变量
+	var dateB=GetQueryString('dateB');
+	//var dateB = '2018-01-25';
+
+	var nfzjlx = GetQueryString('nfzjlx');
+	var day="0";
+
+    mui.init();
+    var btn1 = mui('.btn1');
+    var result1 = mui('.result1');
+    (function($){
+        //初始化页面
+		var nationality = document.getElementById("nationality");
+		var url = crjbasePath + "crj/after/findMTsxxByWJ.do?random=" + Math.random();
+		//fvar url = 'datas/num.json';
+
+		var listParams = {
+				"type" : nfzjlx
+	 	}
+
+		$.ajaxSettings.async = false; 
+		$.getJSON(url,listParams, function(json){
+			$.each(json.data, function(i,result) {//json封装的方法，遍历basejson.data
+				var nationalitycode = result.type;
+				var nationalityname = result.beiYong1;
+				numJson.push({
+                    value: nationalitycode,
+                    text: nationalityname
+                })
+			});
+			//普通联动
+            btn1.each(function(i,btn) {
+                if(i == 0){
+                    var userPicker = new mui.PopPicker();
+                    userPicker.setData(numJson);
+                    btn.addEventListener('tap', function(event) {
+                        userPicker.show(function(items) {
+                            result1[i].value = items[0].text;
+                            nationality.value = items[0].value;
+                            
+                        });
+                    }, false);
+                }
+                
+            }); 	
+		});
+        
+        
+    })(jQuery)
+    mui('.foreigner-btn')[0].addEventListener('tap',function(){
+
+        checkNum();
+    }) 
+</script>
+</html>

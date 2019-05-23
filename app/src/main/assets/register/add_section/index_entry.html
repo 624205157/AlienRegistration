@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="css/add_style.css">
+	<script src="../js/font.js"></script>
+    <script src="../js/mui.min.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        .l-info-wrap .info-list2 {background:#7ebfc5!important}
+    </style>
+</head>
+<body>
+	<div class="l-info-wrap">
+        <div class="info-group info-list1">
+            <h4>外国人签证预审核</h4>
+            <p></p>
+        </div>
+        <div class="info-group info-list2">
+            <h4>外国人签证预约</h4>
+            <p></p>
+        </div>
+    </div>
+</body>
+<script>
+
+    mui.init();
+    var passportNo = GetQueryString('passportNo');
+var birthday = GetQueryString('birthday');
+var phone = GetQueryString('phone');
+    mui('.info-group').each(function(index){
+        if(index == 0){
+            mui('.info-group')[0].addEventListener('tap',function(){
+                  window.location.href = 'photo_hint.html';
+                 // window.location.href = 'add_visa_list.html';
+            }) 
+        }else if(index == 1){
+            mui('.info-group')[1].addEventListener('tap',function(){
+                window.location.href = 'map.html';
+            })
+        }else{
+          mui('.info-group')[2].addEventListener('tap',function(){
+                  window.location.href = 'photo_hint.html';
+            })
+        }
+    })
+</script>
+</html>

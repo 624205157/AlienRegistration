@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        .tab-item { padding: 15px; line-height: 24px; font-size: 14px; position: relative; background: #fff; }
+        .item-each .dotted { display: inline-block; width: 11px; height: 11px; border-radius: 10px; background: #3891e5; margin-top: 7px; margin: 7px 10px; margin-bottom: 0px;  }
+        .line{ position: absolute; top: 15px; bottom: 15px; left: 102px; width: 1px; background: #3891e5; }
+        .btns button { border-radius: 10px; font-size: 0.24rem}
+        .btns button:last-child { background: #ccc; color: #333; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">Progress inquiry of certificate<</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item" id="bzjdList">
+                <div class="line"></div>
+                <!-- <div class="item-each"><span>2018-01-12</span><div class="dotted"></div><span class="con">出入境大厅现场办理</span></div> -->
+            </div>
+            <div class="me-p-bottom btns" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="pay" style="margin:10px auto;">Revocation application</button>
+                <button type="button" class="foreigner-btn"  id="nextstep" style="margin:10px auto;">Return to the home page</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="js/add_script_english.js"></script>
+<script>
+        mui.init();
+        var crjbasePath = "<%=crjbasePath%>";
+        var passportNo = GetQueryString('passportNo%');
+        var birthday="<%=birthday%>";
+       // var birthday='1992-12-02';
+        var rflag="";//判断是否是全流程
+        
+        //撤销申请
+        function deletecom(){
+            var url = crjbasePath+"crj/after/chexiaoshenqing.do?passportNo="+passportNo+"&random=" + Math.random();
+            //var url = 'datas/consult.json';
+            $.ajax({
+                url: url,
+                 dateType:"json",
+                async:false,
+                 success: function(data) {
+                    alert("Cancellation completes!");
+                    window.location.href = 'index_entry.html';  
+              }
+            });
+        }
+        
+        $(function () {
+            
+            $.ajax({
+                url: crjbasePath+"crj/gccry/findBypassport.do",
+                type:"post",
+                dateType:"json",
+                success: function(data) {
+                    if(data==1){
+                         
+                         var arr1=birthday.substring(0,10);
+                         //var arr1="2010-12-15";
+                         var myDate = new Date();
+                         var date2=myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate();
+                         var arrDate, objDate1, objDate2, d;
+                         objDate1 = new Date();
+                         objDate2 = new Date();
+                         arrDate = arr1.split("-");
+                         objDate1.setFullYear(arrDate[0], arrDate[1], arrDate[2]);
+                         arrDate = date2.split("-");
+                         objDate2.setFullYear(arrDate[0], arrDate[1], arrDate[2]);
+                         d = parseInt(Math.abs(objDate2-objDate1) / 1000 / 60 / 60 / 24);
+                         if(d<(16*365)||d>(60*365)){
+                            rflag="1";
+                         }else{
+                            rflag="0";
+                         }
+                    }else{
+                        rflag="1";
+                    }
+                    // 初始化办事进度
+                    var html="";
+                    // 准备URL和参数列表
+                    var urlBzjd = crjbasePath + "bzjd/findBzjdAllByPassport.do?random=" + Math.random();
+                    //var urlBzjd = 'datas/consule2.json'
+                    var listParamsBzjd = {
+                        passportNo:passportNo
+                    };
+                    $.ajaxSettings.async = false;
+                    
+                    // 发出请求并处理返回数据
+                    $.getJSON(urlBzjd,listParamsBzjd, function(json){
+                        $.each(json.data, function(i, resultList) {
+                            if (resultList.statue == "010") {
+                                html += '<div class="item-each"><span>'+resultList.createTime+'</span><div class="dotted"></div><span class="con">Apply</span></div>'
+                            }
+                            if (resultList.statue == "030") {
+                                html += '<div class="item-each"><span>'+resultList.createTime+'</span><div class="dotted"></div><span class="con">Audit failure</span>&nbsp;&nbsp;<a href="continue_do_english.html?returninfo='+resultList.returninfo+'">Continue to deal</a></div>'
+                            }
+                            if (resultList.statue == "020") {
+                                if(rflag==0){
+                                    html += '<div class="item-each"><span>'+resultList.createTime+'</span><div class="dotted"></div><span class="con">Review and pass through!</span>&nbsp;&nbsp;<a href="map_english.html">On-site handling of the entry and exit Hall</a></div>'
+                                }else{
+                                     html += '<div class="item-each"><span>'+resultList.createTime+'</span><div class="dotted"></div><span class="con">Review and pass through!</span>&nbsp;&nbsp;<a href="procedure_english.html">Continue on the Internet</a></div>'
+                                }
+                            }
+                            if (resultList.statue == "04") {
+                                html += '<div class="item-each"><span>'+resultList.createTime+'</span><div class="dotted"></div><span class="con">Payment success!</span></div>'
+                            }
+                            if (resultList.statue == "041") {
+                                html += '<div class="item-each"><span>'+resultList.createTime+'</span><div class="dotted"></div><span class="con">Mailing success!</span></div>';
+                            }
+                            if (resultList.statue == "040") {
+                                
+                                html += '<div class="item-each"><span>'+resultList.createTime+'</span><div class="dotted"></div><span class="con">On-site handling of the entry and exit Hall!</span></div>';
+                            }
+                        });
+                    });
+                    $("#bzjdList").append(html);
+              }
+            });
+            
+            
+            
+        });
+        mui('#pay')[0].addEventListener('tap',function(){
+            deletecom();
+        })
+        mui('#nextstep')[0].addEventListener('tap',function(){
+            window.location.href = 'index_entry_english.html';
+        })
+</script>
+</html>

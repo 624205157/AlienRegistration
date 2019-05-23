@@ -1,0 +1,73 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    >
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.zhhl.media.MyVideoView
+            android:id="@+id/vv_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:id="@+id/ll_controlor"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:id="@+id/videoPlayImg"
+                android:layout_gravity="center"
+
+                android:src="@mipmap/video_box_play"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingRight="0dip"
+            >
+            <com.zhhl.media.MySeekBar
+                android:layout_width="fill_parent"
+                android:id="@+id/videoSeekBar"
+                android:layout_weight="1"
+                style="@android:style/Widget.Holo.SeekBar"
+                android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="00:00"
+                android:textSize="12dp"
+                android:id="@+id/videoCurTime"
+                android:textColor="#FFF"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="12dp"
+                android:textColor="#FFF"
+                android:text="/"/>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="00:00"
+                android:textSize="12dp"
+                android:id="@+id/videoTotalTime"
+                android:textColor="#FFF"
+                android:layout_marginRight="10dp"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>

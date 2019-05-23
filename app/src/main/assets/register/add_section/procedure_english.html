@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        #days { float: right; background: transparent; padding-right: 20px!important; color: red; }
+        #days::after { display: none; }
+        #tssj { text-indent: 0px!important;  padding-left: 10px!important; padding-right: 10px!important; line-height: 1.5; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">外国人签证申请</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item" style="margin-bottom: 70px;">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell me-name" id="tssj">
+                        Online visa application process:<br/>
+                        ①Upload material. The application material electronic pictures are uploaded according to the requirements.<br/>
+                        ②Online audit. The public security organ provides online pre trial service, and the application materials are reviewed in advance by the special personnel.<br/>
+                        ③Door-to-door evidence. After the audit was passed, the EMS staff came to pick up the paper application materials. When you receive your valuable information, we will send a message to inform you that the material has arrived safely.<br/>
+                        ④Making documents. The public security organs will issue the visa documents according to your application materials. In the process of accepting the application materials, the public security organs will verify the information with you by telephone. Please ensure that the communication and telephone are unimpeded. Normal situation: after arriving at the public security organ, the certificate is expected to result in 7 work day visas.<br/>
+                        ⑤Send a witness to the door. After the document is finished, EMS staff will contact you by telephone to send your card. Please check all the information on the visa page seriously if you receive the certificate. If you have any problems, please contact the public security organ as soon as possible.
+                    </li>
+                    <li class="mui-table-view-cell me-name" id="tssj">
+                        Delivery charges: city 12 yuan / piece, the province places 16 yuan / piece, provincial 18 yuan / piece
+                    </li>
+                    <li class="mui-table-view-cell me-name" id="tssj">
+                        Service charge: 12 yuan / piece in the same city, 16 yuan per piece in the province
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="blwjbtn" data-state="1" style="margin:10px auto;">To start a certificate</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="js/add_script_english.js"></script>
+<script>
+   
+        //点击下一步按钮
+        mui('.foreigner-btn')[0].addEventListener('tap',function(){
+            location = 'pay_english.html';
+        })
+</script>
+</html>

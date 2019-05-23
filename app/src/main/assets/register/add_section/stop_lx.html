@@ -1,0 +1,115 @@
+<!--<%   String  path = request .getContextPath();
+     String  crjbasePath = request.getScheme() + "://"+request.getServerName()+":"+ request.getServerPort()
++path+"/";
+%>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" href="css/add_style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/1sfrz.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <style>
+        .mui-table-view-cell:after { left: 11px; }
+        .mui-table-view-cell{ padding: 12px 15px; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">签证种类</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell me-name" id="tssj"></li>
+
+                    <li class="mui-table-view-cell mui-media btn" >
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon6.jpg"></div>
+                            <div class="mui-media-body me-list-con">签证种类<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result"   placeholder="请选择" style="width: 2rem!important;"/>
+                            <input type="hidden" name="sorts" id="sorts" data-kind="1">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="blwjbtn" data-state="1" style="margin:10px auto;">下一步</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="js/add_script.js"></script>
+<script src="js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script>
+    mui.init();
+    // 标示是否显示护照首申
+    var ptxs = "0";
+    // 标示是否显示港澳首申
+    var gaxs = "0";
+    // 标示是否显示台湾首申
+    var twxs = "0";
+    //证件类型
+var xcyzjlx = GetQueryString('xcyzjlx');
+var xcyqzUntil = GetQueryString('xcyqzUntil');
+var qzyyx = GetQueryString('qzyyx');
+var surname = GetQueryString('surname');
+var givenName = GetQueryString('givenName');
+var passportNo = GetQueryString('passportNo');
+var gjdq = GetQueryString('gjdq');
+var xb = GetQueryString('xb');
+var csrq = GetQueryString('csrq');
+var gnlxr = GetQueryString('gnlxr');
+var njld = GetQueryString('njld');
+var ywcode = GetQueryString('ywbh');
+var gj = GetQueryString('gj');
+var birthday = GetQueryString('birthday');
+var djdwxzqh = GetQueryString('djdwxzqh');
+var phone = GetQueryString('phone');
+ var nfzjlx_cl = "";
+ var sqText="";
+ (function($){
+        //初始化页面
+         mui.init();
+        var result = mui('.result');
+        var btns = mui('.btn');
+        console.log(btns[0])
+        var userPicker = new mui.PopPicker();
+        userPicker.setData(qzlx);
+        btns[0].addEventListener('tap', function(event) {
+            userPicker.show(function(items) {
+                result[0].value = items[0].text;
+                document.getElementById('sorts').value = items[0].value;
+                sqText = items[0].text;
+                nfzjlx_cl = items[0].value;
+            });
+        }, false);
+            //点击下一步按钮
+
+        mui('.foreigner-btn')[0].addEventListener('tap',function(){
+
+             window.location.href = 'update.html?nfzjlx_cl='+nfzjlx_cl+'&ywcode='+ywcode+'&sqText='+sqText;
+        })
+    })(jQuery)
+</script>
+</html>

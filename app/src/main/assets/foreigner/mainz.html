@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+     <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>index</title>
+    <link href="css/default.css" type="text/css" rel="stylesheet" />
+    <link href="css/comment.css" type="text/css" rel="stylesheet" />
+    <style>
+        html {height: 100%; width: 100%; font-family: 'Heiti SC', 'Microsoft YaHei'; font-size: 100px; outline: 0; -webkit-text-size-adjust:none; background-color: #efefef;}
+        body { height: 100%; -webkit-user-select: none; position: relative;}
+        div,p,span,ul,li,dl,td,dd,input,select,button,a{ font-size: 0.24rem;}
+    </style>
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body id="formBody">
+    <div id="wraps">
+        <header id="header"  data-localize="user"  >境外人员服务</header>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript" src="./script/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="./script/jquery.i18n.properties-min-1.0.9.js"></script>
+<script type="text/javascript" src="./script/jquery.cookie.js"></script>
+<script type="text/javascript">
+//语言选择的方法
+	function loadProperties(name, path, lang){
+	    var lang = lang || navigator.language;
+	    jQuery.i18n.properties({//加载资浏览器语言对应的资源文件
+	        name:name,  //资源文件名称
+	        path:path, //资源文件路径
+	        mode:'map', //用Map的方式使用资源文件中的值
+	        language: lang,
+	        callback: function() { //加载成功后设置显示内容
+	        	$("[data-locale]").each(function(){
+					$(this).html($.i18n.prop($(this).data("locale")));
+				});
+	            //alert(jQuery.i18n.map["user"]);
+	        }
+	    });
+	}
+	 apiready = function(){
+        var languageType=$.cookie('languageType');
+        if(languageType==undefined){
+        	languageType='zh';
+        }
+		loadProperties('strings', './properties/',languageType);
+        api.parseTapmode();
+        var header = $api.byId('aui-header');
+        $api.fixStatusBar(header);
+        var headerPos = $api.offset(header);
+        var body_h = $api.offset($api.dom('body')).h;
+        api.openFrame({
+            name: 'main_frm',
+            url: './html/main_frm.html',
+            bounces: false,
+        })
+        
+    };
+	 
+	
+        
+</script>
+</html>

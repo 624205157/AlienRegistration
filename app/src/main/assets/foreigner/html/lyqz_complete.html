@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>个人旅游签注_填写在吉停留时限</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+    <style type="text/css">
+        .aui-list .aui-list-item-media {
+            width: 6rem;
+        }
+        .aui-media-list .aui-list-item-inner {
+            display: block;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        .aui-list-item-input input[type='date'] { border: 1px solid #d6d6d6; padding-left: 5px;}
+        .aui-card-list-footer { display: block!important; font-size: 0.8rem!important;}
+        .aui-bar-nav { position: fixed;}
+    </style>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav">
+    <a class="aui-pull-left aui-btn">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">Title</div>
+</header>
+<div class="aui-content" style="padding-bottom: 3rem;  padding-top: 2.25rem;">
+    <div class="aui-card-list-content">
+        <img src="../image/banner_02.jpg" alt="" />
+    </div>
+    <section class="aui-content-padded">
+        <div class="aui-card-list">
+            <div class="aui-card-list-header aui-text-info " data-locale="ywcode" >
+                申请编号
+            </div>
+            <div class="aui-card-list-footer ">
+                <p data-locale="remainderMess">您申请的编号是<b class="aui-text-danger" id="ywcode">220110168015929</b>，拟签发停留证件，您可以上传申请材料进行在线预审核，提高签证成功率，也可以携带申请材料直接到现场办理。！</p>
+            </div>
+        </div>
+    </section>
+    <section class="aui-content-padded">
+        <div class="aui-card-list">
+            <div class="aui-card-list-header aui-text-info " data-locale="sxcl">
+                所需材料
+            </div>
+            <div class="aui-card-list-footer ">
+                <p data-locale="zj01">有效护照或其他国家有效旅行证件</p>
+                <p data-locale="zj02">旅游计划行程安排</p>
+                <p data-locale="zj03">申请人照片</p>
+                <p data-locale="zj04">在签证到期日内到长春市公安局出入境管理局现场办理</p>
+            </div>
+        </div>
+    </section>
+    <section class="aui-content-padded">
+        <div class="aui-card-list">
+            <div class="aui-card-list-header aui-text-info" style="display: block!important;" data-locale="tjdz">
+                推荐地址
+                <p>根据您登记临住信息，系统推荐您以下办证地点:</p>
+            </div>
+            <div class="aui-card-list-footer ">
+                    <a class="aui-pull-left">
+                        <span class="aui-iconfont aui-icon-location aui-text-primary"></span>
+                    </a>
+                    <div class="aui-title aui-text-primary" data-locale="bzAddress">吉林省长春市出入境管理局</div>
+            </div>
+        </div>
+    </section>
+</div>
+<footer class="aui-bar aui-bar-tab" id="footer">
+		        <div class="aui-bar-tab-item aui-active" tapmode onclick="openParentWin('index')">
+		            <div class="aui-dot"></div>
+		            <i class="aui-iconfont aui-icon-home"></i>
+		            <div class="aui-bar-tab-label">来华提醒</div>
+		        </div>
+		        <div class="aui-bar-tab-item" tapmode onclick="openWin('lyqz_form_win')">
+		            <i class="aui-iconfont aui-icon-edit"></i>
+		            <div class="aui-bar-tab-label">个人旅游签注</div>
+		        </div>
+</footer>
+<div style="position: fixed; left: 50% ;bottom: -15px; margin-left: -40px; width: 80px; height: 80px; z-index: 10;"><img src="../image/menu_icon1.png" alt="" style="width: 100%"/> </div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../script/jquery.i18n.properties-min-1.0.9.js"></script>
+<script src="https://code.ciphertrick.com/demo/jquerysession/js/jquerysession.js"></script>
+<script type="text/javascript">
+    //语言选择的方法
+	function loadProperties(name, path, lang){
+	    var lang = lang || navigator.language;
+	    jQuery.i18n.properties({
+	        name:name, 
+	        path:path,
+	        mode:'map',
+	        language: lang,
+	        callback: function() {
+	        	$("[data-locale]").each(function(){
+					$(this).html($.i18n.prop($(this).data("locale")));
+				});
+	            //alert(jQuery.i18n.map["user"]);
+	        }
+	    });
+	}
+	apiready = function(){
+	    //查看session里的语言类型
+		loadProperties('strings', '../properties/',$.session.get('languageType'));
+		//查看拟居留地
+		var njld=$.session.get('njld');//拟居留地
+		var ywcode=$.session.get('ywcode');//业务编号
+	}
+	
+	
+
+
+</script>
+</html>

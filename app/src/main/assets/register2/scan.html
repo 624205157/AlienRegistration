@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/reset.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="js/font.js"></script>
+    <script src="js/cookie.js"></script>
+
+
+    <style>
+    	html,body { height: 100%; }
+    	.mui-content.back-white{background: #eaeeef; position: relative; }
+    	img { position: absolute; bottom: 0px;}
+    	.num-box { overflow: hidden; position: absolute; top:55%; left: 50%; margin-left:-140px;}
+    	.num-box li { float:left; width: 50px; height: 68px; line-height:68px; background: #37383a; color:#fff; font-size: 56px; margin: 0 10px; text-align: center;}
+    </style>
+</head>
+<body>
+	<div class="mui-content back-white">
+	    <img src="img/scan.jpg" width="100%" onclick="gosx()"/>
+	    <ul class="num-box" id="num-box">
+	    	<li class="num">1</li>
+	    	<li class="num">2</li>
+	    	<li class="num">3</li>
+	    	<li class="num">4</li>
+	    </ul>
+	</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/api.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+  	mui.init();
+  	window.onload = function() {
+  		var oBox = document.getElementById('num-box');
+  		var oLi = oBox.getElementsByTagName('li');
+  		for( var i=0; i<oLi.length; i++){
+  			oLi[i].firstChild.nodeValue = Math.ceil(Math.random()*9);
+  		}
+  	}
+    //摄像方法
+    function gosx(){
+
+      //获取一段视频
+      api.getPicture({
+
+        sourceType: 'camera',
+        encodingType: '',
+        mediaValue: 'video',
+        destinationType: 'base64',
+        allowEdit: false,
+        quality: 1,
+        direction:'rear',
+        saveToPhotoAlbum: true
+
+      }, function(ret, err) {
+          // alert(ret);
+          // 获取拍照数据并处理
+          var luxiang = ret.data;
+
+          setCookie('sxDate',luxiang);
+          cookie = getCookie("flagCookie")
+            var imgSrc = ret.data;
+          if (ret) {
+              if (imgSrc != ""&&imgSrc != null) {
+
+                            if(cookie =="2"){
+                              api.openWin({
+                                name: 'search',
+                                url: './feedback.html',
+                                bounces: false,
+                                pageParam: {
+                                  luxiang: luxiang,
+                                  imgSrc:imgSrc,
+                                  fwid:getCookie("fwid")
+                                }
+                              });
+                            }else if(cookie == "13"){
+                              api.openWin({
+                                name: 'search',
+                                url: './feedbacka.html',
+                                bounces: false,
+                                pageParam: {
+                                  luxiang: luxiang,
+                                  imgSrc:imgSrc
+                                }
+                              });
+                            }else{
+                                alert("请重新拍摄!");
+                            }
+              }
+
+          } else {
+              //alert(JSON.stringify(err));
+          }
+      });
+
+
+
+    }
+    function getPicture() {
+
+
+      //获取一张图片
+      api.getPicture({
+        sourceType: 'camera',
+        encodingType: '',
+        mediaValue: 'video',
+        destinationType: 'base64',
+        allowEdit: false,
+        quality: 1,
+        direction:'rear',
+        saveToPhotoAlbum: true
+      }, function(ret, err) {
+        // 获取拍照数据并处理
+        var imgSrc = (JSON.stringify(ret.data));
+        alert(imgSrc)
+
+        if (ret) {
+
+          if (imgSrc != ""&&imgSrc != null) {
+            //根据COOKIE 跳不同的采集信息页面 2房主 13个人
+            if(cookie =="2"){
+
+              api.openWin({
+                name: 'search',
+                url: './feedback.html',
+                bounces: false,
+                pageParam: {
+
+                  imgSrc:imgSrc,
+                  fwid:getCookie("fwid")
+                }
+              });
+            }else if(cookie == "13"){
+              api.openWin({
+                name: 'search',
+                url: './feedbacka.html',
+                bounces: false,
+                pageParam: {
+
+                  imgSrc:imgSrc
+                }
+              });
+            }
+            //跳拍摄页面
+            // api.openWin({
+            //     name: 'search',
+            //     url: './scan.html',
+            //     bounces: false,
+            //     pageParam: {
+            //       imgSrc: imgSrc,
+            //       fwid:fwid
+            //     }
+            //   });
+
+          }else {
+            alert("请重新拍照!Please take pictures again!");
+          }
+        } else {
+          //alert(JSON.stringify(err));
+        }
+      });
+
+    }
+</script>
+</html>

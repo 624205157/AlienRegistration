@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>选择所需办理业务-english</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/1sfrz_english.js"></script>
+    <script src="js/duanxin.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        .me-name {text-indent:0!important; padding:15px 25px!important;}
+        .me-tips { position:relative!important; margin-bottom:0!important; top: 5px!important; left: 37px!important; text-align: left!important; font-size: 0.26rem; }
+        .write { width: 5rem!important; }
+        .mui-table-view { margin-bottom: 75px; }
+        .red-time { width: 150px!important; top: 35%!important; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">Visa application for foreigners</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px; margin-bottom:70px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell me-name">Please make sure the identification information is correct</li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">English surname<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 " id="surname" name="surname" value="" placeholder="Please enter a english surname" />
+                           <!-- 英文姓 -->
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">First name<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 " name="givenName" id="givenName" value="" placeholder="Please enter a first name" />
+                            <!-- 英文名 -->
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon26.jpg"></div>
+                            <div class="mui-media-body me-list-con">Passport no<span class="me-red">*</span></div>
+                            <input type="text" class="write me-tips me-red infor1" name="passportNo" id="passportNo"  placeholder="Please enter a passport no"/>
+                            <!-- 护照号码 -->
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}' >
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon8.jpg"></div>
+                            <div class="mui-media-body me-list-con">Passport expiration date<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result" name="validUntil" id="validUntil" placeholder="Please choose "/>
+                            <!-- 护照有效日期 -->
+                        </a>
+                    </li>
+
+                    <li class="mui-table-view-cell mui-media btn2">
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon5.jpg"></div>
+                            <div class="mui-media-body me-list-con">Country/Region<span class="me-red">*</span></div>
+                            <input  type="hidden" class="me-tips write infor1" name="gjdq" id="gjdq" value="" placeholder=""  />
+                            <span class="me-tips result2" id="gjdqtext"> Please choose</span>
+                        </a>
+                        <!-- <input type="hidden" class="write me-tips" name="gjdq" id="gjdq" value=""/> -->
+
+                    </li>
+                     <!--国家地区-->
+
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon3.jpg"></div>
+                            <div class="mui-media-body me-list-con">Sex<span class="me-red">*</span></div>
+                            <div class="radios me-tips" id="radios">
+                                <div class="radios-each selected" id="nanclass">
+                                    <span>man</span>
+                                    <input type="radio" name="xb" id="nan" value="man" checked="true"/>
+                                </div>
+                                <div class="radios-each" id="nvclass" >
+                                    <span>woman</span>
+                                    <input type="radio" name="xb" id="nv" value="woman" />
+                                    <input type="hidden" name="xb" id="xb" value="" />
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <!--性别-->
+                    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}' >
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon8.jpg"></div>
+                            <div class="mui-media-body me-list-con">Date of birth<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result" name="csrq" value="0" id="csrq" placeholder="Please choose the date of birth"   style="width: 3rem!important;"/>
+                        </a>
+                    </li>
+                    <!--出生日期-->
+                    <li class="mui-table-view-cell mui-media">
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">Domestic contact<span class="me-red">*</span></div>
+                            <input type="text" class="write me-tips me-red infor1" name="gnlxr" id="gnlxr"  placeholder="Please enter a domestic contact"/>
+                        </a>
+                    </li>
+                    <!--国内联系人-->
+
+                    <li class="mui-table-view-cell mui-media btn1">
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon7.jpg"></div>
+                            <div class="mui-media-body me-list-con">Category of your existing visa<span class="me-red">*</span></div>
+                            <input type="text" class="me-tips write infor1 result1"  placeholder="Please choose "/>
+                            <input type="hidden" class="me-tips write infor1" name="sls" id="sls"  placeholder="Please choose " />
+                            <!-- 签证种类 -->
+                        </a>
+                    </li>
+
+
+                    <li class="mui-table-view-cell mui-media btn1">
+                        <a a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon6.jpg"></div>
+                            <div class="mui-media-body me-list-con">To stop reservation<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result1" value="" placeholder="Please choose to stop reservation" />
+                            <input  type="hidden" class="me-tips write infor1" name="njld" id="njld" value="" placeholder="Please choose " />
+                            <!-- 拟停居留地 -->
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}'>
+                        <a a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon6.jpg"></div>
+                            <div class="mui-media-body me-list-con"><span  id="xcyyxqz"></span><span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result" id="xcyqzUntil" name="xcyqzUntil" value="" placeholder="Please choose " />
+                            <!-- 现持签证有效期至 -->
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon25.jpg"></div>
+                            <div class="mui-media-body me-list-con">Mobile NO<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor2 " name="phone" id="phone" value="" placeholder="Please enter " />
+                            <!-- 手机号码 -->
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon8.jpg"></div>
+                            <div class="mui-media-body me-list-con">Verification code<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write me-add-sec" name="code" id="code" value="" placeholder="Please enter " />
+                            <input id='toup' type="hidden" value=''>
+                            <span class="me-red red-time get">Get verification code</span>
+                            <!-- 验证码 -->
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="nextstep" style="margin:10px auto;">Next</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="../js/city.data3.js"></script>
+<script src="../js/data.js" charset="utf-8"></script>
+<script src="js/add_script_english.js"></script>
+
+<script>
+    mui.init();
+    var btn1 = mui('.btn1');
+    var result1 = mui('.result1');
+    var btn2 = $('.btn2');
+    var result2 = $('.result2');
+    (function($){
+        //初始化页面
+        $("#xcyyxqz").html("The expiration date of your existing visa");
+        
+        // 初始化受理地所在市信息
+        var sls = document.getElementById("sls");
+        var url = crjbasePath + "crj/after/MTsxxAction_queryMTsxxTreeByWGPid.do?random=" + Math.random();
+        var listParams = {
+                "Pid" : "5c01a1daf842817f31b41daffdd51f22"
+        };
+        $.getJSON(url,listParams, function(json){ 
+            $.each(json.data, function(i,result) {
+                 var slscode = result.type
+                var slsname = result.name.substring(result.name.indexOf('/')+1,result.name.length);
+                paperJson.push({
+                    value: slscode,
+                    text: slsname
+                })
+                
+            }); 
+            paperJson.push({
+                value: 'qt',
+                text: 'Other types of documents'
+            })
+            //普通联动
+            btn1.each(function(i,btn) {
+                if(i == 0){
+                    var userPicker = new mui.PopPicker();
+                    userPicker.setData(paperJson);
+                    btn.addEventListener('tap', function(event) {
+                        userPicker.show(function(items) {
+                            result1[i].value = items[0].text;
+                            sls.value = items[0].value;
+
+                            selectDictionary();
+                            
+                        });
+                    }, false);
+                }
+                
+            });
+        });
+
+         //国家地区
+         btn2.each(function(i, btn3) {
+            //普通联动
+            var userPicker = new mui.PopPicker();
+            userPicker.setData(dataAdd[i]);
+            btn3.addEventListener('tap', function(event) {
+
+                userPicker.show(function(items) {
+                    result2[i].innerText = items[0].text;
+                    //返回 false 可以阻止选择框的关闭
+                    //	return false;
+                    document.getElementById('gjdq').value = items[0].text;
+                });
+            }, false);
+        });
+        //控制单选按钮
+		jQuery('#radios .radios-each').click(function() {
+			if (!jQuery(this).hasClass('selected')) {
+				jQuery(this).addClass('selected').siblings().removeClass('selected');
+				jQuery(this).find('input').prop('checked', true);
+				jQuery(this).siblings().find('input').prop('checked', false);
+			}
+		});
+
+
+        //设置地址选项
+        findxzqh();
+
+        //选择普照有效日期
+        var result = mui('.result');
+        var btns = mui('.btn');
+        btns.each(function(i, btn) {
+            btn.addEventListener('tap', function() {
+                var optionsJson = this.getAttribute('data-options') || '{}';
+                var options = JSON.parse(optionsJson);
+                var id = this.getAttribute('id');
+                /*
+                 * 首次显示时实例化组件
+                 * 示例为了简洁，将 options 放在了按钮的 dom 上
+                 * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+                 */
+                var picker = new mui.DtPicker(options);
+                picker.show(function(rs) {
+                    /*
+                     * rs.value 拼合后的 value
+                     * rs.text 拼合后的 text
+                     * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+                     * rs.m 月，用法同年
+                     * rs.d 日，用法同年
+                     * rs.h 时，用法同年
+                     * rs.i 分（minutes 的第二个字母），用法同年
+                     */
+
+                    result[i].setAttribute('value',rs.value);
+                    /* 
+                     * 返回 false 可以阻止选择框的关闭
+                     * return false;
+                     */
+                    /*
+                     * 释放组件资源，释放后将将不能再操作组件
+                     * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
+                     * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
+                     * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
+                     */
+                    picker.dispose();
+                });
+            }, false);
+        });
+
+        // 获取扫描护照信息
+        getsmhz();
+
+        //获取短信验证码
+        mui('.get')[0].addEventListener('tap',function(){
+            settimeWG(this);
+        });
+
+        //点击下一步按钮
+        mui('#nextstep')[0].addEventListener('tap',function(){
+            nextstep();
+        })
+    })(jQuery)
+
+    //	获取扫描信息
+    function getsmhz() {
+		var btnArray = ['否', '是'];
+		var $dataStr = window.AndroidWebView.showInfoFromJs('userInfoNew','','','');
+		if ($dataStr) {
+			var $data = eval('(' + $dataStr + ')');
+			if($data.zjhm==undefined || $data.zjhm==''){
+				mui.confirm('证件识别失败,是否重新拍摄?','提示',btnArray,function(e){
+					if (e.index == 1) {
+						openzhaoxiang();
+					}
+				});
+			}
+			$("#surname").val($data.ywx);
+			$("#givenName").val($data.ywm);
+			$("#passportNo").val($data.zjhm.replace("NO","No"));
+			$("#validUntil").val($data.zjdq);
+			$("#gjdq").val($data.gjdq);
+			$("#xb").val($data.xb);
+			 if ($data.xb == '女') {
+                $("#nvclass").attr("class", "radios-each selected");
+                $("#nanclass").attr("class", "radios-each");
+                $("#nv").prop('checked', true);
+            } else {
+                $("#nvclass").attr("class", "radios-each");
+                $("#nanclass").attr("class", "radios-each selected");
+                $("#nan").prop('checked', true);
+            }
+			$("#csrq").val($data.csrq);
+			var gjdq = $data.gjdq
+			if (gjdq == 'CHN') {
+                $("#gjdq").val("中国");
+                $("#gjdqtext").html("中国");
+            } else if (gjdq == 'KOR') {
+                $("#gjdq").val("韩国");
+                $("#gjdqtext").html("韩国");
+            } else if (gjdq == 'USA') {
+                $("#gjdq").val("美国");
+                $("#gjdqtext").html("美国");
+            } else if (gjdq == 'GBR') {
+                $("#gjdq").val("英国");
+                $("#gjdqtext").html("英国");
+            } else if (gjdq == 'PRK') {
+                $("#gjdq").val("朝鲜");
+                $("#gjdqtext").html("朝鲜");
+            } else if (gjdq == 'DEU') {
+                $("#gjdq").val("德国");
+                $("#gjdqtext").html("德国");
+            } else if (gjdq == 'FRA') {
+                $("#gjdq").val("法国");
+                $("#gjdqtext").html("法国");
+            } else if (gjdq == 'JPN') {
+                $("#gjdq").val("日本");
+                $("#gjdqtext").html("日本");
+            } else {
+				var gjdqArr = dataAdd[0];
+				for (var i = 0; i < gjdqArr.length; i++) {
+					if (gjdq == gjdqArr[i]['value']) {
+						$("#gjdq").val(gjdqArr[i]['text']);
+						$("#gjdqtext").html(gjdqArr[i]['text']);
+						break;
+					}
+				}
+			}
+		} else {
+			mui.confirm('证件识别失败,是否重新拍摄?','提示',btnArray,function(e){
+				if (e.index == 1) {
+					openzhaoxiang();
+				}
+			});
+		}
+    }
+
+    function findxzqh(){
+        
+        var njld = document.getElementById("njld");
+        var url = crjbasePath + "webProtal/findDictionaryByType.do?random=" + Math.random();
+        var listParams = {
+                "pid" : "22000000"
+        };
+
+        $.getJSON(url,listParams, function(json){ 
+            $.each(json.data, function(i,result) {
+                var slscode = result.dicCode;
+                var slsname = result.dicName;
+                locationJson.push({
+                    value: slscode,
+                    text: slsname
+                })
+                
+            }); 
+            
+            //普通联动
+            btn1.each(function(i,btn) {
+                if(i == 1){
+                    var userPicker = new mui.PopPicker();
+                    userPicker.setData(locationJson);
+                    btn.addEventListener('tap', function(event) {
+                        userPicker.show(function(items) {
+                            result1[i].value = items[0].text;
+                            njld.value = items[0].value;
+                            //返回 false 可以阻止选择框的关闭
+                            //return false;
+                        });
+                    }, false); 
+                }
+                
+            });
+        });
+        
+    }
+</script>
+</html>

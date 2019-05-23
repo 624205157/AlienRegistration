@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/reset.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="css/app.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/font.js"></script>
+	<script src="js/cookie.js"></script>
+
+	<style type="text/css">
+		.me-margin-right-s {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		.mui-ellipsis {
+			width: 100%;
+		}
+
+		.btns button {
+			display: inline-block;
+			width: calc(50% - 30px);
+			margin-left: 0px!important;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav black-back">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white"></a>
+		<h1 class="mui-title me-white">Fill in address information</h1>
+	</header>
+	<div class="mui-content">
+		<!--<div class="home-box">
+		    	<div class="deco-pic deco1"><img src="img/empty-tips.png" width="100%" alt="" /></div>
+		    	<div class="home-title me-no-margin">
+		    		<h1 class="font1">您还没有住宿登记记录</h1>
+		    		<p class="me-blue">快去登记吧！</p>
+		    	</div>
+		    </div>-->
+		<div class="me-red me-top me-center">Tip: Please select a foreigner rental house address information</div>
+		<ul class="mui-table-view mui-table-view-chevron me-whole-row-line trans-back me-top" id="abcd">
+			<!-- <li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">
+				<a class="me-before-radios">
+					<img class="me-list-pic mui-pull-left" src="img/list-pic.jpg">
+					<div class="mui-media-body">
+						<div class="me-media-top two-lines">
+							<span class="me-margin-right-s">南湖一号</span>
+							<span class="me-aaa me-inline-block mui-ellipsis">前进大街派出所</span>
+						</div>
+						<p class='me-aaa mui-ellipsis'>长春市朝阳区繁荣路前进大街交汇</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">
+				<a class="me-before-radios">
+					<img class="me-list-pic mui-pull-left" src="img/list-pic.jpg">
+					<div class="mui-media-body">
+						<div class="me-media-top two-lines"><span class="me-margin-right-s">南湖一号</span><span class="me-aaa me-inline-block mui-ellipsis">前进大街派出所</span></div>
+						<p class='me-aaa mui-ellipsis'>长春市朝阳区繁荣路前进大街交汇</p>
+
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">
+				<a class="me-before-radios active">
+					<img class="me-list-pic mui-pull-left" src="img/list-pic.jpg">
+					<div class="mui-media-body">
+						<div class="me-media-top two-lines"><span class="me-margin-right-s">南湖一号</span><span class="me-aaa me-inline-block mui-ellipsis">前进大街派出所</span></div>
+						<p class='me-aaa mui-ellipsis'>长春市朝阳区繁荣路前进大街交汇</p>
+
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">
+				<a class="me-before-radios">
+					<img class="me-list-pic mui-pull-left" src="img/list-pic.jpg">
+					<div class="mui-media-body">
+						<div class="me-media-top two-lines"><span class="me-margin-right-s">南湖一号</span><span class="me-aaa me-inline-block mui-ellipsis">前进大街派出所前进大街派出所</span></div>
+						<p class='me-aaa mui-ellipsis'>长春市朝阳区繁荣路前进大街交汇</p>
+
+					</div>
+				</a>
+			</li> -->
+		</ul>
+		<ul>
+			<div class="btns">
+				<button type="button" class="foreigner-btn" id="add" style="margin-bottom:20px;margin-right:10px;" onclick="getAdd()">New address</button>
+				<button type="button" class="foreigner-btn" id="goto" style="margin-bottom:20px;margin-left:10px;" onclick="getUrl()">Next step</button>
+			</div>
+		</ul>
+
+	</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script src="js/city.data3.js"></script>
+<script src="js/url.js"></script>
+<script type="text/javascript">
+	var phone = "";
+	var data = "";
+	var fwid = "";
+
+	window.onload = (function($) {
+		jQuery('.mui-content').on('click', '.me-before-radios', function() {
+			//			$(this).addClass('active');
+			jQuery(this).addClass('active').parents('li').siblings().find('.me-before-radios').removeClass('active');
+				fwid = jQuery(this).closest("li").find("input[class='pid']").val();
+		})
+	}(jQuery))
+
+	apiready = function() {
+		phone = api.pageParam.phone;
+		phone = getCookie("phone");
+
+
+		api.ajax({
+				url: base+'fzxxcjController.do?getById',//出入境平台查询房主房屋信息
+				method: 'post',
+				data: {
+					values: {
+						phone: phone
+					}
+				}
+			}, function(ret, err) {
+				if (ret) {
+					for (var i = 0; i < ret.length; i++) {
+						var id = ret[i].id;
+						//alert(JSON.stringify(ret));
+						var xxdz = ret[i].xxdz;
+						var xqmc = ret[i].xqmc;
+						var sspcName = ret[i].sspcsName;
+						data += '<li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">';
+						data += '<a class="me-before-radios">';
+
+						data += '<div class="mui-media-body">';
+
+						data += '<div class="me-media-top two-lines">';
+						data += '<span class="me-margin-right-s">' + xqmc + '</span>';
+						data += '<span class="me-aaa me-inline-block mui-ellipsis">' + sspcName + '</span>';
+						data += '</div>';
+						data += '<p class="me-aaa mui-ellipsis">' + xxdz + '</p>';
+						data += '</div>';
+						data += '</a>';
+						data += '</li>';
+					}
+				} else {
+					// alert(
+					// 	"暂无房屋信息，请增加地址！"
+					// );
+				}
+				$("#abcd").html(data);
+
+		});
+	}
+	//跳转新增地址
+	function getAdd() {
+		location = 'input_location_en.html';
+		// alert(text);
+		<!--api.openWin({-->
+			<!--name: 'search',-->
+			<!--url: './input_location_en.html',-->
+			<!--bounces: false,-->
+			<!--pageParam: {-->
+				<!--phone: phone-->
+			<!--}-->
+		<!--});-->
+	}
+	//跳转外国人拍护照样本页
+	function getUrl(){
+		api.openWin({
+			name: 'search',
+			url: './photo_hint_en.html',
+			bounces: false,
+			pageParam: {
+				fwid: fwid
+			}
+		});
+	}
+</script>
+
+</html>

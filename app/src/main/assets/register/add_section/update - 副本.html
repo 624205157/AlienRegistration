@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/1sfrz.js"></script>
+    <script src="js/ajaxfileupload.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        /*添加图片*/
+        .me-tips{color:#aaaaaa; width:150px; text-align:right; font-size:0.3rem;position:absolute;top:50%;margin-top:-17.5px;padding:0px!important;padding-right:inherit!important;line-height:35px;right:5%;height:35px;}
+        .addbtn { position: absolute; top: -9999px; }
+        .me-item-pic{float: left; width: calc(25% - 10px); margin-right:10px; position: relative;}
+        .me-item-pic img{ width: 100%; height:100%; position: absolute; top:0px; left:0px; display: block;}
+        .me-item-pic::before { display: block; content:''; padding-top: 100%;}
+        .add.me-tips{ width: 50px!important; height: 50px!important; margin-top: -25px; padding: 0px!important; display: block; }
+        .heighter .me-list-con { line-height: 50px;}
+        .heighter .me-media-pic { height: 50px!important; width: 42px;}
+        .heighter .me-media-pic>img { margin-top: 11px;}
+        .deleteit { display: block; position: absolute; top: -10px; right: -10px; width: 20px; height: 20px; border-radius: 20px; background: red; color: #fff; font-size: 20px; line-height: 20px; text-align: center; }
+        .deleteit { display: inline-block; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">上传材料</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell me-name">请上传一下材料(图片)</li>
+                    <li class="mui-table-view-cell mui-media heighter">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/iconpic.jpg"></div>
+                            <div class="mui-media-body me-list-con">有效护照资料页和签证页<span class="me-red">*</span></div>
+                            <label for="add1" class="add me-tips " id="add-btn" ><img src="img/add.jpg" width="100%"/></label>
+                            <input type="file" id="add1" class="addbtn" data-index="0"/>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media heighter">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/iconpic.jpg"></div>
+                            <div class="mui-media-body me-list-con">与申请事由相关的证明材料<span class="me-red">*</span></div>
+                            <label for="add2" class="add me-tips " id="add-btn" ><img src="img/add.jpg" width="100%"/><a href="" class="deleteit">×</a></label>
+                            <input type="file" id="add2" class="addbtn" data-index="1"/>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media heighter">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/iconpic.jpg"></div>
+                            <div class="mui-media-body me-list-con">体检证明<span class="me-red">*</span></div>
+                            <label for="add3" class="add me-tips " id="add-btn" ><img src="img/add.jpg" width="100%"/></label>
+                            <input type="file" id="add3" class="addbtn" data-index="2"/>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media heighter">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/iconpic.jpg"></div>
+                            <div class="mui-media-body me-list-con">申请人照片<span class="me-red">*</span></div>
+                            <label for="add4" class="add me-tips " id="add-btn" ><img src="img/add.jpg" width="100%"/></label>
+                            <input type="file" id="add4" class="addbtn" data-index="3" />
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="" style="margin:10px auto;">下一步</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="js/add_script.js"></script>
+<script>
+    mui.init();
+    var imgBox = ['','','',''];
+    $('.addbtn').change(function(){
+        
+        show (this);
+    })
+
+    function show (obj) {
+        var addInput = obj;
+        var index = $(obj).attr('data-index');
+        if(typeof FileReader == 'undefined') {
+            alert("抱歉，你的浏览器不支持FileReader");
+        };
+        var simpleFile = obj.files[0];
+        console.log(addInput.value)
+        if(!/image\/\w+/.test(simpleFile.type)) {
+            alert("请确保文件类型为图像类型");
+            return false;
+        }
+        var reader = new FileReader();
+        // 将文件以Data URL形式进行读入页面
+        reader.readAsDataURL(simpleFile);
+        reader.onload = function(e){
+            var ele = '<img src="'+this.result+'" id="rxZp" width="100%" height="100%"/>'
+            imgBox[index] = this.result;
+            $(obj).siblings('label').html(ele);
+            console.log($(obj))
+        }
+    }
+    mui('.foreigner-btn')[0].addEventListener('tap',function(){
+        var index = '';
+        for(var i=0; i<imgBox.length; i++){
+
+            if(imgBox[i] == ''){
+                index = i;
+                break;
+            }
+        }
+        if(typeof index == 'number'){
+           var  text = $('.me-list-con').eq(index).text();
+           alert('请上传'+text);
+           return false;
+        }
+    })
+</script>
+</html>

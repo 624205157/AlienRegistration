@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>智能客服</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/customer_style.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/font.js"></script>
+	<script src="js/url.js"></script>
+
+</head>
+
+<body>
+	<header>
+		<div class="header">
+			<div class="back"></div>
+			<!--<div class="header_pic"></div>-->
+			<div class="menu"></div>
+		</div>
+	</header>
+	<div class="customer_content">
+		<div class="customer_container">
+			<!-- <div class="text">
+				<div class="auto">
+					<div class="text_box" data-kinds="0">
+						小主，早上好，一天之计在于晨，要好好珍惜哟，遇到什么问题随时可以找小智。
+					</div>
+					<div class="now_time">10:20</div>
+				</div>
+			</div> -->
+			<!-- <div class="text">
+				<div class="auto">
+					<div class="text_box" data-kinds="1">
+						<div class="text_con">
+							<ul>
+								<li>签证办理流程？<div class="tips">hot</div></li>
+								<li>签证办理地点？</li>
+								<li>签证办理所需材料？</li>
+							</ul>
+						</div>
+					</div>
+					<div class="now_time">10:20</div>
+				</div>
+			</div>-->
+			<!--答案的示例代码========================-->
+			<!--<div class="text">-->
+				<!--<div class="auto">-->
+					<!--<div class="text_box" data-kinds="2">-->
+						<!--<div class="text_con">-->
+							<!--<h1>来华办理证件流程</h1>-->
+							<!--<ul>-->
+								<!--<li>1、有效国际旅行证件，包括外交、公务(官员、特别)、因公普通、普通护照等证件； </li>-->
+								<!--<li>2、填写《外国人签证、居留许可申请表》，交一张</li>-->
+								<!--<li>3、与申请签证、居留许可相关的证明。</li>-->
+							<!--</ul>-->
+							<!--<button type="button" id="visa-btn">我要办签证</button>-->
+						<!--</div>-->
+						<!--<div class="audio-btn"></div>-->
+					<!--</div>-->
+					<!--<div class="whether-btns">-->
+						<!--<div class="help-btn h-btn">-->
+							<!--<span>帮到我了</span>-->
+						<!--</div>-->
+						<!--<div class="helpless-btn h-btn">-->
+							<!--<span>没帮到我</span>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="now_time">10:20</div>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			  <!--答案的示例代码结束===============-->
+			<!--<div class="text">
+				<div class="auto">
+					<div class="text_box" data-kinds="3">
+						<div class="text_con">
+							<h2>你是想问？</h2>
+							<ul>
+								<li>1. 如何办理证件？</li>
+								<li>2. 签证进度查询？</li>
+								<li>3. 我想申请签证？</li>
+							</ul>
+						</div>
+					</div>
+					<div class="now_time">10:20</div>
+				</div>
+			</div>
+			<div class="text">
+				<div class="auto">
+					<div class="text_box" data-kinds="4">
+						<div class="text_con">
+							<h2>已查询到您当前办理业务编号B748578498</h2>
+							<ul>
+								<li class="each_item">审核通过</li>
+								<li class="each_item">业务审核中</li>
+								<li class="each_item">业务受理</li>
+								<li class="line"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="now_time">10:20</div>
+				</div>
+			</div>
+			<div class="text">
+				<div class="customer">
+					<div class="text_box" data-kinds="0">
+						小主，早上好，一天之计在于晨，要好好珍惜哟，遇到什么问题随时可以找小智。
+					</div>
+					<div class="now_time">10:20</div>
+				</div>
+			</div> -->
+		</div>
+
+
+	</div>
+	<footer>
+		<div class="btns_group">
+			<div class="btns_box" id="btns_box">
+				<!--<button type="button" data-kinds="0">我要评价</button>-->
+				<button type="button" data-kinds="1">我要提建议</button>
+				<!--<button type="button" data-kinds="2" onclick="shenqing()">我要申请签证</button>-->
+				<button type="button" data-kinds="3">我要转人工服务</button>
+			</div>
+		</div>
+		<div class="input_box">
+			<div class="choose_ways choose">
+				<div class="ways_pic" data-ways="0" style="display: none;"></div>
+				<div class="ways_pic" data-ways="1"></div>
+			</div>
+			<div class="input_ways">
+				<div class="input" data-ways="0" style="display: block;"><input type="text"></div>
+				<div class="input" data-ways="1" style="display: none;"><button type="button">按住说话</button></div>
+			</div>
+			<div class="choose_pic choose" style="display: block;">
+				<!-- <div class="ways_pic"></div> -->
+				<button type="button">确定</button>
+			</div>
+		</div>
+	</footer>
+	<div class="appendix local" style="display: none;">
+		<div class="appendix_title">
+			根据您的位置信息推荐办理地点如下
+			<div class="close"></div>
+		</div>
+		<!-- <div class="each_location">
+			<div class="loca_name">长春市公安局出入境管理局</div>
+			<div class="loca_con">朝阳区光明路688号</div>
+			<div class="goto">
+				<img src="img/arrow.jpg" alt="">
+				<h1>到这去</h1>
+			</div>
+		</div> -->
+
+	</div>
+	<div class="appendix proposal sugg" data-kinds="1" style="display: none;">
+		<div class="appendix_title">
+			意见建议
+			<div class="close"></div>
+		</div>
+		<div class="choice_btns">
+			<button type="button" data-name="simplify" data-choose="1" class="active">简化流程</button>
+			<button type="button" data-name="slower" data-choose="0">反应慢</button>
+			<button type="button" data-name="beautify" data-choose="0">界面美化</button>
+		</div>
+		<div class="input_text">
+			<textarea name="" id="" rows="6"></textarea>
+		</div>
+		<button type="buttom" class="submit" id="submit_sug">提交建议</button>
+	</div>
+	<div class="appendix proposal star" data-kinds="0" style="display: none;">
+		<div class="appendix_title">
+			评价
+			<div class="close"></div>
+		</div>
+		<div class="choice_btns star">
+			<div class="star0" id="star1">
+				<h1>总体评价</h1>
+				<ul class="star_box">
+					<li>
+						<div class="star_pic"></div>
+						<span>非常差</span>
+					</li>
+					<li>
+						<div class="star_pic"></div>
+						<span>一般</span>
+					</li>
+					<li>
+						<div class="star_pic"></div>
+						<span>良好</span>
+					</li>
+					<li>
+						<div class="star_pic"></div>
+						<span>很好</span>
+					</li>
+					<li>
+						<div class="star_pic"></div>
+						<span>非常好</span>
+					</li>
+				</ul>
+			</div>
+			<div class="star0" id="star2">
+				<h1>本次服务</h1>
+				<ul class="star_box">
+					<li>
+						<div class="star_pic"></div>
+						<span>非常差</span>
+					</li>
+					<li>
+						<div class="star_pic"></div>
+						<span>一般</span>
+					</li>
+					<li>
+						<div class="star_pic"></div>
+						<span>良好</span>
+					</li>
+					<li>
+						<div class="star_pic"></div>
+						<span>很好</span>
+					</li>
+					<li>
+						<div class="star_pic"></div>
+						<span>非常好</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="choice_btns">
+			<button type="button" data-name="intelligence" data-choose="1" class="active">超级智能</button>
+			<button type="button" data-name="confidence" data-choose="0">方便快捷</button>
+		</div>
+		<div class="input_text">
+			<textarea name="" id="" rows="6" placeholder="小主说点什么吧"></textarea>
+		</div>
+		<button type="buttom" class="submit" id="submit_ass">提交建议</button>
+	</div>
+	<div class="mask"></div>
+</body>
+<script src="js/common.js"></script>
+
+</html>

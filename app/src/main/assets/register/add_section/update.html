@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/ajaxfileupload.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        /*添加图片*/
+        #tssj { text-indent: 0px!important;  padding-left: 10px!important; padding-right: 10px!important; line-height: 1.5; }
+        .me-tips{color:#aaaaaa; width:150px; text-align:right; font-size:0.3rem;position:absolute;top:50%;margin-top:-17.5px;padding:0px!important;padding-right:inherit!important;line-height:35px;right:5%;height:35px;}
+        .add { width: 100px; height: 100px; }
+        .addbtn { position: absolute; top: -9999px; }
+        .me-item-pic{float: left; width: calc(25% - 10px); margin-right:10px; position: relative;}
+        .me-item-pic img{ width: 100%; height:100%; position: absolute; top:0px; left:0px; display: block;}
+        .me-item-pic::before { display: block; content:''; padding-top: 100%;}
+        .add.me-tips{ width: 50px!important; height: 50px!important; margin-top: -25px; padding: 0px!important; }
+        .heighter .me-list-con { line-height: 50px;}
+        .heighter .me-media-pic { height: 50px!important; width: 42px;}
+        .heighter .me-media-pic>img { margin-top: 11px;}
+        .deleteit { position: absolute; top: 0px; right: 10px; overflow: hidden; width: 20px; height: 20px; border-radius: 20px; color: #fff; font-size: 20px; line-height: 20px; text-align: center; }
+        .deleteit a { display: block; color: #fff; background: red; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">上传材料</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="listId">
+                    <li class="mui-table-view-cell me-name" id="tssj">请上传材料(仅限1图片,如果涉及到多份资料,请照在一张图片里。)</li>
+
+                    
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="" style="margin:10px auto;">下一步</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<!--
+<script type="text/javascript" src="../basics/js/ajaxfileupload.js"></script>
+-->
+
+<script src="js/add_script.js"></script>
+<script>
+    var crjbasePath=  'http://221.8.52.247:8445/jit_crj/';
+        // 标示是否显示护照首申
+var ywcode = GetQueryString('ywbh');
+var type = GetQueryString('type');
+    // 标示是否显示港澳首申
+var ly = GetQueryString('ly');
+    // 标示是否显示台湾首申
+var zjlx = GetQueryString('xcyzjlx');
+var sishu= GetQueryString('sishu');
+var gj = GetQueryString('gj');
+var day = GetQueryString('flagday');
+var nfzjlx = GetQueryString('nfzjlx');
+var birthday=GetQueryString('birthday');
+var djdwxzqh=GetQueryString('djdwxzqh');
+var xcyzjlx = GetQueryString('xcyzjlx');
+var xcyqzUntil = GetQueryString('xcyqzUntil');
+var qzyyx = GetQueryString('qzyyx');
+var surname = GetQueryString('surname');
+var givenName = GetQueryString('givenName');
+var passportNo = GetQueryString('passportNo');
+var gjdq = GetQueryString('gjdq');
+var xb = GetQueryString('xb');
+var csrq = GetQueryString('csrq');
+var gnlxr = GetQueryString('gnlxr');
+var njld = GetQueryString('njld');
+var ywbh = GetQueryString('ywcode');
+var gj = GetQueryString('gj');
+var birthday = GetQueryString('birthday');
+var djdwxzqh = GetQueryString('djdwxzqh');
+var dateB= GetQueryString('dateB');
+var valid_until= GetQueryString('btwrzhqx');
+var nfzjlx_cl= GetQueryString('nfzjlx_cl');
+var bzjd= GetQueryString('bzjd');
+if(nfzjlx_cl=='tq_lxmfqz_tjljlxk'){
+sqText = '团聚类居留许可'
+}
+if(nfzjlx_cl=='tq_lxmfqz_srswljlxk'){
+sqText = '私人事务类居留许可'
+}
+if(nfzjlx_cl=='gz_rzqz_gzljlxk'){
+sqText = '工作类居留许可'
+}
+if(nfzjlx_cl=='gz_zqz_gzljlxk'){
+sqText = '工作类居留许可（人才）'
+}
+if(nfzjlx_cl=='xx_x1qz_xxljlxk'){
+sqText = '学习类居留许可'
+}
+if(nfzjlx_cl=='gz_rzqz_rzqzyq'){
+sqText = 'R字签证'
+}
+if(nfzjlx_cl=='tq_lxmfqz_hfs2qz'){
+sqText = 'S2字签证'
+}
+if(nfzjlx_cl=='grly_clqz_lqzyq'){
+sqText = 'L字签证'
+}
+if(nfzjlx_cl=='xx_s2q2qz_hfx2qz'){
+sqText = 'X2字签证'
+}
+if(nfzjlx_cl=='my_mqz_mqzyq'){
+sqText = 'M字签证'
+}
+if(nfzjlx_cl=='jlfwkc_fqz_fqzyq'){
+sqText = 'F字签证'
+}
+if(nfzjlx_cl=='tq_q2qz_yqq2qz'){
+sqText = 'Q2字签证'
+}
+if(nfzjlx_cl=='jy_q1q2lqz_tjljlxk'){
+sqText = 'Q字签证(寄养)'
+}
+    // 初始化页面
+    $(function() {
+        // 初始化提示信息
+        var str = "";
+
+
+        // 准备URL和参数列表
+        var url = crjbasePath + "crj/after/findMTsxxByWJ1.do?random=" + Math.random();
+        var listParams = {
+                "type" : nfzjlx_cl
+        };
+        $.ajaxSettings.async = false; 
+        // 发出请求并处理返回数据
+        $.getJSON(url, listParams, function(json) {
+            console.log(json);
+            $.each(json.data, function(i, result) {
+                var dir = result.type.substring(0,result.type.indexOf('/'));
+                if(dir.indexOf('(') != -1 && dir.substring(result.type.indexOf('(')) == "(非必填)"){
+
+                    str += '<li class="mui-table-view-cell mui-media heighter">\
+                            <a>\
+                                <div class="me-media-pic mui-pull-left"><img class="mui-media-object"  src="img/iconpic.jpg"></div>\
+                                <div class="mui-media-body me-list-con">'+ result.type.substring(0,result.type.indexOf('/'))+'</div>\
+                                <label for="fj'+i+'" class="add me-tips " id="add-btn'+i+'" ><img src="img/add.jpg" id="imgfj'+i+'" width="100%"/></label>\
+                                <input type="file" name="file" id="fj'+i+'" class="addbtn infor1" data-index="'+i+'" onchange="ajaxFileUpload(this,2048,\'' + ywbh + '\',\''+ sqText + '\',\'' + result.type + '\',\'WGcallBack\')"/>\
+                                <div id="callfile'+i+'"  class="deleteit"></div>\
+                            </a>\
+                        </li>'
+                }else{
+                    str += '<li class="mui-table-view-cell mui-media heighter">\
+                            <a>\
+                                <div class="me-media-pic mui-pull-left"><img class="mui-media-object"  src="img/iconpic.jpg"></div>\
+                                <div class="mui-media-body me-list-con">'+ result.type.substring(0,result.type.indexOf('/'))+'<span class="me-red">*</span></div>\
+                                <label for="fj'+i+'" class="add me-tips " id="add-btn'+i+'" ><img src="img/add.jpg" id="imgfj'+i+'" width="100%"/></label>\
+                                <input type="file" name="file" id="fj'+i+'" class="addbtn infor1" data-index="'+i+'" onchange="ajaxFileUpload(this,2048,\'' + ywbh + '\',\''+ sqText + '\',\'' + result.type + '\',\'WGcallBack\')"/>\
+                                <div id="callfile'+i+'"  class="deleteit"></div>\
+                            </a>\
+                        </li>'
+                }
+
+
+
+
+            });
+        });
+        var tbOjb = $(str);
+        tbOjb.appendTo($("#listId"));
+           var fileChooser = document.getElementById("fj0"),
+        maxSize = 200 * 1024;   //200KB
+    fileChooser.change = function() {
+        var file = this.files[0],   //读取文件
+            reader = new FileReader();
+
+            reader.onload = function() {
+                var result = this.result,   //result为data url的形式
+                    img = new Image();
+                    img.src = result;
+
+
+                if(result.length < maxSize) {
+                   // imgUpload(result);      //图片直接上传
+                } else {
+                   // var data = compress(img);    //图片首先进行压缩
+                   // imgUpload(data);                //图片上传
+                }
+            }
+
+            reader.readAsDataURL(file);
+    }
+
+    })
+
+   //上传图片
+    function previewImage(file) {
+        var MAXWIDTH = 100;
+        var MAXHEIGHT = 200;
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+            console.info(evt.target.result);
+                //$("#showImg").attr("src",evt.target.result+"");
+                // $('#img1').html('<li class="weui_uploader_file" style="background-image:url('+evt.target.result+')"></li>');
+                var imgid = "img"+$(file).attr("id");
+
+                $("#"+imgid).attr("src",evt.target.result+"");
+
+            };
+
+            //$("#tpurl").val("上传成功");
+            reader.readAsDataURL(file.files[0]);
+        }
+    }
+    
+    //判断是全流程还是非全流程
+    
+    function findFqOrQ(){
+        var flag="";
+        $.ajax({
+             url: crjbasePath+"crj/gccry/findBypassport.do",
+             type:"post",
+             dateType:"json",
+             success: function(data) {
+                 
+                 if(data==1){
+                     
+                     var arr1=birthday.substring(0,10);
+                     var myDate = new Date();
+                     var date2=myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate();
+                     var arrDate, objDate1, objDate2, d;
+                     objDate1 = new Date();
+                     objDate2 = new Date();
+                     arrDate = arr1.split("-");
+                     objDate1.setFullYear(arrDate[0], arrDate[1], arrDate[2]);
+                     arrDate = date2.split("-");
+                     objDate2.setFullYear(arrDate[0], arrDate[1], arrDate[2]);
+                     d = parseInt(Math.abs(objDate2-objDate1) / 1000 / 60 / 60 / 24);
+                     if(d<(16*365)||d>(60*365)){
+                        flag="0";
+                     }else{
+                        flag="1";
+                     }
+                }else{
+                    flag="0";
+                }
+            }
+        });
+        return flag;
+    }
+    var bzjd = "" ;
+    var rflag = "" ;
+    function CheckUp(){
+        var ins = 1
+        $('.infor1').each(function(i){
+            var val = $(this).val();
+            if(val == ''){
+                var con = $(this).siblings('.me-list-con').text();
+                alert('请上传'+con.substring(0,con.length-1)+'的相关图片！')
+                ins = 0;
+                return false;
+            }
+            
+        })
+        if(ins){
+            bzjd = bzjd;
+             var crjbasePath = 'http://221.8.52.247:8445/jit_crj/';
+            $.ajax({
+                //url: 'datas/stopDate.json', //测试路径
+
+                url : crjbasePath+"sfrz/saveFile.do",
+                data : {
+                    "bzjd":"010"
+                },
+                type : "post",
+                dataType : 'json',
+                success : function(data) {
+                    var flag1=findFqOrQ();
+                    rflag = flag1;
+                    //将业务编号保存到sqb中bz字段
+                     $.ajax({
+                            url: crjbasePath+"sfrz/saveYwcodeTowgkz.do",
+                            type:'post',
+                            data:{
+                                flag:flag1
+                            },
+                            dateType:"json",
+                            success: function(data) {
+                                if(data==0){
+                                    location="success.html";
+                                }
+                            }
+                        }); 
+                        
+                        
+                }
+            });
+        }   
+    }
+    
+    
+    
+    //外管附件回调函数
+    function  WGcallBack(flagval,param){
+         var pra = param.split(',');
+         // $('#callfile' + flagval).append("<div><a href="+crjbasePath+"crj/flie/fileDown.do?fileid="+pra[0]+" > "+pra[1]+" </a>"
+         // + "<a id='"+pra[0]+"' href=\"javascript:WGupdateFile('"+pra[0]+"',"+flagval+",this)\" >删除 </a></div>"
+         // );
+         $('#callfile' + flagval).append("<a id='"+pra[0]+"' href=\"javascript:WGupdateFile('"+pra[0]+"',"+flagval+",this)\" >×</a>"
+         );
+    }
+    
+    function WGupdateFile(pra,flagval,doc){
+        var truthBeTold = window.confirm("您确定要删除该附件吗？ ");
+        if (truthBeTold) { 
+            $("#"+pra).parent().remove();
+            
+            $.ajax({
+                url : crjbasePath+"crj/flie/delete.do",
+                data : {"fileid":pra
+                    },
+                type : "get",
+                dataType : 'text',
+                success : function(data, textStatus) {
+                    alert('删除成功!/Attachment has been deleted!');
+                    $('#fj'+flagval).val('');
+                    $("#"+pra).parent().siblings('label').find('img').attr('src','img/add.jpg')
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+                    alert('修改附件错误/Correct the errors in the attachment');
+
+                }
+            })
+        } else {}; 
+
+    }
+    mui('.foreigner-btn')[0].addEventListener('tap',function(){
+
+        location="success.html";
+       // CheckUp();
+    })    
+</script>
+</html>

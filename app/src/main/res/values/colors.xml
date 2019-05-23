@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="camera_progress_three">#24ff00</color>
+    <color name="color_4e3d31">#4e3d31</color>
+    <color name="grey8">#888888</color>
+    <color name="transparent_black_85">#DA000000</color>
+
+    <color name="windows_title">#1b91f5</color>
+    <color name="write">#ffffff</color>
+    <color name="black_myresume_top">#565656</color>
+    <color name="home_tab_text">#9b9b9b</color>
+
+    <!-- 透明 -->
+    <color name="transparent">#00000000</color>
+    <color name="transparent2">#10000000</color>
+    <color name="additional_onelevel_txt_bg">#034a81</color>
+    <color name="additional_twolevel_txt_bg">#c60013</color>
+    <color name="adv_top">#f0f0f0</color>
+    <color name="gray">#eaeaea</color>
+    <color name="gray_two">#464646</color>
+    <color name="blue">#3d81fc</color>
+    <color name="bg_myresume">#efefef</color>
+    <color name="red">#f00</color>
+    <color name="person_advanced_text">#5f5f5f</color>
+    <color name="blue_dan">#98bcfc</color>
+    <color name="line">#c6c6c6</color>
+    <color name="yello">#fe5000</color>
+    <color name="position_detail_btn_gray">#f3f3f3</color>
+    <!-- xxxxxxxxxxxxxxxx -->
+    <!-- 主应用程序 -->
+    <color name="pull_refresh_textview">#000000</color>
+    <!-- 日历 -->
+    <color name="text_color">#FFFF00</color>
+    <color name="gray_one">#CAC3C0</color>
+    <color name="gray_four">#dadada</color>
+    <!-- 超浅灰色 -->
+    <!-- 浅灰 -->
+    <color name="light_gray">#666666</color>
+    <!-- 深灰 -->
+    <!-- 浅红 -->
+    <!-- 超浅红 粉红 -->
+    <!-- 深红 -->
+    <!-- 微信绿 -->
+    <!-- 浅灰色线 -->
+    <color name="lighter_gray_line">#e3e3e3</color>
+    <!-- 深灰色线 -->
+    <color name="deeper_gray_line">#b4b4b4</color>
+    <!-- bad评价字体和边框 -->
+    <!-- good评价字体和边框 -->
+    <color name="gray_btn">#bcbcbc</color>
+    <color name="darkgrey_light">#6c6c6c</color>
+    <color name="deeper_grey">#777777</color>
+
+
+    <!-- 杨静2016.04.18 12:16添加最新样式S -->
+    <!-- 主要问题，标题等 -->
+    <color name="F1">#4c4c4c</color>
+    <!-- 辅助文字，提示，次重点 -->
+    <color name="F2">#7d7d7d</color>
+    <!-- 弱提示，未激活等 -->
+    <color name="F3">#9a9a9a</color>
+    <!-- 弱提示，未激活等 -->
+    <color name="F4">#cccccc</color>
+    <!-- 特殊醒目，价格，工资等-->
+    <color name="T1">#f8931e</color>
+    <!-- 辅助醒目色-->
+    <color name="T2">#2f72cb</color>
+
+
+    <!-- 辅助醒目色2-->
+    <color name="T3">#55637c</color>
+    <!-- 辅助醒目色4-->
+    <color name="T4">#48a7e7</color>
+    <!-- 辅助醒目色5-->
+    <color name="T5">#f6a923</color>
+    <!-- 辅助醒目色6-->
+    <color name="T6">#8aa1c0</color>
+    <!-- 辅助醒目色7 绿色-->
+    <color name="T7">#56b700</color>
+
+    <!-- 间隔线颜色 细-->
+    <color name="Line">#E5E5E5</color>
+    <!-- 间隔线颜色 粗-->
+    <color name="Line_thick">#E5E5E5</color>
+    <!-- 标题栏背景色 -->
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <!-- 黑色 -->
+    <color name="black">#000</color>
+    <color name="main_table">#fbab13</color>
+    <!-- 标题栏蓝色
+    <color name="title_bg">#1b91f5</color>-->
+    <color name="title_bg">#2f72cb</color>
+
+    <!--  搜索记录的顶部热门搜索的按钮背景色-->
+    <color name="host_seach_bg">#eee9e1</color>
+    <!-- 按钮背景色 蓝 -->
+    <color name="seachest_blue_bg">#48a5e8</color>
+    <color name="filter_blue_bg">#1b91f5</color>
+    <!-- 按钮背景色 按下 浅蓝 -->
+    <color name="seachest_blue_bg_pressed">#6eb9f0</color>
+    <!-- 高级搜索背景灰色 -->
+    <color name="seachest_gray_bg">#eee8e2</color>
+    <color name="filter_gray_bg">#eeefe5</color>
+    <!-- 我的申请60天提示背景色 浅黄 -->
+    <color name="apply_yellow_bg">#f0ffae</color>
+    <!-- 灰色条-->
+    <color name="light_gray_line">#efefef</color>
+    <!-- 已经申请的职位背景色 -->
+    <color name="applyed_position">#55647c</color>
+    <!-- 弹出框按键颜色 -->
+    <color name="btn_yellow">#f8941f</color>
+    <!-- 按键边框 -->
+    <color name="btn_blue">#c3c3c3</color>
+    <!-- 杨静2016.04.18 12:16添加最新样式E -->
+
+    <!-- 操作按键不可用灰色 -->
+    <color name="btn_disabled_gray">#c3c3c3</color>
+    <!-- item选中后颜色 -->
+    <color name="item_bg">#efece9</color>
+    <!-- 创建流程图页线条颜色 -->
+    <color name="flow_line_blue_lighter">#b3cae7</color>
+    <!-- 白色背景按钮 按下颜色 -->
+    <color name="button_bg_white_pressed">#f3f3f3</color>
+    <!-- 黄色背景按钮 -->
+    <color name="button_bg_yellow">#e2e814</color>
+    <!-- 黄色背景按钮 按下颜色 -->
+    <color name="button_bg_yellow_pressed">#f1f73b</color>
+    <!-- fjn Dialog背景顏色 -->
+    <color name="dialog_bg_color">#2f72cb</color>
+    <color name="no_color">#00000000</color>
+    <color name="bg_color">#F4F3F3</color>
+    <color name="bg_color_deep">#E5E5E5</color>
+    <color name="black_half">#50000000</color>
+    <color name="single_searcg_bg">#8B8682</color>
+    <color name="identity_popup_submit_button_bg">#f4ffd7</color>
+    <color name="home_number_color">#fff600</color>
+    <color name="key_word_list_bg">#ededed</color>
+    <color name="light_grey">#D7D7D7</color>
+    <!-- 展示标签的字体颜色 -->
+    <color name="key_word_text_color">#333333</color>
+    <!-- 背景色灰色 -->
+    <color name="gray_bg">#f4f4f4</color>
+    <color name="company_detail_text">#9ca9c0</color>
+</resources>

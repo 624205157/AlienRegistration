@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>个人旅游签注_填写在吉停留时限</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+    <style type="text/css">
+        .aui-list .aui-list-item-media {
+            width: 6rem;
+        }
+        .aui-media-list .aui-list-item-inner {
+            display: block;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        .aui-list-item-input input[type='date'] { border: 1px solid #d6d6d6; padding-left: 5px;}
+        .aui-tips { position: absolute; bottom: 0;}
+        .aui-bar-nav { position: fixed;}
+    </style>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav">
+    <a class="aui-pull-left aui-btn">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">Title</div>
+</header>
+    <div class="aui-content" style="padding-top: 2.25rem;">
+        <div class="aui-card-list-content">
+            <img src="../image/banner_02.jpg" alt="" />
+            <!--<div class="aui-tips" id="tips-1">
+                <i class="aui-iconfont aui-icon-info"></i>
+                <div class="aui-tips-title">请问您在吉林停留多长时间？</div>
+                <i class="aui-iconfont aui-icon-close"></i>
+            </div>-->
+        </div>
+
+        <section class="aui-content-padded">
+            <div class="aui-card-list">
+                <div class="aui-card-list-header" data-locale="zjtlqx">
+                    在吉停留时限
+                </div>
+                <div class="aui-content">
+                    <ul class="aui-list aui-form-list">
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-input">
+                                <input type="date" placeholder=" 请输入停留时限" name="tlqx" id="sorts">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+                <div class="aui-card-list-footer aui-text-danger" data-locale="remainder">在吉停留时限不得大于30天！</div>
+                <div class="aui-card-list-footer">
+                    <p><div class="aui-btn aui-btn-info" onclick="saveMess();"><span class="aui-iconfont aui-icon-correct" data-locale="next">提 交</span></div></p><!-- window.location.href='lyqz_complete.html' -->
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="aui-bar aui-bar-tab" id="footer">
+        <div class="aui-bar-tab-item" tapmode onclick="window.location.href='demo_news_today_frm.html'">
+            <div class="aui-dot"></div>
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-bar-tab-label" data-locale="lhtx">来华提醒</div>
+        </div>
+        <div class="aui-bar-tab-item aui-active" tapmode onclick="window.location.href='lyqz_form.html'">
+            <i class="aui-iconfont aui-icon-edit"></i>
+            <div class="aui-bar-tab-label" data-locale="grlyqz">个人旅游签注</div>
+        </div>
+    </footer>
+    <div style="position: fixed; left: 50% ;bottom: -15px; margin-left: -40px; width: 80px; height: 80px; z-index: 10;"><img src="../image/menu_icon1.png" alt="" style="width: 100%"/> </div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.js"></script>
+<script type="text/javascript" src="../script/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../script/jquery.i18n.properties-min-1.0.9.js"></script>
+<script src="https://code.ciphertrick.com/demo/jquerysession/js/jquerysession.js"></script>
+<script type="text/javascript">
+
+	apiready = function(){
+		var languageType=$.session.get('languageType');
+		loadProperties('strings', '../properties/',languageType);
+	}
+  //截取传过来的签证类型
+  var thisURL = document.URL;  
+  var  getval =thisURL.split('?')[1];
+  var showval = getval.split("=")[1];
+  function saveMess(){
+        window.location.href="lyqz_complete.html";
+        var dataJson="";
+		if(showval=='mql,M'){
+		alert('这是免签证件');
+			//免签证件
+		dataJson={'ly':'05',                      //申请事由
+		          'sorts':$('#sorts').val(),      //停留日期2016-10-13
+		          'nfzjlx':'tlzj',               //拟发证件  yqlqz(免签证件)
+		          'nfzjlx_cl':'grly_mq_tlzj',   //grly_clqz_lqzyq拟发证件材料
+		          'qzcs':'',                  
+		          'flagday':'',               //停留日期天数 
+		          'zjzl':'1622',                  //证件种类 1621
+		          'zjzlzm':'M',              //证件种类  y
+		          'srswsqsy':'',
+		          'btwX':'0',
+		          'btwM':'0',
+		          'btwZjhmf':'0',
+		          'btwZjhm':'0',
+		          'yjjlz':'0',
+		          'btwName':'0',
+		          'btwyxq':'0',
+		          'sishu':'0'};
+		 }else{
+		//L签证
+		dataJson={'ly':'05',                      //申请事由
+		          'sorts':$('#sorts').val(),      //停留日期2016-10-13
+		          'nfzjlx':'yqlqz',               //拟发证件  yqlqz(L签证)
+		          'nfzjlx_cl':'grly_clqz_lqzyq',  //grly_clqz_lqzyq拟发证件材料
+		          'qzcs':'',                  
+		          'flagday':'',               //停留日期天数 
+		          'zjzl':'1621',                  //证件种类 1621
+		          'zjzlzm':'L',                   //证件种类  y
+		          'srswsqsy':'',
+		          'btwX':'0',
+		          'btwM':'0',
+		          'btwZjhmf':'0',
+		          'btwZjhm':'0',
+		          'yjjlz':'0',
+		          'btwName':'0',
+		          'btwyxq':'0',
+		          'sishu':'0'};
+		}
+      api.ajax({
+		    url: 'http://192.168.1.106:8445/jit_crj/crj/wgrlvqz/appWglyrq.do',//221.8.52.247:8445
+		    method: 'post',
+		    data: {
+		        values: dataJson
+		        }
+		    },
+		 function(ret, err) {
+		    if (ret) {
+		    	if(ret.result==1){
+		    	//保存成功：1(申请人年龄小于16或者大于60) 
+		    	   window.location.href="lyqz_complete.html";
+		    	}else if(ret.result==0){
+		    	//保存成功：1(申请人年龄大于16或者小于60) 
+		    	   window.location.href="lyqz_complete.html";
+		    	}else if(ret.result==9){
+		    	    alert("保存失败！");
+		    	}
+		        api.alert({ msg: JSON.stringify(ret)});
+		    } else {
+		        api.alert({ msg: JSON.stringify(err) });
+		    }
+		});
+      
+    }
+    
+    //语言选择的方法
+	function loadProperties(name, path, lang){
+	    var lang = lang || navigator.language;
+	    jQuery.i18n.properties({
+	        name:name, 
+	        path:path,
+	        mode:'map',
+	        language: lang,
+	        callback: function() {
+	        	$("[data-locale]").each(function(){
+					$(this).html($.i18n.prop($(this).data("locale")));
+				});
+	            //alert(jQuery.i18n.map["user"]);
+	        }
+	    });
+	}
+</script>
+</html>

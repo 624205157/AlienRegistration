@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet"/>
+	    <link href="css/reset.css" rel="stylesheet"/>
+	    <link href="css/style.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="css/app.css" />
+	    <link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+	    <script src="js/jquery.min.js"></script>
+	    <script src="js/font.js"></script>
+	    <style type="text/css">
+	    html,body,.mui-content { height: 100%; }
+	    .scan-box .me-center h1{ margin-top:15px; padding-bottom:5px;}
+	    .scan-box .me-center p{ padding-bottom:15px; margin:0 10px 30px; border-bottom: 1px dashed #333;}
+	    </style>
+	</head>
+
+	<body class="white-back">
+		<header class="mui-bar mui-bar-nav black-back">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white"></a>
+		    <h1 class="mui-title me-white">选择角色</h1>
+		</header>
+		<div class="mui-backdrop">
+			<div class="scan-box" style="top:20%;">
+				<div class="me-center">
+					<h1>请选择语言</h1>
+					<p>Please choose a language</p>
+				</div>
+				<div class="rolebox me-top">
+			    	<div class="each-role me-left white-back active">
+			    		<div class="dotted"></div>
+			    		<img src="img/chinese.jpg" width="100%;"/>
+			    		<p>中文</p>
+			    	</div>
+			    	<div class="each-role me-right white-back">
+			    		<div class="dotted"></div>
+			    		<img src="img/eng.jpg" width="100%;"/>
+			    		<p>English</p>
+			    	</div>
+			    </div>
+				<button type="button" class="foreigner-btn" style="margin:30px auto 20px;">确定</button>
+			</div>
+		</div>
+		
+	</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script src="js/city.data3.js"></script>
+<script type="text/javascript">
+	(function($,doc){
+		$('.each-role').click(function(){
+			$(this).addClass('active').siblings().removeClass('active');
+		})
+	}(jQuery,document))
+</script>
+</html>

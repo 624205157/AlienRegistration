@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>吉林省公安厅出入境管理局</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link href="../../script/jit_crj/style/default.css" type="text/css" rel="stylesheet" />
+    <link href="../../script/jit_crj/style/layout.css" type="text/css" rel="stylesheet" />
+    <link href="../../script/jit_crj/style/list.css" type="text/css" rel="stylesheet" />
+   <!--  <style type="text/css">
+        html { background:url(../image/images/bg_01.jpg) no-repeat center center fixed;}
+    </style> -->
+	<script type="text/javascript" src="../../script/jit_crj/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		
+		var dateB="2016-02-17"
+		
+
+		$(document).ready(function(){
+            //$('.selected_icon').hide();
+             $(".btn_frame li a").click(function(){
+            	 $('.selected_icon').hide();
+                 $(this).next('.selected_icon').toggle();
+             })
+        })
+        function next(t){
+			window.location.href="ss_date.jsp?type="+t;
+		}
+	
+		$(function() {
+			if(type == '1') {// 办事事由：工作
+				
+			} else if (type == '2') {// 办事事由：旅游
+				$("#tsnr").html("居留期限应与被探望人在华居留期限一致！/The intended duration of stay shall be consistent with the stay duration of the person to visit in China!");
+			}  
+		});
+	</script>
+</head>
+<body>
+	<div id="wrap">
+	    <!-- <div>
+	        <div class="header_bg"><a href="<%=basePath%>qiantai/shenqing/sqfirst1.jsp" target="top">办证中心</a></div>
+	        <div class="login_title"><h1><img src="../image/title/logo1.png" alt="吉林省公安厅出入境管理局" /></h1></div>
+	    </div> --> 
+	    <div id="list">
+	        <div id="list_">
+	            <div id="main_right">
+	                <div class="title_bg"><span>外国人签证申请/Foreigner visa application</span></div>
+	                <!-- 框架 -->
+	                 <div class="process_box">
+                    <div id="1">
+                        <span id="1">&nbsp;</span>
+                    </div>
+                    <div class="prompt_wrap">
+                        <img src="../image/icon/icon_figure.png" alt="" />
+                        <p class="hint_font">系统检测到您还没有住宿登记记录，请到就近的公安局办理报住宿登记后，方可办理。/The system detects that you do not have accommodation registration record. Please handle your accommodation registration in local Public Security Bureau before application.<span id="tsnr"></span><img src="../image/icon/icon_point.png" alt="" class="point_img" /> </p>
+                      <!--   <p class="hint_font">系统检测到您还没有住宿登记记录，请申报住宿登记后，方可办理。<span id="tsnr"></span><img src="../image/icon/icon_point.png" alt="" class="point_img" /> </p>-->
+                      
+                    </div>
+                    
+                    <div style="text-align:center; padding-bottom:15px;padding-top:15px">
+                         <p style="padding-top:30px"><a href="index_win.html" class="btn_sty btn_blue">返  回</a></p>                    </div>
+                     </div>
+                </div>
+	                <!-- 框架 end -->
+	            </div>
+	
+	        </div>
+	    </div>
+	
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		
+	};
+</script>
+</html>

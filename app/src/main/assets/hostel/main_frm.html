@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="../css02/default.css">
+	<link rel="stylesheet" href="../css02/style.css">
+	<style>
+		.mright { float: right; }
+	</style>
+
+</head>
+<body  id="formBody">
+<div id="wraps">
+	<header>
+		<span>外客帮</span>
+		<div class="change-lang" data-lang="en">English</div>
+		<!--<input type="hidden" id="languageType" class="gl-change" value="en">English</input>-->
+	</header>
+	<section>
+		<div class="banner-box">
+			<img src="../img02/banner.png" width="100%" alt="">
+		</div>
+		<div class="main-box">
+			<div class="climate-box">
+				<iframe style="display: block; width: 100%; height:60px;" name="sub-frame"  scrolling="no" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=36&icon=5&num=5"></iframe>
+			</div>
+			<!--<div class="title">业务快捷办理</div>-->
+			<div class="enter-btn-group">
+
+
+				<div class="btn-each"  onclick="openZhWKT()">
+					<div class="btn-pic"></div>
+					<h1>住宿登记</h1>
+					<p>临住信息登记管理</p>
+				</div>
+
+
+
+				<div class="btn-each"  onclick="openZhQIANZHENG()">
+					<div class="btn-pic"></div>
+					<h1>签证申请</h1>
+					<p>快速在线办理签证</p>
+				</div>
+			</div>
+			<div class="enter-box">
+
+
+				<div class="enter-item deco0"  onclick="openZhJljj()">
+					<div class="deco-img"></div>
+					<div class="enter-intro">
+						<h1>吉林简介</h1>
+						<p>品吉林文化享白山黑水风情</p>
+					</div>
+				</div>
+
+
+				<div class="enter-item deco1"  onclick="openZhFlfg()">
+					<div class="deco-img"></div>
+					<div class="enter-intro">
+						<h1>外国人办证须知</h1>
+						<p>外国人办证流程直通车</p>
+					</div>
+				</div>
+
+
+<!--				<div class="enter-item deco2" onclick="openZhWinxin()">
+					<div class="deco-img"></div>
+					<div class="enter-intro">
+						<h1>实用指南</h1>
+						<p>实用电话等</p>
+					</div>
+				</div>-->
+			</div>
+		</div>
+	</section>
+	</div>
+<div id="wrapse" style="display: none">
+	<header>
+		<span>BEST HELPER</span>
+		<div class="change-lang" data-lang="ch">中文</div>
+	</header>
+	<section>
+		<div class="banner-box">
+			<img src="../img02/banner.png" width="100%" alt="">
+		</div>
+		<div class="main-box">
+			<div class="climate-box">
+				<iframe style="display: block; width: 100%; height:60px;" name="sub-frame"  scrolling="no" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=36&icon=5&num=5"></iframe>
+			</div>
+			<!--<div class="title">Business fast handling</div>-->
+			<div class="enter-btn-group">
+
+               <!--住宿登记英文-->
+				<div class="btn-each"  onclick="openEnWKT()">
+					<div class="btn-pic"></div>
+					<h1>Accommodation registration</h1>
+					<p>Registration and management of impending information</p>
+				</div>
+
+
+               <!--签证申请 英文-->
+				<div class="btn-each"  onclick="openQIANZHENG()">
+					<div class="btn-pic"></div>
+					<h1>visa application</h1>
+					<p>A quick online visa</p>
+				</div>
+			</div>
+			<div class="enter-box">
+
+
+				<div class="enter-item deco0"  onclick="openEnJljj()">
+					<div class="deco-img"></div>
+					<div class="enter-intro">
+						<h1>Introduction of jilin</h1>
+						<p>Jilin customs culture enjoy mountains</p>
+					</div>
+				</div>
+
+
+				<div class="enter-item deco1"  onclick="openEnFlfg()">
+					<div class="deco-img"></div>
+					<div class="enter-intro">
+						<h1>Notice</h1>
+						<p>Obey the law and be a good tourist</p>
+					</div>
+				</div>
+
+
+			<!--	<div class="enter-item deco2" onclick="openEnWinxin()">
+					<div class="deco-img"></div>
+					<div class="enter-intro">
+						<h1>Guide to use</h1>
+						<p>Route guidance</p>
+					</div>
+				</div>-->
+			</div>
+		</div>
+	</section>
+</div>
+<div class="customer-btn"><img src="../image/btn.png" alt=""></div>
+</body>
+<script src="../js02/jquery-1.8.3.js"></script>
+<script src="../js02/font.js"></script>
+<script src="../js/common.js"></script>
+<script type="text/javascript">
+// 外国人住宿的中文跳转页面
+function openZhWKT(){
+location = '../../register/choose_roles.html';
+}
+
+// 在线办理签证的中文跳转页面
+function openZhQIANZHENG(){
+location = '../../register/add_section/index_entry.html';
+}
+// 吉林简介中文版
+ function openZhJljj(){
+        var delay = 0;
+        location= 'zh_jijj_win.html';
+    }
+
+  //须知（法律法规）中文版
+    function openZhFlfg(){
+	        var delay = 0;
+            location = 'zh_flfg_win.html';
+}
+// 线路指导的中文
+function openZhWinxin(){
+	        var delay = 0;
+	        location = 'zh_wxtx_win.html';
+	        }
+
+
+
+   //选择语言
+   $('.change-lang').click(function(){
+   		var lang = $(this).attr('data-lang');
+   		if(lang == 'en'){
+ 	    	$("#wraps").hide();
+        	$("#wrapse").show();
+ 	    }else{
+ 	    	$("#wraps").show();
+        	$("#wrapse").hide();
+ 	    }
+   })
+ 	<!--function getLanguage(lang){-->
+ 		<!--alert(0)-->
+ 	   <!--//var languageType=$("#languageType").val();-->
+ 	   <!--//loadProperties('strings', 'properties/',languageType);-->
+ 	   <!--//if(languageType="en")-->
+ 	   <!--//{-->
+ 	   <!--//$("[data-locale]").each(function(){-->
+ 	        <!--//$(this).html(i18n_en[$(this).data("locale")]);-->
+            <!--//$(this).html($.i18n.prop($(this).data("locale")));-->
+        <!--//});-->
+ 	    <!--//return  enJlxzs();-->
+ 	    <!--if(lang == 'en'){-->
+ 	    	<!--$("#wraps").hide();-->
+        	<!--$("#wrapse").show();-->
+ 	    <!--}else{-->
+ 	    	<!--$("#wraps").show();-->
+        	<!--$("#wrapse").hide();-->
+ 	    <!--}-->
+ 	   <!---->
+ 	 <!--}-->
+ 	  function enJlxzs(){
+        $("#wraps").hide();
+        $("#wrapse").show();
+    }
+     // 外国人住宿登记英文
+    function openEnWKT(){
+        var delay = 0;
+        location = '../../register/choose_roles_en.html';
+     }
+
+     // 在线办理签证的英文跳转页面
+function openQIANZHENG(){
+location = '../../register/add_section/index_entry_english.html';
+
+}
+  //  吉林简介英文版
+ function openEnJljj(){
+	        var delay = 0;
+	        location = 'en_jljj_win.html';
+	        }
+
+	 //  法律法规英文版
+ function openEnFlfg(){
+var delay = 0;
+location = 'en_flfg_win.html';
+}
+  //  线路指导英文版
+ function openEnWinxin(){
+	        var delay = 0;
+	        location = 'en_wxtx_win.html';
+}
+
+<!--进入智能客服按钮-->
+        $('.customer-btn').click(function(){
+		    window.location.href = '../../customer_service/page1.html';
+
+		})
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        #days { float: right; background: transparent; padding-right: 20px!important; color: red; }
+        #days::after { display: none; }
+        #tssj { text-indent: 0px!important;  padding-left: 10px!important; padding-right: 10px!important; line-height: 1.5; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">外国人签证申请</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item" style="margin-bottom: 70px;">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell me-name" id="tssj">
+                        在线申请签证流程:<br/>
+                        ①上传材料。按要求分别上传申请材料电子图片 。<br/>
+                        ②在线审核。公安机关提供在线预审服务，由专门人员为您提前审核申请材料。<br/>
+                        ③上门取证。审核通过后，EMS工作人员上门取纸质申请材料。当收到您宝贵的资料后，我们会短信告知您材料已安全到达。<br/>
+                        ④制发证件。公安机关将根据您的申请材料签发制作签证证件。公安机关在受理审核申请材料过程中会电话与您核实相关情况，请保证通信电话畅通。正常情况：证件到达公安机关后预计7个工作日出签证结果。<br/>
+                        ⑤送证上门。证件制发完毕后，EMS工作人员会电话联系您上门送证。收到证件后请认真核对签证页上全部信息是否有误，若有问题请尽早与公安机关联系
+                    </li>
+                    <li class="mui-table-view-cell me-name" id="tssj">
+                        寄递资费:同城  12元/件,省内异地 16元/件,省际  18元/件
+                    </li>
+                    <li class="mui-table-view-cell me-name" id="tssj">
+                        上门揽收服务费:同城 12元/件,省内异地 16元/件
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="blwjbtn" data-state="1" style="margin:10px auto;">开始办证</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="js/add_script.js"></script>
+<script>
+   
+        //点击下一步按钮
+        mui('.foreigner-btn')[0].addEventListener('tap',function(){
+            location = 'pay.html';
+        })
+</script>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/reset.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="css/app.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/font.js"></script>
+	<script src="js/cookie.js"></script>
+	<style type="text/css">
+		.me-margin-right-s {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		.mui-ellipsis {
+			width: 100%;
+		}
+
+		.btns button {
+			display: inline-block;
+			width: calc(50% - 30px);
+			margin-left: 0px!important;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="mui-bar mui-bar-nav black-back">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white"></a>
+		<h1 class="mui-title me-white">填写地址信息</h1>
+	</header>
+	<div class="mui-content">
+		<!--<div class="home-box">
+		    	<div class="deco-pic deco1"><img src="img/empty-tips.png" width="100%" alt="" /></div>
+		    	<div class="home-title me-no-margin">
+		    		<h1 class="font1">您还没有住宿登记记录</h1>
+		    		<p class="me-blue">快去登记吧！</p>
+		    	</div>
+		    </div>-->
+		<div class="me-red me-top me-center">提示：请选择外国人出租房屋地址信息</div>
+		<ul class="mui-table-view mui-table-view-chevron me-whole-row-line trans-back me-top" id="abcd">
+			<!-- <li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">
+				<a class="me-before-radios">
+					<img class="me-list-pic mui-pull-left" src="img/list-pic.jpg">
+					<div class="mui-media-body">
+						<div class="me-media-top two-lines">
+							<span class="me-margin-right-s">南湖一号</span>
+							<span class="me-aaa me-inline-block mui-ellipsis">前进大街派出所</span>
+						</div>
+						<p class='me-aaa mui-ellipsis'>长春市朝阳区繁荣路前进大街交汇</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">
+				<a class="me-before-radios">
+					<img class="me-list-pic mui-pull-left" src="img/list-pic.jpg">
+					<div class="mui-media-body">
+						<div class="me-media-top two-lines"><span class="me-margin-right-s">南湖一号</span><span class="me-aaa me-inline-block mui-ellipsis">前进大街派出所</span></div>
+						<p class='me-aaa mui-ellipsis'>长春市朝阳区繁荣路前进大街交汇</p>
+
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">
+				<a class="me-before-radios active">
+					<img class="me-list-pic mui-pull-left" src="img/list-pic.jpg">
+					<div class="mui-media-body">
+						<div class="me-media-top two-lines"><span class="me-margin-right-s">南湖一号</span><span class="me-aaa me-inline-block mui-ellipsis">前进大街派出所</span></div>
+						<p class='me-aaa mui-ellipsis'>长春市朝阳区繁荣路前进大街交汇</p>
+
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">
+				<a class="me-before-radios">
+					<img class="me-list-pic mui-pull-left" src="img/list-pic.jpg">
+					<div class="mui-media-body">
+						<div class="me-media-top two-lines"><span class="me-margin-right-s">南湖一号</span><span class="me-aaa me-inline-block mui-ellipsis">前进大街派出所前进大街派出所</span></div>
+						<p class='me-aaa mui-ellipsis'>长春市朝阳区繁荣路前进大街交汇</p>
+
+					</div>
+				</a>
+			</li> -->
+		</ul>
+		<ul>
+			<div class="btns">
+				<button type="button" class="foreigner-btn" id="add" style="margin-bottom:20px;margin-right:10px;" onclick="getAdd()">新增地址</button>
+				<button type="button" class="foreigner-btn" id="goto" style="margin-bottom:20px;margin-left:10px;" onclick="getUrl()">下一步</button>
+			</div>
+		</ul>
+
+	</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script src="js/city.data3.js"></script>
+<script src="js/url.js"></script>
+<script type="text/javascript">
+	var data = "";
+	var fwid = "";
+	var phone = "";
+	var sspcRet = "";
+	var xxdzRet = "";
+	function getParams(key) {
+		var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) {
+			return unescape(r[2]);
+		}
+		return null;
+	};
+	mui.init();
+	window.onload = (function($) {
+		phone = getParams("phone");
+		$.post(base + 'fzxxcjController.do?getById', {phone : phone}, function(dataret) {
+			if (dataret && dataret != '') {
+				var ret = eval("(" + dataret + ")");
+				if (ret && ret != '') {
+					for (var i = 0; i < ret.length; i++) {
+						var id = ret[i].id;
+
+                        var xxdz = ret[i].xxdz;
+                        var xqmc = ret[i].xqmc;
+                        var sspcName = ret[i].sspcsName;
+                        data += '<li class="mui-table-view-cell mui-media me-list-padding white-back me-list-marginb">';
+                        data += '<a class="me-before-radios">';
+
+                        data += '<div class="mui-media-body">';
+                        data += '<input class="pid" type="hidden" id ="aaaa" name="aaaa" value=\"'+id+'\"/>';
+
+
+                        data += '<div class="me-media-top two-lines">';
+                        data += '<span class="me-margin-right-s">' + xqmc + '</span>';
+                        data += '<span class="me-aaa me-inline-block mui-ellipsis" id="sspc' + id + '">' + sspcName + '</span>';
+                        data += '</div>';
+                        data += '<p class="me-aaa mui-ellipsis" id="xxdz' + id + '">' + xxdz + '</p>';
+                        data += '</div>';
+                        data += '</a>';
+                        data += '</li>';
+					}
+				} else {
+					mui.alert("暂无房屋信息，请新增地址！",null,'确定');
+				}
+			} else {
+				mui.alert("暂无房屋信息，请新增地址！",null,'确定');
+			}
+			$("#abcd").html(data);
+			window.AndroidWebView.showInfoFromJs('kqdw', '', '', '');
+		});
+		jQuery('.mui-content').on('click', '.me-before-radios', function() {
+			//			$(this).addClass('active');
+			jQuery(this).addClass('active').parents('li').siblings().find('.me-before-radios').removeClass('active');
+			fwid = jQuery(this).closest("li").find("input[class='pid']").val();
+			sspcRet = jQuery("#sspc" + fwid).html();
+			xxdzRet = jQuery("#xxdz" + fwid).html();
+		});
+	}(jQuery))
+
+	//跳转新增地址
+	function getAdd() {
+		// alert(text);
+		location = "input_location.html?phone=" + phone;
+	}
+	//跳转外国人拍护照样本页
+	function getUrl(){
+		if (fwid == '') {
+			mui.alert('请选择出租房屋地址信息!','提示','确定',null,'div');
+         	return false;
+		}
+		window.AndroidWebView.showInfoFromJs('fz', fwid, xxdzRet, sspcRet);
+	}
+</script>
+
+</html>

@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet"/>
+	    <link href="css/reset.css" rel="stylesheet"/>
+	    <link href="css/style.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="css/app.css" />
+	    <link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+	    <script src="js/jquery.min.js"></script>
+	    <script src="js/font.js"></script>
+	    <style type="text/css">
+	    	/*.tab-box { position: relative; width: 100%; }
+	    	.tab-box .tab-item { position: absolute; width: 100%; top: 0px; left: 0px; }*/
+	    	.en-item { height: auto!important; display: block; position: static; width: 100%; margin-top: 0px; line-height: 19px;padding: 0 15px 0 40px!important;}
+	    </style>
+	</head>
+
+	<body>
+		<div class="mui-content" style="margin-top:0px;">
+			<div class="top-box-outer">
+				<div class="top-box">
+					<h1 class="main-title">Hotel Register</h1>
+					<div class="base-infor">
+						<div class="head-pic"><img src="img/people.png" width="100%"/></div>
+						<div class="name">
+							<h2 class="n">June</h2>
+							<p>Voiceprint portrait collection</p>
+						</div>
+						<!--<div class="again">
+							<img src="img/again.png" width="30px;" height="30px;"/>
+						</div>-->
+					</div>
+				</div>
+				<div class="navigator">
+					<div class="sec active"><span class="active">1</span></div>
+					<div class="sec"><span>2</span></div>
+				</div>
+			</div>
+			
+		    <div class="tab-box">
+		    	<div class="tab-item" style="margin-bottom: 20px; ">
+		    		<ul class="mui-table-view me-top">
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon1.jpg"></div>
+					            <div class="mui-media-body me-list-con">First Name<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips" name="" id="" value="June" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon2.jpg"></div>
+					            <div class="mui-media-body me-list-con">Family Name<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips" name="" id="" value="Smith" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon2.jpg"></div>
+					            <div class="mui-media-body me-list-con">Chinese Name</div>
+					            <input type="text" class="write me-tips" name="" id="" value="Baixue" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon3.jpg"></div>
+					            <div class="mui-media-body me-list-con">Sex<span class="me-red">*</span></div>
+					            <div class="radios me-tips" id="radios">
+					            	<div class="radios-each selected">
+					            		<span>man</span>
+					            		<input type="radio" name="sex" value="men" checked="true"/>
+					            	</div>
+					            	<div class="radios-each">
+					            		<span>woman</span>
+					            		<input type="radio" name="sex" value="women"/>
+					            	</div>
+					            </div>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon4.jpg"></div>
+					            <div class="mui-media-body me-list-con">Phone Number<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips me-red" name="" id="" value="18143089999" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media btn1">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon5.jpg"></div>
+					            <div class="mui-media-body me-list-con">Nationality<span class="me-red">*</span></div>
+					            <span class="me-tips result1">Russia</span>
+					        </a>
+					    </li>
+				    </ul>
+				    <ul class="mui-table-view me-top">
+				    	<li class="mui-table-view-cell mui-media btn1">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon7.jpg"></div>
+					            <div class="mui-media-body me-list-con">ID type<span class="me-red">*</span></div>
+					            <span class="me-tips result1">Ordinary Passport</span>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon6.jpg"></div>
+					            <div class="mui-media-body me-list-con">ID Number<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips" name="" id="" value="M10000000" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}'>
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon8.jpg"></div>
+					            <div class="mui-media-body me-list-con">ID Expiry<span class="me-red">*</span></div>
+					            <span class="me-tips me-red result">2017-10-01</span>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}'>
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon9.jpg"></div>
+					            <div class="mui-media-body me-list-con">Visa Expiry<span class="me-red">*</span></div>
+					            <span class="me-tips result">2017-11-01</span>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media btn1">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon10.jpg"></div>
+					            <div class="mui-media-body me-list-con">Reasions For Stay<span class="me-red">*</span></div>
+					            <span class="me-tips result1">Visit family</span>
+					        </a>
+					    </li>
+				    </ul>
+		    	</div>
+		    	<div class="tab-item" style="display: none;">
+		    		<ul class="mui-table-view me-top">
+					    <li class="mui-table-view-cell mui-media" id='showCityPicker3'>
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon21.jpg"></div>
+					            <div class="mui-media-body me-list-con">Address<span class="me-red">*</span></div>
+					            <span class="me-tips en-item" id="cityResult3">Jilin Province / Changchun City / Chaoyang District</span>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon22.jpg"></div>
+					            <div class="mui-media-body me-list-con">Detail Address<span class="me-red">*</span></div>
+					            <span class="me-tips en-item" id="cityResult3">The Qianjin Street meets the Fanrong Road</span>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon23.jpg"></div>
+					            <div class="mui-media-body me-list-con">Local Police Station<span class="me-red">*</span></div>
+					            <span class="me-tips en-item" id="cityResult3">The Fanrong Road Police Station</span>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon24.jpg"></div>
+					            <div class="mui-media-body me-list-con">Chinese contacter<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips" name="" id="" value="Zhangliang" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon25.jpg"></div>
+					            <div class="mui-media-body me-list-con">Phone Number<span class="me-red">*</span></div>
+					            
+					            <input type="text" class="write me-tips me-red" name="" id="" value="18143084444" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}'>
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon26.jpg"></div>
+					            <div class="mui-media-body me-list-con">Departure Time<span class="me-red">*</span></div>
+					            <span class="me-tips result">2017-10-02</span>
+					        </a>
+					    </li>
+				    </ul>
+				    <button type="button" class="foreigner-btn btn-mp" style="margin-top:30px;">back</button>
+		    	</div>
+		    </div>
+		</div>
+	</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script src="js/data.js" charset="utf-8"></script>
+<script type="text/javascript">
+	(function($){
+		$('.navigator .sec').click(function(){
+			var index = $(this).index();
+			$(this).addClass('active').siblings('.sec').removeClass('active');
+			$(this).parent().find('span').removeClass('active');
+			$(this).find('span').addClass('active');
+			$('.tab-box .tab-item').eq(index).show().siblings().hide();
+		})
+	}(jQuery))
+	document.addEventListener("backbutton", onBackKeyDown, false);
+
+function onBackKeyDown(ev){
+    // Something
+}
+</script>
+</html>

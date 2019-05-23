@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+    <link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/SG_area_select.css" />
+    <script src="./js/jquery.min.js"></script>
+    <script src="js/font.js"></script>
+    <script src="js/iscroll.js"></script>
+    <style>
+        html,
+        body,
+        .mui-content {
+            height: 100%;
+        }
+
+        .mui-content {
+            overflow: hidden;
+            background: url(img/back_reg.jpg) no-repeat 0 0;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="mui-content">
+            <div class="reg-box">
+                <div class="reg-pic">
+                    <img src="img/mainper.png" class="me-block" width="80%" />
+                </div>
+                <div class="reg-infor">
+                    <div class="reg-header">登录</div>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/tel.png"></div>
+
+                            <!--<input type="text" class="write me-tips me-red" placeholder="请输入手机号码" name="phone" id="phone" value="" />-->
+                            <input type="number" class="write me-tips me-red" placeholder="请输入手机号码"  name="phone" id="phone"
+                                   value="" style="text-align:left!important; left:43px; font-size:16px; width:auto!important;" />
+                        </a>
+                    </li>
+
+
+                    <div class="reg-con">
+                        <img src="img/telm.png" />
+                        <input type="text" placeholder="请输入验证码"  id="yzm" style="width:calc(100% - 120px);" />
+                        <button class="get" id="btnSendCode" type="button" value="发送验证码" onclick="sendMessage()" >发送验证码</button>
+                    </div>
+                    <button type="button" class="blue-back me-white" id="login">登录</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script src="js/data.js" charset="utf-8"></script>
+<script src="js/url.js"></script>
+<script src="js/city.data3.js"></script>
+<script type="text/javascript" charset="utf-8">
+/*-------------------------------------------*/
+var InterValObj; //timer变量，控制时间
+var count = 60; //间隔函数，1秒执行
+var curCount;//当前剩余秒数
+var code = ""; //验证码
+var codeLength = 4;//验证码长度
+function sendMessage() {
+  var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+  if (!myreg.test($("#phone").val())) {
+      mui.alert('请输入有效的手机号码！');
+      $("#phone").focus();
+      return;
+
+  }
+    curCount = count;
+    var phone=$("#phone").val();//手机号码
+    if(phone != ""){
+        //产生验证码
+        for (var i = 0; i < codeLength; i++) {
+            code += parseInt(Math.random() * 9).toString();
+        }
+        //设置button效果，开始计时
+        $("#btnSendCode").attr("disabled", "true");
+        $("#btnSendCode").val(curCount + "秒");
+        InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+    //向后台发送处理数据``
+        jQuery.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "JSON", //数据格式:JSON
+            url: 'http://221.8.52.247:8445/jit_crj/crj/WxQz/senSms.do', //目标地址
+            data:{"phoneNum":phone,"wgrappnum":"您的验证码："+code,"type":"2"},
+            success: function (msg){ }
+        });
+    }else{
+        mui.alert("手机号码不能为空！");
+    }
+}
+//timer处理函数
+function SetRemainTime() {
+    if (curCount == 0) {
+        window.clearInterval(InterValObj);//停止计时器
+        $("#btnSendCode").removeAttr("disabled");//启用按钮
+        $("#btnSendCode").html("重新发送");
+        code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
+
+    }
+    else {
+        curCount--;
+        $("#btnSendCode").html(curCount + "秒");
+    }
+}
+    mui.init();
+    window.onload = (function(jQuery) {
+        jQuery('#login')[0].addEventListener('tap', function() {
+          var yzm = $("#yzm").val();
+              //if(code==yzm&&yzm!=''){
+              if(code==yzm&&yzm!=''){
+                 jQuery.post(base+'loginListController.do?doAdd', $('form').serialize(),
+                function(ret) {
+                    //var dataObj = eval('('+ret+')');
+                    //var phone = dataObj.msg;
+                    var phone = ret;
+                    window.location.href = 'addresses.html?phone=' + $("#phone").val();
+              })
+              }else{
+                mui.alert("验证码有误!请你认真核对验证码！！！");
+              }
+        });
+    }(jQuery))
+</script>
+
+</html>

@@ -1,0 +1,11 @@
+/* 信息登记 */
+.l-info-wrap { margin: 30px; font-size: 0.34rem; }
+.l-info-wrap .info-group { margin-bottom: 20px; width: 100%; padding: 30px 0 30px 15px; color: #fff; border-radius: 10px;}
+.l-info-wrap .info-list1 { background: #89b6fb url(../img/info-icon02.png) no-repeat bottom right; background-size: 35%;}
+.l-info-wrap .info-list2 { background: #7ebfc5 url(../img/info-icon02.png) no-repeat bottom right; background-size: 30%;}
+.l-info-wrap .info-list3 { background: #f7b74c url(../img/info-icon03.png) no-repeat bottom right; background-size: 30%;}
+.l-info-wrap .info-group p {width: 50%; color: #fff;margin-bottom: 0; font-size: 0.3rem;}
+.l-info-wrap .info-group h4 { font-weight: normal;}
+.me-add-sec { right: 30%!important; }
+.red-time { position: absolute; top: 50%; margin-top: -18px; right: 5%; display: block; height: 35px; line-height: 35px; width: 90px; text-align: center; border-radius: 5px; font-size: 13px; background: #eee; color: #aaa!important; }
+.me-tips { color: #9e9696!important; }

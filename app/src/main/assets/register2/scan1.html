@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/reset.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="js/font.js"></script>
+    <script src="js/cookie.js"></script>
+    <style>
+    	html,body { height: 100%; }
+    	.mui-content.back-white{background: #837c76;}
+    	img { position: absolute; bottom: 0px;}
+    </style>
+</head>
+<body>
+	<div class="mui-content back-white" style="height:85%;">
+	    <img src="img/scan.jpg" width="100%"/>
+	</div>
+  <div>
+    <button type="button" class="foreigner-btn" style="margin: 25px auto 25px;" onclick="getPicture()">开始拍摄</button>
+  </div>
+</body>
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  	mui.init();
+    var imgSrc = "";
+    var fwid = "";
+    apiready = function(){
+    fwid = api.pageParam.fwid;
+    imgSrc = api.pageParam.imgSrc;
+  }
+  var cookie = getCookie("flagCookie")
+    function getPicture(){
+      //获取一段视频
+  		api.getPicture({
+  				sourceType: 'camera',
+  				encodingType: ' ',
+  				mediaValue: 'video',
+  				destinationType: 'base64',
+  				allowEdit: false,
+  				quality: 1,
+          direction:'front',
+  				saveToPhotoAlbum: true
+  		}, function(ret, err) {
+  				// alert(ret);
+  				// 获取拍照数据并处理
+  				var luxiang = ret.base64Data;
+        
+  				if (ret) {
+
+            if(cookie =="2"){
+              api.openWin({
+                name: 'search',
+                url: './feedback.html',
+                bounces: false,
+                pageParam: {
+        					luxiang: luxiang,
+                  imgSrc:imgSrc,
+                  fwid:fwid
+        				}
+              });
+            }else if(cookie == "13"){
+              api.openWin({
+                name: 'search',
+                url: './feedbacka.html',
+                bounces: false,
+                pageParam: {
+        					luxiang: luxiang,
+                  imgSrc:imgSrc
+        				}
+              });
+            }
+  				} else {
+  						//alert(JSON.stringify(err));
+  				}
+  		});
+    }
+</script>
+</html>

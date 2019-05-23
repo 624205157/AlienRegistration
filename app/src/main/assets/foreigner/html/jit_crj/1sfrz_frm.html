@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>吉林省公安厅出入境管理局－登录</title>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link href="../../script/jit_crj/style/default.css" type="text/css" rel="stylesheet" />
+	<link href="../../script/jit_crj/style/list.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <style type="text/css">
+        .aui-list .aui-list-item-media {
+            width: 6rem;
+        }
+        .aui-media-list .aui-list-item-inner {
+            display: block;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        .aui-list-item-input input,.aui-list-item-input select { color: #959494!important;}
+        .aui-list-item-input select { padding: 0 0.6rem;}
+        .aui-bar-nav { position: fixed;}
+
+    </style>
+	<script type="text/javascript" src="../../script/jit_crj/js/jquery-1.9.1.min.js"></script>
+	
+	<script type="text/javascript" src="../../script/jquery.cookie.js"></script>
+	
+	<script type="text/javascript" src="../../script/jit_crj/js/hover.js"></script>
+	<!-- 私有js -->
+	<script type="text/javascript" src="../../script/jit_crj/js/1sfrz.js"></script>
+	<!-- 短信认证 -->
+	<script type="text/javascript" src="../../script/jit_crj/js/duanxin.js"></script>
+	<style>
+/* 		html { background:url(../image/images/bg_01.jpg) no-repeat center center fixed;} */
+	</style>
+	
+	<script type="text/javascript">
+	
+	
+	function selectDictionary() {
+		var sls = document.getElementById("sls").value;
+		if (sls == 'mql') {
+			$("#xcyyxqz").html("停留期至/Expiry date of stay duration：");
+		}else{
+			$("#xcyyxqz").html("现持签证有效期至/The expiration date of your existing visa：");
+		}
+	}
+	//初始化页面
+	$(function() {
+		$("#xcyyxqz").html("现持签证有效期至：");
+		
+		// 初始化受理地所在市信息
+		var sls = document.getElementById("sls");
+		sls.options.add(new Option("请选择/Please select","")); 
+		var url = "http://192.168.1.123:80/jit_crj/crj/after/MTsxxAction_queryMTsxxTreeByWGPid.do?random=" + Math.random();
+		var listParams = {
+				"Pid" : "5c01a1daf842817f31b41daffdd51f22"
+	 	};
+		$.getJSON(url,listParams, function(json){ 
+			$.each(json.data, function(i,result) {
+				var slscode = result.type+","+result.ydTsxx;
+				var slsname = result.name;
+				sls.options.add(new Option(slsname,slscode));
+				//document.getElementById("sls").value = namecity;
+				//str + = "<li id = 'h1'><a href='##' class='btn_style'>";
+				
+			});	
+			//sls.options.add(new Option("持其他种类签证或居留许可","qt")); 
+		});
+		
+		findxzqh();
+		
+	});
+	
+	function findxzqh(){
+		
+		var njld = document.getElementById("njld");
+		njld.options.add(new Option("请选择/Please select","")); 
+		var url = "http://192.168.1.123:80/jit_crj/webProtal/findDictionaryByType.do?random=" + Math.random();
+		var listParams = {
+				"pid" : "22000000"
+	 	};
+		$.getJSON(url,listParams, function(json){ 
+			$.each(json.data, function(i,result) {
+				var slscode = result.dicCode;
+				var slsname = result.dicName;
+				njld.options.add(new Option(slsname,slscode));
+			});	
+		});
+		
+	}
+	
+	
+	function UpperCase(id){   
+		  document.getElementById(id).value = document.getElementById(id).value.toUpperCase();   
+		}
+	
+   
+	</script>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav">
+    <a class="aui-pull-left aui-btn">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">身份认证</div>
+</header>
+<input id='toup' type="hidden" value=''></input>
+	<div class="aui-content" style="padding-bottom: 3rem; padding-top: 2.25rem;">
+        <div class="aui-content aui-margin-b-15 aui-content-padded">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">英文姓：</div>
+                        <div class="aui-list-item-input">
+                            <input type="text" id="surname" name="surname" class="input_user" onkeyup="UpperCase('surname');" placeholder="请输入英文姓"/>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">英文名：</div>
+                        <div class="aui-list-item-input">
+                            <input type="text" id="givenName" name="givenName" id="givenName" class="input_user"  onkeyup="UpperCase('givenName');"  placeholder="请输入英文名"/>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">护照号码：</div>
+                        <div class="aui-list-item-input">
+                            <input type="text" id="passportNo" name="passportNo" class="input_psw" maxlength="20" onkeyup="UpperCase('passportNo');" placeholder="E13333421"/>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">护照有效日期：</div>
+                        <div class="aui-list-item-input">
+                        <!-- onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});" -->
+                            <input type="text" id="validUntil" name="validUntil"  class="Wdate easyui-validatebox"  placeholder="请输入证件有效期限"/>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+            <div class="aui-card-list aui-content-padded">
+                <div class="aui-card-list">
+                    <div class="aui-card-list-header">现持签证种类：</div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-input">
+                            <select id="sls" name="sls" class="from_box_dl"  onchange="selectDictionary()">
+					     	                                               </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="aui-card-list aui-content-padded">
+            <div class="aui-card-list">
+                <div class="aui-card-list-header">拟停居留地：</div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-input">
+                        <select id="njld" name="njld" class="from_box_dl"  onchange="selectDictionary()">
+					     	                                               </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="aui-card-list aui-content-padded">
+            <div class="aui-card-list">
+                <div class="aui-card-list-header" id="xcyyxqz"></div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-input">
+                    <!-- onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});" -->
+                        <input type="text" id="xcyqzUntil" name="xcyqzUntil"  class="Wdate easyui-validatebox"  placeholder="请选择有效时间"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="aui-card-list aui-content-padded">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">手机号码： </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" id="phone" name="phone" class="phone_" maxlength="11" placeholder="请输入手机号码"/>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">验证码：</div>
+                        <div class="aui-list-item-input">
+                            <input type="text" id="code" name="code" class="phone_" placeholder="请输入手机验证码"/>
+                        </div>
+                        <div class="aui-list-item-input" style="width: 200px!important;">
+                            <input type="button" value="获取验证码" onclick="settimeWG(this)"/>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="aui-card-list aui-content-padded">
+            <div class="aui-btn aui-btn-info aui-btn-block aui-btn-sm" onclick="nextstep()">
+                <span class="aui-iconfont aui-icon-down"></span>下一步
+                
+            </div>
+        </div>
+    </div>
+    <footer class="aui-bar aui-bar-tab" id="footer">
+        <div class="aui-bar-tab-item" tapmode onclick="window.location.href='demo_news_today_frm.html'">
+            <div class="aui-dot"></div>
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-bar-tab-label">来华提醒</div>
+        </div>
+        <div class="aui-bar-tab-item aui-active" tapmode onclick="window.location.href='index_win.html'">
+            <i class="aui-iconfont aui-icon-edit"></i>
+            <div class="aui-bar-tab-label">个人旅游签注</div>
+        </div>
+    </footer>
+    <div style="position: fixed; left: 50% ;bottom: -15px; margin-left: -40px; width: 80px; height: 80px; z-index: 10;">
+        <img src="../image/menu_icon1.png" alt="" style="width: 100%"/>
+    </div>
+
+
+	
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		
+	};
+</script>
+</html>

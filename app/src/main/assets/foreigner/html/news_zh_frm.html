@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>APP_来华提醒_详情</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+    <style type="text/css">
+        .aui-list .aui-list-item-media {
+            width: 6rem;
+        }
+        .aui-content { padding-bottom: 3rem;}
+        .aui-media-list .aui-list-item-inner {
+            display: block;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        .pad_top { padding: 10px 0;}
+        .aui-bar-nav { position: fixed;}
+    </style>
+</head>
+<body>
+    <div class="aui-content">
+        <ul class="aui-list aui-media-list" >
+       <li class="aui-list-item" id="wrapInfo" style="display:none;">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title" id="titleInfo">湖南“透明厕所”：挑战游客尊严底线湖南“透明厕所”：挑战游客尊严底线</div>
+                <div class="aui-info  aui-padded-t-0 aui-padded-r-15">
+                    <div class="aui-info-item aui-font-size-12">
+                        <img src="../image/demo1.png" style="width:1rem" class="aui-img-round" />
+                        <span class="aui-margin-l-5" id="categoryName">重要通知</span>
+                    </div>
+                </div>
+                <div class="aui-row aui-row-padded aui-margin-t-5">
+                    <div class="aui-col-xs-12" style="padding: 10px 0;">
+                        <img id="image" src=""/>
+                    </div>
+                </div>
+                <p id="content">
+                    公厕本是最私密的公共场所，即使是在条件最差的地方，在等级最低的公厕里，也起码要做到“只闻其声，不见其人”。偏远地方的公厕也很简陋，但那都是受条件所限，不得已而为之的事。如果单独从人的生理需要上讲，公厕只不过就是个生理代谢的中转站，它没必要修的过于豪华，谁也不会在哪理呆上很长时间，因而有个基本功能就得了。
+                    但是，湖南的这个“透明厕所”，却颠覆了大多数人对传统的认知，应当说这个公厕的基本功能并没有变，还是面对公众的中转站，但就是增加了催人想象的附加功能，而这个方面恰恰是公厕使用都最忌讳的事，这是人的正常心理反应。但这样的反应，并不是人独有的，有灵性的动物也有，养过猫的人知道，猫在想方便的时候，不喜欢有陌生在旁边，如果陌生不走，它就会走，走到没有人看见的地方去。
+                    文／力量时评（简书作者）
+                    原文链接：http://www.jianshu.com/p/c3541e819cee
+                    著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。
+                </p>
+            </div>
+        </li>
+        </ul>
+    </div>
+     <!--  <footer class="aui-bar aui-bar-tab" id="footer">
+      		        <div class="aui-bar-tab-item aui-active" tapmode onclick="openParentWin('index')">
+      		            <div class="aui-dot"></div>
+      		            <i class="aui-iconfont aui-icon-home"></i>
+      		            <div class="aui-bar-tab-label" data-locale="lhtx">来华提醒</div>
+      		        </div>
+      		        <div class="aui-bar-tab-item" tapmode onclick="openWin('lyqz_form_win')">
+      		            <i class="aui-iconfont aui-icon-edit"></i>
+      		            <div class="aui-bar-tab-label" data-locale="grlyqz">个人旅游签注</div>
+      		        </div>
+      	</footer>
+          <div style="position: fixed; left: 50% ;bottom: -15px; margin-left: -40px; width: 80px; height: 80px; z-index: 10;"><img src="../image/menu_icon1.png" alt="" style="width: 100%"/> </div>
+       -->
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.js"></script>
+<script type="text/javascript">
+  apiready = function(){
+  		var pageParam = api.pageParam;
+       // alert(pageParam.id);
+       api.ajax({
+			    url: 	'http://crj.gafw.jl.gov.cn/f/cms/article/searchContent?id='+pageParam.id,
+			    method: 'get',
+			    data: { 
+	    		      values: { 
+				            //sfzhm :$("#sfzhm").val(),
+				    	    //oilType: $('input[name="oilType"]:checked').val(),
+				    	    //oilQuantity:$("#oilQuantity").val(),
+				    	    //remarks:$("#remarks").val()
+			        	}
+	    		     }
+	    		     
+			},
+			
+			function(ret, err){
+			//	alert(JSON.stringify(ret));
+			$("#titleInfo").html(ret[0].title);
+			$("#categoryName").html(ret[0].categoryName);
+			$("#content").html(ret[0].content);
+			$("#image").attr("src","http://crj.gafw.jl.gov.cn"+ret[0].image);
+			$("#wrapInfo").show();
+			});
+  
+  
+  }
+  function openWin(name){
+	        var delay = 0;
+	        if(api.systemType != 'ios'){
+	            delay = 300;
+	        }
+	        api.openWin({
+	            name: ''+name+'',
+	            url: ''+name+'.html',
+	            bounces:false,
+	            delay: delay,
+	            slidBackEnabled:true,
+	            vScrollBarEnabled:false
+	        });
+	    }
+  function openParentWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: '../'+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+</script>
+</html>

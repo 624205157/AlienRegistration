@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/1sfrz.js"></script>
+    <script src="js/url.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KWe2TezxgWBDms0PYjeXBZWt"></script>
+    <style>
+        #tssj ,#tsnr { text-indent: 0px!important;  padding-left: 10px!important; padding-right: 10px!important; line-height: 1.5; font-size: 0.26rem; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">外国人签证申请</h1>
+        </div>
+        </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}' >
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon8.jpg"></div>
+                            <div class="mui-media-body me-list-con">办证日期<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result" name="validUntil" id="validUntil" placeholder="请选择办证日期"   style="width: 3rem!important;"/>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media btn2">
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon22.jpg"></div>
+                            <div class="mui-media-body me-list-con">办证时间段<span class="me-red">*</span></div>
+                            <input type="text" class="me-tips write infor1 result2"  placeholder="办证时间" style="width: 3.2rem!important;"  />
+                            <input type="hidden" class="me-tips write infor1" name="num" id="num"  placeholder="办证时间" />
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media btn1">
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon22.jpg"></div>
+                            <div class="mui-media-body me-list-con">办证地点<span class="me-red">*</span></div>
+                            <input type="text" class="me-tips write infor1 result1"  placeholder="办证地点" style="width: 3.2rem!important;"  />
+                            <input type="hidden" class="me-tips write infor1" name="sls" id="sls"  placeholder="办证地点" />
+                        </a>
+                    </li>
+                    <li id="allmap" style="width: 100%; height: 440px; background: red; text-align: center;"></li>
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="blwjbtn"  style="margin:10px auto;">预约</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="../js/city.data3.js"></script>
+<script src="js/add_script.js"></script>
+<script>
+  mui.init();
+ var crjbasePath=  'http://221.8.52.247:8445/jit_crj/';
+    var sqid =GetQueryString('sqid');
+    var djdwxzqh=GetQueryString('djdwxzqh');
+
+    var nfzjlx_cl= GetQueryString('nfzjlx_cl');
+
+    var bzjd = GetQueryString(bzjd);
+
+    var btn1 = mui('.btn1');
+    var result1 = mui('.result1');
+    var btn2 = mui('.btn2');
+    var result2 = mui('.result2');
+    var userPicker = new mui.PopPicker();
+    userPicker.setData(timeJson);
+    btn2[0].addEventListener('tap', function(event) {
+        userPicker.show(function(items) {
+            result2[0].value = items[0].text;
+            mui('#num').value = items[0].value;
+        });
+    }, false);
+    var result = mui('.result');
+    var btns = mui('.btn');
+    btns.each(function(i, btn) {
+        btn.addEventListener('tap', function() {
+            var optionsJson = this.getAttribute('data-options') || '{}';
+            var options = JSON.parse(optionsJson);
+            var id = this.getAttribute('id');
+            var picker = new mui.DtPicker(options);
+            picker.show(function(rs) {
+                result[i].setAttribute('value',rs.value);
+                picker.dispose();
+            });
+        }, false);
+    });
+     var btn1 = mui('.btn1');
+var result1 = mui('.result1');
+function findxzqhNew(){
+            var njld = document.getElementById("njld");
+            var url = crjbasePath + "webProtal/findDictionaryByType.do?random=" + Math.random();
+            var listParams = {
+                    "pid" : "22000000"
+            };
+            var i = 0;
+            mapJson.push({
+                        value: "220114",
+                        text: "长春市新区"
+                    })
+            $.getJSON(url,listParams, function(json){
+               $.each(json.data, function(i,result) {
+                    var slscode = result.dicCode;
+                    var slsname = result.dicName;
+
+                    mapJson.push({
+                        value: slscode,
+                        text: slsname
+                    })
+                });
+                mapJson.push({
+                        value: "222402",
+                        text: "图们市"
+                    })
+                 mapJson.push({
+                        value: "222401",
+                        text: "延吉市"
+                    })
+
+                //普通联动
+                btn1.each(function(i,btn) {
+                    if(i == 0){
+                        var userPicker = new mui.PopPicker();
+                        userPicker.setData(mapJson);
+                        btn.addEventListener('tap', function(event) {
+                            userPicker.show(function(items) {
+                                result1[i].value = items[0].text;
+                                sls.value = items[0].value;
+
+                                initDitu();
+                            });
+                        }, false);
+                    }
+
+                });
+            });
+            initDitu();
+        }
+
+    //地图提示窗口设置
+    var type="0";
+    var str1=[];
+    var opts = {
+        width : 320,     // 信息窗口宽度
+        height: 200,     // 信息窗口高度
+        enableMessage:true//设置允许信息窗发送短息
+    };
+    
+    //地图点击事件
+    function addClickHandler(title, content, marker, map) {
+        marker.addEventListener("click",function(e){
+            openInfo1(title,content,e,map);
+        });
+    } 
+
+    //显示提示
+     function openInfo1(title, content, e, map){
+        var p = e.target;
+        var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+        var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象 
+        map.openInfoWindow(infoWindow, point); //开启信息窗口
+    } 
+
+
+    
+    // 初始化页面
+    $(function() {
+        var str2="";
+        var str="";
+        var bzdt="";
+        findxzqhNew();
+        //查找市级单位
+         $.ajax({
+                url: crjbasePath+"crj/after/findcrjNamebytype.do",
+                data:
+                 {
+                    //djdwxzqh : djdwxzqh.substring(0,4)
+                    djdwxzqh : '2201'
+                  },
+                 dateType:"json",
+                 success: function(data) {
+                  var data1=eval("("+data+")");
+                  bzdt=data1.data;
+
+                  console.log(bzdt)
+               }
+            });
+         
+             //判断是否已经办理完结
+            var url1 = crjbasePath + "sfrz/findBzjd.do?random=" + Math.random();
+            var listParams1 = {
+
+            };
+            $.ajaxSettings.async = false; 
+            $.getJSON(url1, listParams1, function(json) {
+                if(json==0){
+                    $('#blwjbtn').text('预约');
+                    $('#blwjbtn').attr('data-name',0);
+                }else{
+                    $('#blwjbtn').text('返回');
+                    $('#blwjbtn').attr('data-name',1);
+                }
+            });
+
+        //查找你发签证所需要的材料
+
+
+
+    });
+
+    var map = "";
+    function initDitu() {
+        
+       var sls = $("#sls").val();
+        // 准备URL和参数列表
+        var url = crjbasePath + "organization/findWkb.do";
+        var listParams = {
+                "sls" : sls,
+        };
+        $.ajaxSettings.async = false; 
+        // 发出请求并处理返回数据
+        $.getJSON(url,listParams, function(json) {
+            
+            if (json.code == "000000") {
+                map = new BMap.Map("allmap");
+                var point = new BMap.Point(json.data[0].longitude, json.data[0].latitude);//获取地理坐标
+                map.centerAndZoom(point, 11);
+                map.enableScrollWheelZoom(true);
+                $.each(json.data, function(i, result) {
+                    if (result.longitude != "") {
+                        var icon = new BMap.Icon('../image/_green.png', new BMap.Size(30, 30), {//是引用图标的名字以及大小，注意大小要一样
+                            anchor: new BMap.Size(13, 28)//这句表示图片相对于所加的点的位置
+                        });
+                        var marker = new BMap.Marker((new BMap.Point(result.longitude, result.latitude)), {icon : icon});  // 创建标注
+                        var title = result.jgdwName;
+                        var content="";
+                         content+= "<table>";
+                        content+="<tr>";
+                        content+="<td></td>";
+                        content+="</tr>";
+                        content+="<tr>";
+                        content+="<td><p style='font-size:15px; margin-top:20px'>机关单位名称：" + result.jgdwName + "</p></td>";
+                        content+="</tr>"; 
+                        content+="</table>";
+                        var label = new BMap.Label(title, {offset:new BMap.Size(0,20)});
+                        marker.setLabel(label);
+                        map.addOverlay(marker);               // 将标注添加到地图中
+                        addClickHandler(title, content, marker, map);
+                    }
+                });
+            } else {
+                alert(json.msg);
+            }
+            
+        });
+    }
+
+    mui('#blwjbtn')[0].addEventListener('tap',function(){
+    //alert('预约成功，请在预约时限内到预约办证地点办理')
+    if($("#validUntil").val() == null || $("#validUntil").val() == " "){
+    alert("请选择办证日期");
+    return;
+    }
+    else  if($("#num").val() == null || $("#num").val() == " "){
+    alert("请选择办证时间段");
+    return;
+    }
+else{
+      location = 'order_success.html';
+}
+    })
+    //非全流程提交办理完结节点
+    /*
+    function bzjd(){
+
+         location="../../foreigner/html/main_frm.html";
+        //按钮置灰
+        var blwjbtn = document.getElementById("blwjbtn");
+        if (blwjbtn.disabled)
+        {
+            return false;
+        }
+        blwjbtn.style.color = 'grey';
+        blwjbtn.disabed = true;
+        
+        //提交办证节点
+
+         $.ajax({
+                url : crjbasePath+"sfrz/saveFile.do",
+                data : {
+                    "bzjd":"040",
+                    "nfzjlx_cl":nfzjlx_cl
+                    
+                }, 
+                type : "post",
+                dataType : 'json',
+                success : function(data) {
+                }
+            }); 
+         
+        location="../../foreigner/html/main_frm.html";
+         
+    }
+*/
+
+</script>
+</html>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">外客帮</string>
+    <string name="title">标题</string>
+    <string name="company_name">吉林省智慧互联信息科技有限公司</string>
+    <string name="scan_fail">扫描失败</string>
+    <string name="remind">请在5秒内念出下面数字完成录制</string>
+</resources>

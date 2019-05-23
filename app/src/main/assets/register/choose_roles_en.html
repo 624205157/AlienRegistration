@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/reset.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="css/app.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/font.js"></script>
+	<script type="text/javascript" src="js/android.js"></script>
+	<style type="text/css">
+		html,
+		body {
+			height: 100%;
+		}
+
+		.mui-content {
+			min-height: 100%;
+			overflow: hidden;
+		}
+
+		.me-clear {
+			clear: both;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+<header>
+	<div class="top-box black-back">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+		<h1 class="main-title">Select Role</h1>
+	</div>
+</header>
+<div class="mui-content white-back" style="width: 100%;">
+	<div class="rolebox" style="margin-top:18%;">
+		<div class="each-role me-left" value="13">
+			<div class="dotted" value="13"></div>
+			<img src="img/foreignor.jpg" width="100%;" />
+			<p>foreigner</p>
+			<input type="text" name="hz" id="hz" value="13" style="display:none" class="pid">
+		</div>
+		<div class="each-role me-left" value="2" style="margin-bottom:30px;">
+			<div class="dotted" value="2"></div>
+			<img src="img/host.jpg" width="100%;" />
+			<p>landlord</p>
+			<input type="text" name="sfz" id="sfz" value="2" style="display:none" class="pid">
+		</div>
+		<div class="each-role me-left" value="3" style="margin-bottom:15px;">
+			<div class="dotted" value="3"></div>
+			<img src="img/fang4.jpg" width="100%;" />
+			<p>hostel</p>
+			<input type="text" name="ld" id="ld" value="3" style="display:none" class="pid">
+		</div>
+		<div class="hint me-clear">
+			<p class="hint-each">According to the laws of China, if a foreigner stays in a place other than a hotel, he/she should handle registration with the public security organ where the place is by himself/herself or the accommodator within 24 hours after check-in</p>
+			<p class="hint-each">If a foreigner declares lodging registration by himself/herself, he/she should click “I’m a foreigner” to register. For an accommodator, he/she should click “I’m a house owner” to key in the foreigner’s information</p>
+			<!-- <p class="hint-each">登记流程简单，不会浪费您太多时间；</p> -->
+		</div>
+	</div>
+	<button type="button" class="foreigner-btn" id="goto" style="margin:50px auto 30px;" onclick="getPicture()">Confirm</button>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script src="js/city.data3.js"></script>
+<script type="text/javascript" src="js/api.js"></script>
+<script type="text/javascript">
+	var imgSrc = "";
+	var cookie = "13";
+	var text = "";
+	window.onload = (function($, doc) {
+		$('.each-role').click(function() {
+			$(this).addClass('active').siblings().removeClass('active');
+			text = $(this).closest("div").find("input[class='pid']").val();
+		})
+	})(jQuery, document)
+
+	function getPicture() {
+		if (text == "") {
+			mui.alert('Please Select Roles!','Prompt','Determine',null,'div');
+			//mui.alert('请选择角色!','提示','确定',null,'div');
+			return false;
+		}
+		if (text == "2") {
+			location = "register.html";
+
+			//跳转页面
+			// api.openWin({
+			// 	name: 'search',
+			// 	url: 'register_en.html',
+			// 	bounces: false,
+			// });
+		} else if (text == "13") {
+		location = "photo_hint_en.html";
+
+			//ywwgr();
+		} else if (text == "3") {
+			location = "../hostel/register.html";
+			//wgr();
+			//window.AndroidWebView.showInfoFromJs('ch');
+		}
+	}
+</script>
+
+</html>

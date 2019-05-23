@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet"/>
+	    <link href="css/reset.css" rel="stylesheet"/>
+	    <link href="css/style.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="css/app.css" />
+	    <link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+	    <script src="js/jquery.min.js"></script>
+	    <script src="js/font.js"></script>
+	    <style type="text/css">
+	    	/*.tab-box { position: relative; width: 100%; }
+	    	.tab-box .tab-item { position: absolute; width: 100%; top: 0px; left: 0px; }*/
+	    </style>
+	</head>
+
+	<body>
+		<div class="mui-content" style="margin-top:0px;">
+		    <div class="top-box">
+		    	<h1 class="main-title">住宿登记</h1>
+		    	<div class="base-infor">
+		    		<div class="head-pic"><img src="img/people.png" width="100%"/></div>
+		    		<div class="name">
+		    			<h2 class="n">June</h2>
+		    			<p>声纹人像采集</p>
+		    		</div>
+		    		<!--<div class="again">
+		    			<img src="img/again.png" width="30px;" height="30px;"/>
+		    		</div>-->
+		    	</div>
+		    </div>
+		    <div class="navigator">
+		    	<div class="sec active"><span class="active">1</span></div>
+				<div class="sec"><span>2</span></div>
+		    </div>
+		    <div class="tab-box">
+		    	<div class="tab-item" style="margin-bottom: 20px;">
+		    		<ul class="mui-table-view me-top">
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon1.jpg"></div>
+					            <div class="mui-media-body me-list-con">英文名<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips" name="" id="" value="June" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon2.jpg"></div>
+					            <div class="mui-media-body me-list-con">英文姓<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips" name="" id="" value="Smith" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon2.jpg"></div>
+					            <div class="mui-media-body me-list-con">中文名</div>
+					            <input type="text" class="write me-tips" name="" id="" value="白雪" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon3.jpg"></div>
+					            <div class="mui-media-body me-list-con">性别<span class="me-red">*</span></div>
+					            <div class="radios me-tips" id="radios">
+					            	<div class="radios-each selected">
+					            		<span>男</span>
+					            		<input type="radio" name="sex" value="men" checked="true"/>
+					            	</div>
+					            	<div class="radios-each">
+					            		<span>女</span>
+					            		<input type="radio" name="sex" value="women"/>
+					            	</div>
+					            </div>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon4.jpg"></div>
+					            <div class="mui-media-body me-list-con">联系电话<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips me-red" name="" id="" value="18143089999" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media btn1">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon5.jpg"></div>
+					            <div class="mui-media-body me-list-con">国家/地区<span class="me-red">*</span></div>
+					            <span class="me-tips result1">俄罗斯</span>
+					        </a>
+					    </li>
+				    </ul>
+				    <ul class="mui-table-view me-top">
+				    	<li class="mui-table-view-cell mui-media btn1">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon7.jpg"></div>
+					            <div class="mui-media-body me-list-con">证件类型<span class="me-red">*</span></div>
+					            <span class="me-tips result1">普通护照</span>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon6.jpg"></div>
+					            <div class="mui-media-body me-list-con">证件号码<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips" name="" id="" value="M10000000" disabled/>
+					        </a>
+					    </li>
+					    
+					    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}'>
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon8.jpg"></div>
+					            <div class="mui-media-body me-list-con">证件到期<span class="me-red">*</span></div>
+					            <span class="me-tips me-red result">2017-10-01</span>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}'>
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon9.jpg"></div>
+					            <div class="mui-media-body me-list-con">签证到期<span class="me-red">*</span></div>
+					            <span class="me-tips result">2017-11-01</span>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media btn1">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon10.jpg"></div>
+					            <div class="mui-media-body me-list-con">停留事由<span class="me-red">*</span></div>
+					            <span class="me-tips result1">探亲</span>
+					        </a>
+					    </li>
+				    </ul>
+		    	</div>
+		    	<div class="tab-item" style="display: none;">
+		    		<ul class="mui-table-view me-top">
+					    <li class="mui-table-view-cell mui-media" id='showCityPicker3'>
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon21.jpg"></div>
+					            <div class="mui-media-body me-list-con">省/市/县(区)<span class="me-red">*</span></div>
+					            <span class="me-tips" id="cityResult3">吉林省/长春市/朝阳区</span>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon22.jpg"></div>
+					            <div class="mui-media-body me-list-con">详细地址<span class="me-red">*</span></div>
+					            <div class="me-tips">
+					            	<textarea type="text" class="write" name="" rows="1" id="" value="前进大街繁荣路交汇" disabled/>前进大街繁荣路交汇</textarea>
+					            </div>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon22.jpg"></div>
+					            <div class="mui-media-body me-list-con">所属派出所<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips" name="" id="" value="繁荣派出所" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon24.jpg"></div>
+					            <div class="mui-media-body me-list-con">国内联系人<span class="me-red">*</span></div>
+					            <input type="text" class="write me-tips" name="" id="" value="张亮" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon25.jpg"></div>
+					            <div class="mui-media-body me-list-con">联系电话(国内联系人)<span class="me-red">*</span></div>
+					            
+					            <input type="text" class="write me-tips me-red" name="" id="" value="18143084444" disabled/>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}'>
+					        <a>
+					        	<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon26.jpg"></div>
+					            <div class="mui-media-body me-list-con">拟离开时间<span class="me-red">*</span></div>
+					            <span class="me-tips result">2017-10-02</span>
+					        </a>
+					    </li>
+				    </ul>
+				    <button type="button" class="foreigner-btn" style="margin-top:30px;">返回</button>
+		    	</div>
+		    </div>
+		</div>
+	</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script src="js/data.js" charset="utf-8"></script>
+<script type="text/javascript">
+	(function($){
+		$('.navigator .sec').click(function(){
+			var index = $(this).index();
+			$(this).addClass('active').siblings('.sec').removeClass('active');
+			$(this).parent().find('span').removeClass('active');
+			$(this).find('span').addClass('active');
+			$('.tab-box .tab-item').eq(index).show().siblings().hide();
+		})
+	}(jQuery))
+</script>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+    <link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/SG_area_select.css" />
+    <script src="./js/jquery.min.js"></script>
+    <script src="js/font.js"></script>
+    <script src="js/SG_area_select.js"></script>
+    <script src="js/iscroll.js"></script>
+    <script src="js/cookie.js"></script>
+
+    <style>
+        html,
+        body,
+        .mui-content {
+            height: 100%;
+        }
+
+        .mui-content {
+            overflow: hidden;
+            background: url(img/back_reg.jpg) no-repeat 0 0;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="mui-content">
+            <div class="reg-box">
+                <div class="reg-pic">
+                    <img src="img/mainper.png" class="me-block" width="80%" />
+                </div>
+                <div class="reg-infor">
+                    <div class="reg-header">Sign in</div>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/tel.png"></div>
+
+                            <input type="number" class="write me-tips me-red" placeholder="Enter your  phone number" name="phone" id="phone" value="" style="text-align:left!important; left:43px; font-size:16px; width:auto!important;"/>
+                        </a>
+                    </li>
+
+
+                    <div class="reg-con">
+                        <img src="img/telm.png" />
+                        <input type="text" placeholder="enter Code" style="width:calc(100% - 120px);" />
+                        <button type="button" class="get">Get Verification Code</button>
+                    </div>
+                    <button type="button" class="blue-back me-white" id="login">Sign in</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script src="js/data.js" charset="utf-8"></script>
+<script src="js/url.js"></script>
+<script src="js/city.data3.js"></script>
+<script src="/js/api.js"></script>
+<script type="text/javascript">
+//-马赫电话验证方法--开始
+
+//-马赫电话验证方法--
+</script>
+<script type="text/javascript" charset="utf-8">
+    window.onload =mui.init();
+    window.onload = (function(jQuery) {
+
+
+        jQuery('#login')[0].addEventListener('tap', function() {
+          var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+          if(!myreg.test($("#phone").val()))
+          {
+              alert(' Please enter a valid phone number！');
+              jQuery("#phone").focus();
+              return ;
+          }
+
+            jQuery.post(base+'loginListController.do?doAdd', $('form').serialize(),
+                function(ret) {
+                  //var dataObj = eval('('+ret+')');
+
+                    //var phone = dataObj.msg;
+                    var phone = ret;
+                    phone=jQuery("#phone").val();
+                  //  alert(phone);
+                     //alert(dataObj.msg);///////////////////////////////
+                     window.location.href="addresses_en.html";
+
+                    // api.openWin({
+                    //     name: 'search',
+                    //     url: 'addresses_en.html',
+                    //     bounces: false,
+                    //     pageParam: {
+                		// 			phone: phone
+                		// 		}
+                    // });
+              })
+              // api.openWin({
+              //     name: 'search',
+              //     url: './addresses.html',
+              //     bounces: false,
+              //     pageParam: {
+              //       phone: phone
+              //     }
+              // });
+        });
+    }(jQuery))
+</script>
+
+</html>

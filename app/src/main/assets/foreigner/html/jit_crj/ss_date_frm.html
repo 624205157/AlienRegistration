@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>吉林省公安厅出入境管理局</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <script type="text/javascript" src="../../script/api.js" ></script>
+    <link href="../../script/jit_crj/style/default.css" type="text/css" rel="stylesheet" />
+    <link href="../../script/jit_crj/style/layout.css" type="text/css" rel="stylesheet" />
+    <link href="../../script/jit_crj/style/list.css" type="text/css" rel="stylesheet" />
+    <!-- <style type="text/css">
+        html { bacfkground:url(../image/images/bg_01.jpg) no-repeat center center fixed;}
+    </style> -->
+	<script type="text/javascript" src="../../script/jit_crj/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		apiready = function(){
+			var btwrzhqx = "test";
+			api.openWin({
+	            name: 'new_info_win',
+	            url: 'new_info_win.html',
+	            pageParam: {  
+			        id: id ,
+			        btwrzhqx:btwrzhqx
+			    },
+	            bounces:false,
+	            delay: delay,
+	            slidBackEnabled:true,
+	            vScrollBarEnabled:false
+	        });
+	    };
+	
+	     //签证有效期
+	     // var xcyqzUntil = "<%=xcyqzUntil%>";
+	    
+	  //当前日期
+	    var nowdate= "<%=nowdate%>";
+	    
+	    var xcyqzUntil="<%=xcyqzUntil%>";
+	    
+	    var xcyzjlx= "<%=xcyzjlx%>";
+	
+		var basePath= "<%=basePath%>";
+		// 标示是否显示护照首申
+		var type = "<%=type%>";
+		// 标示是否显示港澳首申
+		var ly = $("#ly",window.parent.document).val();  
+		// 标示是否显示台湾首申
+		var zjlx = $("#zjlx",window.parent.document).val();  
+		
+		var gj = $("#gj",window.parent.document).val();  
+		var sishu=$("#sishu",window.parent.document).val();
+		
+		
+		var dateB= "<%=dateB%>";
+		var VALID_UNTIL= "<%=btwrzhqx%>";
+		
+		var day="0";
+		
+		var tishistr="";
+
+		$(document).ready(function(){
+            //$('.selected_icon').hide();
+             $(".btn_frame li a").click(function(){
+            	 $('.selected_icon').hide();
+                 $(this).next('.selected_icon').toggle();
+             })
+        })
+        function next(t){
+			window.location.href="ss_date_win.html?type="+t;
+		}
+	
+		$(function() {
+			
+			
+			
+			//工作类
+			if((ly == '46')) {
+				if(xcyzjlx=='rzqz'){
+					$("#tssj").html("在吉停留时限不得大于等于 730，小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+				if(xcyzjlx=='zzqz'){
+					$("#tssj").html("在吉停留时限不得大于等于 730，小于等于90天。/The intended duration of stay shall not be more than 730 days and less than 90 days.");
+				}
+				if(xcyzjlx=='gzljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于 730，小于等于90。/The intended duration of stay shall not be more than 730 days and less than 90 days.");
+				}
+				tishistr="请问您在吉林省停留多长时间？提示：停留时间(不能超过护照有效期,也不得超过工作许可有效期!)/How long do you intend to stay in Jilin Province? Tips: intended duration of stay  (shall not exceed the expiry date of passport and work permit!)"
+			}
+			//探亲类
+			if((ly == '06')) {
+				if($("#btwZjhmf",window.parent.document).val()=='1'){
+					$("#tsnr").html("您好，您探望的人在华居留期限为"+VALID_UNTIL.substr(0,4)+'年'+VALID_UNTIL.substr(5,2)+'月'+VALID_UNTIL.substr(8,2)+'日'+"。您所选择的居留期限不应大于被探望人！");					
+				}
+				if(xcyzjlx == 's1zqz') {
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+							 $("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+				}
+				if(xcyzjlx == 's2zqz'){
+					if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+						 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+						}else{
+							$("#tssj").html("该签证，在吉停留时限不得大于180天！")
+					}
+					if(gj=='1'){
+						if(sishu=="QT"){
+							$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+				}
+				if(xcyzjlx == 'q1zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+						if(sishu=="QT"){
+							 $("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+				}
+				if(xcyzjlx == 'q2zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+					if(sishu=="QT"){
+						$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+					}
+				}
+				if(xcyzjlx == 'lzqz'){
+					if(gj=='1'){
+						if(sishu=="QT"){
+							$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='2'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='3'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+				}
+				if(xcyzjlx == 'mzqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。The intended duration of stay shall not be more than 730 days and less than 1 days.");
+					if(gj=='1'){
+						if(sishu=="QT"){
+							$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='2'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='3'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+				}
+				if(xcyzjlx == 'fzqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+					if(gj=='1'){
+						if(sishu=="QT"){
+							$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='2'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='3'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+				}
+				if(xcyzjlx == 'x1zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+					if(gj=='1'){
+						if(sishu=="QT"){
+							$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='2'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='3'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+				}
+				if(xcyzjlx == 'x2zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。The intended duration of stay shall not be more than 730 days and less than 1 days.");
+					if(gj=='1'){
+						if(sishu=="QT"){
+							$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='2'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+					if(gj=='3'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								$("#tssj").html("该签证，在吉停留时限不得大于180天！");
+						}
+					}
+				}
+				if(xcyzjlx == 'tjljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+					if(gj=='1'){
+						if(sishu=="QT"){
+							$("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+					}
+					if(gj=='3'){
+						if(sishu=="QT"){
+							$("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+					}
+				}
+				if(xcyzjlx == 'srswljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+					if(gj=='2'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								 $("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+					}
+				}
+				if(xcyzjlx == 'xxljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+					if(gj=='1'){
+						if(sishu=="QT"){
+							$("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+					}
+					if(gj=='2'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								 $("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+					}
+					if(gj=='3'){
+						if(sishu=="QT"){
+							$("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+					}
+				}
+				if(xcyzjlx == 'gzljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+					//$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+					if(gj=='1'){
+						if(sishu=="QT"){
+							$("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+					}
+					if(gj=='2'){
+						 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							 $("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+							}else{
+								 $("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+					}
+					if(gj=='3'){
+						if(sishu=="QT"){
+							$("#tssj").html("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						}
+					}
+				}
+				
+			}
+			//学习类
+           if(ly == '01') {
+        	   $("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+        	   if(xcyzjlx == 's2zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+        	   if(xcyzjlx == 'q2zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+        	   if(xcyzjlx == 'x2zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+        	   if(xcyzjlx == 'mql'){
+					$("#tssj").html("在吉停留时限不得大于180天。");
+				}
+        	   if(xcyzjlx == 'x1zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+        	   if(xcyzjlx == 'tjljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+				if(xcyzjlx == 'srswljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+				if(xcyzjlx == 'xxljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+				if(xcyzjlx == 'gzljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+				tishistr="请问您在吉林省停留多长时间？提示：停留时间(不能超过护照有效期,也不得超过学习许可证明有效期!)";
+				//$("#tishi").html("请问您在吉林省停留多长时间？提示：停留时间(不能超过护照有效期,也不得超过学习许可证明有效期!)");
+           }
+			//寄养类
+           if(ly == '07') {
+        	   if(xcyzjlx == 'q1zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于1095，   小于等于180天。/The intended duration of stay shall not be more than 1095 days and less than 180 days.");
+				}
+        	   if(xcyzjlx == 'q2zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于1095，   小于等于180天。/The intended duration of stay shall not be more than 1095 days and less than 180 days.");
+				}
+        	   if(xcyzjlx == 'lzqz'){
+					$("#tssj").html("在吉停留时限不得大于等于1095，   小于等于180天。/The intended duration of stay shall not be more than 1095 days and less than 180 days.");
+				}
+        	   if(xcyzjlx == 'tjljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+        	   tishistr="请问您在吉林省停留多长时间？提示：停留时间(不能超过护照有效期,也不得超过申请人18周岁生日!";
+				//$("#tishi").html("请问您在吉林省停留多长时间？提示：停留时间(不能超过护照有效期,也不得超过申请人18周岁生日!");
+          }
+         //旅游类
+           if(ly == '05') {
+        	   
+        	   if(xcyzjlx == 'mql'){
+					$("#tssj").html("在吉停留时限不得大于30天。");
+				}
+        	   if(xcyzjlx == 'lzqz'){
+					$("#tssj").html("在吉停留时限不得大于30天");
+				}
+          }
+         //访问类
+           if(ly == '03') {
+        	   
+        	   if(xcyzjlx == 'mql'){
+					$("#tssj").html("在吉停留时限不得大于180天");
+				}
+        	   if(xcyzjlx == 'fzqz'){
+					$("#tssj").html("在吉停留时限不得大于180天");
+				}
+        	   if(xcyzjlx == 'mzqz'){
+					$("#tssj").html("在吉停留时限不得大于180天");
+				}
+          }
+         //贸易类
+           if(ly == '04') {
+        	   
+        	   if(xcyzjlx == 'mql'){
+					$("#tssj").html("在吉停留时限不得大于180天");
+				}
+        	   if(xcyzjlx == 'fzqz'){
+					$("#tssj").html("在吉停留时限不得大于180天");
+				}
+        	   if(xcyzjlx == 'mzqz'){
+					$("#tssj").html("在吉停留时限不得大于180天");
+				}
+          }
+			//私人事务类
+           if(ly == '48') {
+        	   
+       	   		if(xcyzjlx == 'q2zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+       	   		if(xcyzjlx == 'lzqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+	       	   	if(xcyzjlx == 'fzqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+	       	 	if(xcyzjlx == 'mzqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+	       	 	if(xcyzjlx == 'x1zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+	       	 	if(xcyzjlx == 'x2zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+	       	 	if(xcyzjlx == 's1zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+	       	 	if(xcyzjlx == 's2zqz'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于1天。/The intended duration of stay shall not be more than 730 days and less than 1 days.");
+				}
+	       	 	if(xcyzjlx == 'mql'){
+					$("#tssj").html("在吉停留时限不得大于180天");
+				}
+	       	   	if(xcyzjlx == 'tjljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+	       	   	if(xcyzjlx == 'xxljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+	       	 	if(xcyzjlx == 'srswljlxk'){
+					$("#tssj").html("在吉停留时限不得大于等于730，   小于等于180天。/The intended duration of stay shall not be more than 730 days and less than 180 days.");
+				}
+	       	 
+        	   var html='';
+        	   html+='<td>&nbsp;</td>';
+        	   html+='<td><p style="margin-left:-5px;">申请事由：</p></td>';
+        	   html+='<td><input type="text" id="shenqingshiyou" name="shenqingshiyou" style="width:50%;height:20px;" datatype="s,*" maxLength="200"/><span style="color:red;margin-left:10px;">必填项</span></td>';
+        	   html+='<td> &nbsp;</td>';      
+				$("#siren").append(html);
+          }
+			if(tishistr==''){
+				 $("#tishi").html("请问您在吉林省停留多长时间？提示：停留时间(不能超过护照有效期!)/How long will you stay in Jinlin Province? Note: the period of stay shall not exceed the expiration date provided on your passport!");
+			}else{
+				tishistr = tishistr + "How long do you intend to stay in Jilin Province? Tips: intended duration of stay  (shall not exceed the expiry date of passport and work permit!)";
+				$("#tishi").html(tishistr);
+			}
+          
+		});
+		
+		function  changeDate(){
+			      var date2=$('#sorts').val();//停留日期
+			     
+		          var d =new Date(date2.replace(/-|\/|\,/g,"\/")).getTime();
+
+		          var nd =new Date(nowdate.replace(/-|\/|\,/g,"\/")).getTime();
+		         
+				 if(nd>d) {
+					  alert("在吉停留时限不能小于当前日期。/The intended duration of stay filled in is not within the prescribed period.");
+				  }else{
+					var arrDate1,arrDate2, objDate1, objDate2, d;
+	
+					objDate1 = new Date();
+					objDate2 = new Date();
+	
+					arrDate1 =nowdate.split("-");
+					objDate1.setFullYear(arrDate1[0], arrDate1[1], arrDate1[2]);
+	
+					arrDate2 = date2.split("-");
+					objDate2.setFullYear(arrDate2[0], arrDate2[1], arrDate2[2]);
+	
+					d = parseInt(Math.abs(objDate1-objDate2) / 1000 / 60 / 60 / 24);
+					$("#flagday",window.parent.document).val(d);
+					day = d;
+					$("#days").html("停留天数为："+day+"天");
+				  }
+		       
+			
+		}
+		
+		
+		function getDateDiff(t1,t2){
+			var arr1=nowdate;
+	        var date2=$('#sorts').val();
+			var arrDate, objDate1, objDate2, d;
+
+			objDate1 = new Date();
+			objDate2 = new Date();
+
+			arrDate = arr1.split("-");
+			objDate1.setFullYear(arrDate[0], arrDate[1], arrDate[2]);
+
+			arrDate = date2.split("-");
+			objDate2.setFullYear(arrDate[0], arrDate[1], arrDate[2]);
+
+			d = parseInt(Math.abs(objDate1-objDate2) / 1000 / 60 / 60 / 24);
+			$("#flagday",window.parent.document).val(d);
+			day = d;
+	 		return(( t1>=d && t2<=d));
+		}
+		function DateDiff(){
+			var arr1=xcyqzUntil;
+	        var date2=$('#sorts').val();
+	 		var arr2=date2.split('-');
+	 		var d1=new Date(arr1[0],arr1[1],arr1[2]);
+	 		var d2=new Date(arr2[0],arr2[1],arr2[2]);
+	 		var d=(d2.getTime()-d1.getTime())/(1000*3600*24);
+	 		return(( 180>=d ));
+		}
+		function Check(){
+			
+			$("#shiyou",window.parent.document).val($("#shenqingshiyou").val());
+			
+			if($('#sorts').val() == '') {
+				alert("在吉停留时限不得不能为空！/The intended duration of stay in Jilin Province must be entered!");
+				 return false;
+
+			}
+			if($('#shenqingshiyou').val() == '') {
+				alert("申请事由不可以为空！/The reasons for visa application must be entered!");
+				 return false;
+
+			}
+			   
+			$("#Bdate",window.parent.document).val($('#sorts').val());
+			
+			$("#qzyyx",window.parent.document).val($('#scqzyxq').val());
+			
+			
+			//探亲类签证
+			if((ly == '06')) {
+				if(xcyzjlx == 'lzqz'||xcyzjlx == 'mzqz'||xcyzjlx == 'fzqz'||xcyzjlx == 'x1zqz'||xcyzjlx == 'x2zqz') {
+				
+					if(!getDateDiff(730,1)) {
+						alert("该签证，在吉停留时限不得大于730天！");
+						 return false;
+					}
+					if(gj=='1'){
+						if(day<180){
+							$("#zjzl",window.parent.document).val("1601");
+							$("#nfzjlx",window.parent.document).val("hfq2qz");
+							$("#nfzjlx_cl",window.parent.document).val("tq_lxmfqz_tjljlxk");
+							$("#nfzjlx_name",window.parent.document).val("Q2字签证/Q2-Visa");
+							$("#zjzlzm",window.parent.document).val("H");
+							window.location.href="ss_qzcs.jsp";
+							return false;
+						}
+						if(day>=180&&day<=730){
+							if(sishu=="QT"){
+								alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+								return false;
+							}else{
+								$("#zjzl",window.parent.document).val("1602");
+								$("#nfzjlx",window.parent.document).val("tjljlxk");
+								$("#nfzjlx_cl",window.parent.document).val("tq_lxmfqz_tjljlxk");
+								$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion");
+								$("#zjzlzm",window.parent.document).val("R");
+							}
+						}
+					}
+					if(gj=='3'){
+						if(day<180){
+							$("#zjzl",window.parent.document).val("1601");
+							$("#nfzjlx",window.parent.document).val("hfq2qz");
+							$("#nfzjlx_cl",window.parent.document).val("tq_lxmfqz_tjljlxk");
+							$("#nfzjlx_name",window.parent.document).val("Q2字签证/Q2-Visa");
+							$("#zjzlzm",window.parent.document).val("H");
+							window.location.href="ss_qzcs.jsp";
+							return false;
+						}
+						if(day>=180&&day<=730){
+							if(sishu=="QT"){
+								alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+								return false;
+							}else{
+								$("#zjzl",window.parent.document).val("1602");
+								$("#nfzjlx",window.parent.document).val("tjljlxk");
+								$("#nfzjlx_cl",window.parent.document).val("tq_lxmfqz_tjljlxk");
+								$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion");
+								$("#zjzlzm",window.parent.document).val("R");
+							}
+						}
+					}
+					if(gj=='2'){
+						    var oDate1 = VALID_UNTIL;
+						    
+						    var oDate2=$('#sorts').val();
+						    var b =new Date($('#sorts').val().replace(/-|\/|\,/g,"\/")).getTime();//将对应的日期text id改成唯一的,修改 b下面的e即可
+
+					        var e =new Date(oDate1.replace(/-|\/|\,/g,"\/")).getTime();
+					        
+					        if(e<b){
+					        	alert("您所选择的居留期限不应大于被探望人！");
+					        	 return false;
+					        }
+					 		
+						if(day<180){
+							
+							$("#zjzl",window.parent.document).val("1601");
+							$("#nfzjlx",window.parent.document).val("hfs2qz");
+							$("#nfzjlx_cl",window.parent.document).val("tq_lxmfqz_hfs2qz");
+							$("#nfzjlx_name",window.parent.document).val("S2字签证/S2-Visa");
+							$("#zjzlzm",window.parent.document).val("O");
+							window.location.href="ss_qzcs.jsp";
+							 return false;
+							
+						}
+						
+						if(day>=180&&day<=730){
+							 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+								    $("#zjzl",window.parent.document).val("1602");
+									$("#nfzjlx",window.parent.document).val("srswljlxk");
+									$("#nfzjlx_cl",window.parent.document).val("tq_lxmfqz_srswljlxk");
+									$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters");
+									$("#zjzlzm",window.parent.document).val("R");
+							 }else{
+									alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+									return false;
+								}
+						}
+					}
+				}
+				if(xcyzjlx == 's2zqz') {
+					if(!getDateDiff(730,1)) {
+						alert("该签证，在吉停留时限不得大于730天！");
+						 return false;
+					}
+						if(day<180){
+							$("#zjzl",window.parent.document).val("1601");
+							$("#nfzjlx",window.parent.document).val("yqs2qz");
+							$("#nfzjlx_cl",window.parent.document).val("tq_s2qz_s2yq");
+							$("#nfzjlx_name",window.parent.document).val("S2字签证/S2-Visa");
+							$("#zjzlzm",window.parent.document).val("O");
+							window.location.href="ss_qzcs.jsp";
+						}
+						
+						if(day>=180&&day<=730){
+							 if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							$("#zjzl",window.parent.document).val("1602");
+							$("#nfzjlx",window.parent.document).val("tqs2qz");
+							$("#nfzjlx_cl",window.parent.document).val("tq_s2qz_srswljlxk");
+							$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters");
+							$("#zjzlzm",window.parent.document).val("R");
+							 }else{
+									alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+									return false;
+								}
+						}
+				}
+				
+				if(xcyzjlx == 's1zqz') {
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+				  if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+					$("#zjzl",window.parent.document).val("1602");
+					$("#nfzjlx",window.parent.document).val("srswljlxk");
+					$("#nfzjlx_cl",window.parent.document).val("tq_s1qz_srswljlxk");
+					$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters");
+					$("#zjzlzm",window.parent.document).val("R");
+				  }else{
+							alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+							return false;
+						}
+				}
+				if(xcyzjlx == 'q1zqz') {
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+					if(sishu=="QT"){
+						alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						return false;
+					}else{
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("tjljlxk");
+						$("#nfzjlx_cl",window.parent.document).val("tq_lxmfqz_tjljlxk");
+						$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion");
+						$("#zjzlzm",window.parent.document).val("R");
+					}
+				}
+				
+				if(xcyzjlx == 'q2zqz') {
+					if(!getDateDiff(730,1)) {
+						alert("该签证，在吉停留时限不得大于730天！");
+						 return false;
+					}
+						if(day<180){
+							
+							$("#zjzl",window.parent.document).val("1602");
+							$("#nfzjlx",window.parent.document).val("yqq2qz");
+							$("#nfzjlx_cl",window.parent.document).val("tq_q2qz_yqq2qz");
+							$("#nfzjlx_name",window.parent.document).val("Q2字签证/Q2-Visa");
+							$("#zjzlzm",window.parent.document).val("y");
+							//$("#qzcs",window.parent.document).val("yq");
+						}
+						if(day>=180&&day<=730){
+							 if(sishu=="QT"){
+								 alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+								return false;
+							 }else{
+								 	$("#zjzl",window.parent.document).val("1602");
+									$("#nfzjlx",window.parent.document).val("tjljlxk");
+									$("#nfzjlx_cl",window.parent.document).val("tq_q2qz_tjljlxk");
+									$("#nfzjlx_name",window.parent.document).val("团聚类居留许可The residence permit for reunion");
+									$("#zjzlzm",window.parent.document).val("R");
+								}
+						}
+				}
+				
+				if(xcyzjlx == 'tjljlxk') {
+					
+						//中国人
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+					if(sishu=="QT"){
+						alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+						return false;
+					}else{
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("tjljlxk");
+						$("#nfzjlx_cl",window.parent.document).val("tq_tjljlxk_tjljlxkyq");
+						$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion");
+						$("#zjzlzm",window.parent.document).val("R");
+					}
+					
+				}
+				
+				if(xcyzjlx == 'srswljlxk') {
+					
+						//外国人
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+					if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("srswljlxk");
+						$("#nfzjlx_cl",window.parent.document).val("tq_s1qz_srswljlxk");
+						$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters");
+						$("#zjzlzm",window.parent.document).val("R");
+					}else{
+								alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+								return false;
+						}
+				}
+				if(xcyzjlx == 'xxljlxk'||xcyzjlx == 'gzljlxk') {
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+					if(gj=='1'){
+						if(day>=180&&day<=730){
+							
+							$("#zjzl",window.parent.document).val("1602");
+							$("#nfzjlx",window.parent.document).val("tjljlxk");
+							$("#nfzjlx_cl",window.parent.document).val("tq_xxgzjlxk_hftjljlxk");
+							$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion");
+							$("#zjzlzm",window.parent.document).val("R");
+						}
+						if(sishu=="QT"){
+							alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+							return false;
+						}else{
+							$("#zjzl",window.parent.document).val("1602");
+							$("#nfzjlx",window.parent.document).val("tjljlxk");
+							$("#nfzjlx_cl",window.parent.document).val("tq_tjljlxk_tjljlxkyq");
+							$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion");
+							$("#zjzlzm",window.parent.document).val("R");
+						}
+					}
+					if(gj=='3'){
+						if(day>=180&&day<=730){
+							
+							$("#zjzl",window.parent.document).val("1602");
+							$("#nfzjlx",window.parent.document).val("tjljlxk");
+							$("#nfzjlx_cl",window.parent.document).val("tq_xxgzjlxk_hftjljlxk");
+							$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion");
+							$("#zjzlzm",window.parent.document).val("R");
+						}
+						if(sishu=="QT"){
+							alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+							return false;
+						}else{
+							$("#zjzl",window.parent.document).val("1602");
+							$("#nfzjlx",window.parent.document).val("tjljlxk");
+							$("#nfzjlx_cl",window.parent.document).val("tq_tjljlxk_tjljlxkyq");
+							$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion");
+							$("#zjzlzm",window.parent.document).val("R");
+						}
+					}
+					if(gj=='2'){
+						if(day>=180&&day<=730){
+							if(sishu=="PO"||sishu=="PODFM"||sishu=="FM"||sishu=="WMZSDZN"){
+							$("#zjzl",window.parent.document).val("1602");
+							$("#nfzjlx",window.parent.document).val("srswljlxk");
+							$("#nfzjlx_cl",window.parent.document).val("tq_xxgzjlxk_hfsrswljlxk");
+							$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters ");
+							$("#zjzlzm",window.parent.document).val("R");
+							}else{
+								alert("您不符合此证件申请条件，详情请咨询当地公安机关。");
+								return false;
+							}
+					  }
+				   }
+			   }
+				if(xcyzjlx == 'mql') {
+					if(!getDateDiff(180,1)) {
+						alert("该签证，在吉停留时限不得大于180天！");
+						 return false;
+					}
+					
+					$("#zjzl",window.parent.document).val("1622");
+					$("#nfzjlx",window.parent.document).val("tlzj");
+					$("#nfzjlx_name",window.parent.document).val("停留证件");
+					$("#nfzjlx_cl",window.parent.document).val("grly_mq_tlzj");
+					$("#zjzlzm",window.parent.document).val("M");
+				}
+			}
+			//工作类
+			if(ly == '46') {
+				
+			if(xcyzjlx == 'rzqz') {
+				if(!getDateDiff(730,1)) {
+					alert("该签证，在吉停留时限不得大于730天！");
+					 return false;
+				}else{
+					
+					if(day>90&&day<180){
+						window.location.href="ss_qzzl.jsp";
+						 return false;
+					}else if(day<=90){
+						
+						$("#zjzl",window.parent.document).val("1621");
+						$("#nfzjlx",window.parent.document).val("yqrzqz");
+						$("#nfzjlx_cl",window.parent.document).val("gz_rzqz_rzqzyq");
+						$("#nfzjlx_name",window.parent.document).val("R字签证/R-Visa");
+						$("#zjzlzm",window.parent.document).val("y");
+					}else if(day>=180){
+						
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("gzljlxk");
+						$("#nfzjlx_cl",window.parent.document).val("gz_rzqz_gzljlxk");
+						$("#nfzjlx_name",window.parent.document).val("工作类居留许可/The residence permit for work");
+						$("#zjzlzm",window.parent.document).val("R");
+						 
+					}
+				}
+				
+			}
+			if(xcyzjlx == 'zzqz') {
+				if(!getDateDiff(730,90)) {
+					alert("该签证，在吉停留时限不得大于730天或小于90天！");
+					 return false;
+				}
+				
+				$("#zjzl",window.parent.document).val("1602");
+				$("#nfzjlx",window.parent.document).val("gzljlxk");
+				$("#nfzjlx_cl",window.parent.document).val("gz_zqz_gzljlxk");
+				$("#nfzjlx_name",window.parent.document).val("工作类居留许可/The residence permit for work");
+				$("#zjzlzm",window.parent.document).val("R");
+			}
+			
+			if(xcyzjlx == 'gzljlxk') {
+				if(!getDateDiff(730,90)) {
+					alert("该签证，在吉停留时限不得大于730天或小于90天！/The intended duration of stay shall not be more than 730 days and less than 90 days!");
+					 return false;
+				}
+				
+				$("#zjzl",window.parent.document).val("1602");
+				$("#nfzjlx",window.parent.document).val("gzljlxk");
+				$("#nfzjlx_cl",window.parent.document).val("gz_gzljlxk_gzljlxkyq");
+				$("#nfzjlx_name",window.parent.document).val("工作类居留许可/The residence permit for work");
+				$("#zjzlzm",window.parent.document).val("R");
+			}
+			}
+			//旅游类
+			if(ly == '05') {
+			if(xcyzjlx == 'lzqz') {
+				if(!getDateDiff(30,1)) {
+					alert("该签证，在吉停留时限不得大于30！");
+					 return false;
+				}
+				
+				$("#zjzl",window.parent.document).val("1621");
+				$("#nfzjlx",window.parent.document).val("yqlqz");
+				$("#nfzjlx_cl",window.parent.document).val("grly_clqz_lqzyq");
+				$("#nfzjlx_name",window.parent.document).val("L字签证/L-Visa");
+				$("#zjzlzm",window.parent.document).val("y");
+			} else if(xcyzjlx == 'mql') {
+				if(!getDateDiff(30,1)) {
+					alert("该签证，在吉停留时限不得大于30！");
+					 return false;
+				}
+				
+				$("#zjzl",window.parent.document).val("1622");
+				$("#nfzjlx",window.parent.document).val("tlzj");
+				$("#nfzjlx_cl",window.parent.document).val("grly_mq_tlzj");
+				$("#nfzjlx_name",window.parent.document).val("停留证件");
+				$("#zjzlzm",window.parent.document).val("M");
+				//$("#qzcs",window.parent.document).val("tl");
+			} else  {
+					alert("您不符合此类证件申请条件，详情请咨询当地公安机关！");
+					 return false;
+			}
+			}
+			
+			
+			//学习类的
+			
+			if(ly == '01') {
+				if(xcyzjlx == 's2zqz'||xcyzjlx == 'q2zqz'||xcyzjlx == 'lzqz'||xcyzjlx == 'mzqz'||xcyzjlx == 'fzqz') {
+					if(!getDateDiff(730,1)) {
+						alert("该签证，在吉停留时限不得大于730天！");
+						 return false;
+					}
+					if(day<180){
+						
+						$("#zjzl",window.parent.document).val("1601");
+						$("#nfzjlx",window.parent.document).val("hfx2qz");
+						$("#nfzjlx_cl",window.parent.document).val("xx_s2q2qz_hfx2qz");
+						$("#nfzjlx_name",window.parent.document).val("X2字签证/X2-Visa");
+						$("#zjzlzm",window.parent.document).val("B");
+						window.location.href="ss_qzcs.jsp";
+						 return false;
+					}
+					if(day>=180&&day<=730){
+						
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("xxljlxk");
+						$("#nfzjlx_cl",window.parent.document).val("xx_s2q2qz_xxljlxk");
+						$("#nfzjlx_name",window.parent.document).val("学习类居留许可/The residence permit for study");
+						$("#zjzlzm",window.parent.document).val("R");
+					}
+				}
+				if(xcyzjlx == 'x2zqz') {
+					if(!getDateDiff(730,1)) {
+						alert("该签证，在吉停留时限不得大于730天！");
+						 return false;
+					}
+					if(day<180){
+						
+						$("#zjzl",window.parent.document).val("1621");
+						$("#nfzjlx",window.parent.document).val("yqx2qz")
+						$("#nfzjlx_cl",window.parent.document).val("xx_x2qz_x2qzyq");
+						$("#nfzjlx_name",window.parent.document).val("X2字签证/X2-Visa");
+						$("#zjzlzm",window.parent.document).val("y");
+						//$("#qzcs",window.parent.document).val("yq");
+					}
+					if(day>=180&&day<=730){
+						
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("xxljlxk");
+						$("#nfzjlx_cl",window.parent.document).val("xx_x2qz_xxljlxk");
+						$("#nfzjlx_name",window.parent.document).val("学习类居留许可/The residence permit for study");
+						$("#zjzlzm",window.parent.document).val("R");
+					}
+				}
+			
+				if(xcyzjlx == 'mql') {
+					if(!getDateDiff(180,1)) {
+						alert("该签证，在吉停留时限不得大于180天！");
+						 return false;
+					}
+					
+					$("#zjzl",window.parent.document).val("1622");
+					$("#nfzjlx",window.parent.document).val("tlzj");
+					$("#nfzjlx_cl",window.parent.document).val("xx_mq_tlzj");
+					$("#nfzjlx_name",window.parent.document).val("停留证件");
+					$("#zjzlzm",window.parent.document).val("M");
+				}
+				if(xcyzjlx == 'xxljlxk') {
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+					
+					$("#zjzl",window.parent.document).val("1602");
+					$("#nfzjlx",window.parent.document).val("yqxxljlxk");
+					$("#nfzjlx_cl",window.parent.document).val("xx_xxljlxk_xxljlxkyq");
+					$("#nfzjlx_name",window.parent.document).val("学习类居留许可/The residence permit for study");
+					$("#zjzlzm",window.parent.document).val("R");
+				}
+				if(xcyzjlx == 'x1zqz') {
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+					
+					$("#zjzl",window.parent.document).val("1602");
+					$("#nfzjlx",window.parent.document).val("xxljlxk");
+					$("#nfzjlx_cl",window.parent.document).val("xx_x1qz_xxljlxk");
+					$("#nfzjlx_name",window.parent.document).val("学习类居留许可/The residence permit for study");
+					$("#zjzlzm",window.parent.document).val("R");
+				}
+				if(xcyzjlx == 'tjljlxk'||xcyzjlx == 'srswljlxk'||xcyzjlx == 'gzljlxk') {
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+					
+					$("#zjzl",window.parent.document).val("1601");
+					$("#nfzjlx",window.parent.document).val("hfxxljlxk");
+					$("#nfzjlx_cl",window.parent.document).val("xx_tjsrswgzljlxk_hfxxljlxk");
+					$("#nfzjlx_name",window.parent.document).val("学习类居留许可/The residence permit for study");
+					$("#zjzlzm",window.parent.document).val("R");
+				}
+				}
+				//私人事务
+			
+				if(ly == '48') {
+				if(xcyzjlx == 'q2zqz'||xcyzjlx == 'mzqz'||xcyzjlx == 'fzqz'||xcyzjlx == 'x1zqz'||xcyzjlx == 'x2zqz'||xcyzjlx == 'lzqz') {
+					if(!getDateDiff(730,1)) {
+						alert("该签证，在吉停留时限不得大于730天！");
+						 return false;
+					}
+					if(day<180){
+						$("#zjzl",window.parent.document).val("1601");
+						$("#nfzjlx",window.parent.document).val("s2qz");
+						$("#nfzjlx_cl",window.parent.document).val("srsw_q2mfxl_s2qz");
+						$("#nfzjlx_name",window.parent.document).val("S2字签证/S2-Visa");
+						$("#zjzlzm",window.parent.document).val("O");
+						window.location.href="ss_qzcs.jsp";
+						 return false;
+					}
+					if(day>=180&&day<=730){
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("srswljlxk");
+						$("#nfzjlx_cl",window.parent.document).val("srsw_q2mfxl_srswljlxk");
+						$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters");
+						$("#zjzlzm",window.parent.document).val("R");
+					}
+				}
+				if(xcyzjlx == 's2zqz') {
+					if(!getDateDiff(730,1)) {
+						alert("该签证，在吉停留时限不得大于730天！");
+						 return false;
+					}
+					if(day<180){
+						$("#zjzl",window.parent.document).val("1621");
+						$("#nfzjlx",window.parent.document).val("yqs2qz");
+						$("#nfzjlx_cl",window.parent.document).val("srsw_s2_s2qzyq");
+						$("#nfzjlx_name",window.parent.document).val("S2字签证/S2-Visa");
+						$("#zjzlzm",window.parent.document).val("y");
+						//$("#qzcs",window.parent.document).val("yq");
+					}
+					if(day>=180&&day<=730){
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("srswljlxk");
+						$("#nfzjlx_cl",window.parent.document).val("srsw_s2_srswljlxk");
+						$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters");
+						$("#zjzlzm",window.parent.document).val("R");
+					}
+				}
+				if(xcyzjlx == 'mql') {
+					if(!getDateDiff(180,1)) {
+						alert("该签证，在吉停留时限不得大于180天！");
+						 return false;
+					}
+					$("#zjzl",window.parent.document).val("1622");
+					$("#nfzjlx",window.parent.document).val("tlzj");
+					$("#nfzjlx_cl",window.parent.document).val("srsw_mq_tlzj");
+					$("#nfzjlx_name",window.parent.document).val("停留证件");
+					$("#zjzlzm",window.parent.document).val("M");
+				}
+				if(xcyzjlx == 'xxljlxk'||xcyzjlx == 'tjljlxk') {
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！");
+						 return false;
+					}
+					$("#zjzl",window.parent.document).val("1602");
+					$("#nfzjlx",window.parent.document).val("hfsrswljlxk");
+					$("#nfzjlx_cl",window.parent.document).val("srsw_xxtjljlxk_hfsrswljlxk");
+					$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters");
+					$("#zjzlzm",window.parent.document).val("R");
+				}
+				if(xcyzjlx == 'srswljlxk') {
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+					
+					$("#zjzl",window.parent.document).val("1602");
+					$("#nfzjlx",window.parent.document).val("yqsrswljlxk");
+					$("#nfzjlx_cl",window.parent.document).val("srsw_srswljlxk_srswljlxkyq");
+					$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters");
+					$("#zjzlzm",window.parent.document).val("R");
+				}
+				if(xcyzjlx == 's1zqz') {
+					if(!getDateDiff(730,180)) {
+						alert("该签证，在吉停留时限不得大于730天或小于180天！/The intended duration of stay shall not be more than 730 days and less than 180 days!");
+						 return false;
+					}
+					
+					$("#zjzl",window.parent.document).val("1602");
+					$("#nfzjlx",window.parent.document).val("srswljlxk");
+					$("#nfzjlx_cl",window.parent.document).val("srsw_s1qz_srsuljlxk");
+					$("#nfzjlx_name",window.parent.document).val("私人事务类居留许可/The residence permit for personal matters");
+					$("#zjzlzm",window.parent.document).val("R");
+				}
+				}
+				//贸易类
+				if(ly == '03') {
+					if(!getDateDiff(180,1)) {
+							alert("该签证，在吉停留时限不得大于180！");
+							 return false;
+					}
+					if(xcyzjlx == 'mzqz') {
+						
+						$("#zjzl",window.parent.document).val("1621");
+						$("#nfzjlx",window.parent.document).val("yqmqz");
+						$("#nfzjlx_cl",window.parent.document).val("my_mqz_mqzyq");
+						$("#nfzjlx_name",window.parent.document).val("M字签证/M-Visa");
+						$("#zjzlzm",window.parent.document).val("y");
+					}
+					if(xcyzjlx == 'fzqz') {
+						
+						$("#zjzl",window.parent.document).val("1601");
+						$("#nfzjlx",window.parent.document).val("hfmqz");
+						$("#nfzjlx_cl",window.parent.document).val("my_fqz_mqzhf");
+						$("#nfzjlx_name",window.parent.document).val("M字签证/M-Visa");
+						$("#zjzlzm",window.parent.document).val("m");
+						window.location.href="ss_qzcs.jsp";
+						 return false;
+					}
+					if(xcyzjlx == 'mql') {
+						
+						$("#zjzl",window.parent.document).val("1622");
+						$("#nfzjlx",window.parent.document).val("tlzj");
+						$("#nfzjlx_cl",window.parent.document).val("my_mq_tlzj");
+						$("#nfzjlx_name",window.parent.document).val("停留证件");
+						$("#zjzlzm",window.parent.document).val("M");
+					}
+					
+				}
+				//访问类
+				if(ly == '04') {
+					if(!getDateDiff(180,1)) {
+							alert("该签证，在吉停留时限不得大于180！");
+							 return false;
+					}
+					if(xcyzjlx == 'fzqz') {
+						
+						$("#zjzl",window.parent.document).val("1621");
+						$("#nfzjlx",window.parent.document).val("yqfqz");
+						$("#nfzjlx_cl",window.parent.document).val("jlfwkc_fqz_fqzyq");
+						$("#nfzjlx_name",window.parent.document).val("F字签证/F-Visa");
+						$("#zjzlzm",window.parent.document).val("y");
+					}
+					if(xcyzjlx == 'mzqz') {
+						
+						$("#zjzl",window.parent.document).val("1601");
+						$("#nfzjlx",window.parent.document).val("hffqz");
+						$("#nfzjlx_cl",window.parent.document).val("jlfwkc_mqz_fqzhf");
+						$("#nfzjlx_name",window.parent.document).val("F字签证/F-Visa");
+						$("#zjzlzm",window.parent.document).val("F");
+						window.location.href="ss_qzcs.jsp";
+						 return false;
+					}
+					if(xcyzjlx == 'mql') {
+						
+						$("#zjzl",window.parent.document).val("1622");
+						$("#nfzjlx",window.parent.document).val("tlzj");
+						$("#nfzjlx_cl",window.parent.document).val("jlfwkc_mq_tlzj");
+						$("#nfzjlx_name",window.parent.document).val("停留证件");
+						$("#zjzlzm",window.parent.document).val("M");
+					}
+				}
+				//寄养类
+				if(ly == '07') {
+					if(!getDateDiff(1095,180)) {
+							alert("该签证，在吉停留时限不得大于1095或小于180天！The intended duration of stay shall not be more than 1095 days and less than 180 days!");
+							 return false;
+					}
+					if(xcyzjlx == 'q1zqz'||xcyzjlx == 'q2zqz'||xcyzjlx == 'lzqz') {
+						
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("tjlxkz");
+						$("#nfzjlx_cl",window.parent.document).val("jy_q1q2lqz_tjljlxk");
+						$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion ");
+						$("#zjzlzm",window.parent.document).val("R");
+					}
+					if(xcyzjlx == 'tjljlxk') {
+						
+						$("#zjzl",window.parent.document).val("1602");
+						$("#nfzjlx",window.parent.document).val("yqtjlxkz");
+						$("#nfzjlx_cl",window.parent.document).val("jy_tjljlxk_tjljlxkyq");
+						$("#nfzjlx_name",window.parent.document).val("团聚类居留许可/The residence permit for reunion ");
+						$("#zjzlzm",window.parent.document).val("R");
+					}
+				}
+				
+				//按钮置灰
+				var blwjbtn = document.getElementById("blwjbtn");
+				if (blwjbtn.disabled)
+	            {
+	                return false;
+	            }
+				blwjbtn.style.color = 'grey';
+				blwjbtn.disabed = true;
+				
+				$.ajax({
+					url : basePath+"sfrz/bzsy_sq.do",
+					data : {
+						"ly":$("#ly",window.parent.document).val(),
+						"bzsy_type":$("#zjlx",window.parent.document).val(),
+						"sorts":$("#Bdate",window.parent.document).val(),
+						"gj":$("#gj",window.parent.document).val(),
+						"nfzjlx":$("#nfzjlx",window.parent.document).val(),
+						"nfzjlx_cl":$("#nfzjlx_cl",window.parent.document).val(),
+						"nfzjlx_name":$("#nfzjlx_name",window.parent.document).val(),
+						"flagday":$("#flagday",window.parent.document).val(),
+						"qzyyx":$("#scqzyxq").val(),
+						"zjzl":$("#zjzl",window.parent.document).val(),
+						"zjzlzm":$("#zjzlzm",window.parent.document).val(),
+						"btwX":$("#btwX",window.parent.document).val(),
+						"btwM":$("#btwM",window.parent.document).val(),
+						"btwZjhmf":$("#btwZjhmf",window.parent.document).val(),
+						"btwZjhm":$("#btwZjhm",window.parent.document).val(),
+						"yjjlz":$("#yjjlz",window.parent.document).val(),
+						"btwName":$("#btwName",window.parent.document).val(),
+						"btwyxq":$("#btwyxq",window.parent.document).val(),
+						"sishu":$("#sishu",window.parent.document).val(),
+						"srswsqsy":$("#shiyou",window.parent.document).val()
+						},
+					type : "post",
+					dataType : 'json',
+					 success: function(data) {
+						 location="ss_zsdj.jsp?flag="+data;	
+					 }, 
+					 error:function(){
+						 //alert("222");
+			        	 //location="1sfrz.jsp";
+			         } 
+				
+				});
+		}
+		
+	</script>
+    
+</head>
+<body>
+	<div id="wrap">
+	  <!--  <div>
+	        <div class="header_bg"><a href="<%=basePath%>qiantai/shenqing/sqfirst1.jsp" target="top">办证中心</a></div>
+	        <div class="login_title"><h1><img src="../image/title/logo1.png" alt="吉林省公安厅出入境管理局" /></h1></div>
+	    </div> --> 
+	    <div id="list">
+	        <div id="list_">
+	            <div id="main_right">
+	                <div class="title_bg"><span>外国人签证申请/Foreigner visa application</span></div>
+	                <!-- 框架 -->
+	                 <div class="process_box">
+                   <!--  <div id="main_right_xxtz_title">
+                        <span id="main_right_xxtz_title_left">签证</span>
+                    </div> -->
+                    <div class="prompt_wrap">
+                        <img src="../image/icon/icon_figure.png" alt="" />
+                         <p class="hint_font">
+                         <span id="tsnr"></span>
+                         <span id="tishi"></span>
+                         
+                         </p>
+                         <img src="../image/icon/icon_point.png" alt="" class="point_img" />
+                    </div>
+                    
+                        <div class="table_box">
+                            <table >
+                                <colgroup>
+                                    <col width="15%" />
+                                    <col width="30%" />
+                                    <col width="100%" />
+                                    <col  />
+                                </colgroup>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>      
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td><p style="margin-left:-5px;margin-top:0px">在吉停留时限/Intended duration of stay:</p></td>
+                                    <td><input type="text" id="sorts" name="sorts" datatype="s,*" style="width:50%;" class="Wdate easyui-validatebox"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});"  onchange="changeDate();" /></td>
+                                    <td> <p id="days" style="margin-left:-200px;"></p></td>      
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td> &nbsp;</td> 
+                                    <td ><span id="tssj" style="color:red;right:300px;"></span></td>
+                                      
+                                </tr>
+                                <!-- 私人事务申请事由 -->
+                                 <tr id="siren">
+                                    
+                                 </tr>
+                                 <tr>
+                                    <td colspan="4">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="steps_btn demo-list padding_btm20">
+                            <p class="btn_padding"><a href="javascript:void(0)" style="margin-left:-40px;" class="btn_sty btn_orange" onclick="Check();" id="blwjbtn">下一步/Next</a></p>
+                        </div>
+                </div>
+	                <!-- 框架 end -->
+	            </div>
+	
+	        </div>
+	    </div>
+	
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		
+	};
+</script>
+</html>

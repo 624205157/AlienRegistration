@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aui-pull-refresh.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aui-1.css" />
+
+    <style type="text/css">
+       .aui-list .aui-list-item-media {
+             width: 6rem;
+         }
+         .aui-content { padding-bottom: 3rem; }
+         .aui-media-list .aui-list-item-inner {
+             display: block;
+             padding-top: 0.8rem;
+             padding-bottom: 0.8rem;
+         }
+         .aui-bar-nav { position: fixed;}
+     </style>
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title" >路线指导</div>
+    </header>
+
+    <section class="aui-refresh-content" style="margin-top:45px">
+		    <div id="content" >
+			    <div class="aui-content">
+			        <ul class="aui-list aui-media-list" id="liContent">
+			        </ul>
+			    </div>
+		    </div>
+    </section>
+</body>
+
+<script type="text/javascript" src="../script/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../script/jquery.i18n.properties-min-1.0.9.js"></script>
+<script type="text/javascript" src="../script/jquery.cookie.js"></script>
+<script type="text/javascript" src="../script/aui-pull-refresh.js"></script>
+<script type="text/javascript" src="../script/i18n.js"></script>
+<script type="text/javascript">
+
+
+  //下拉刷新
+  var pullRefresh = new auiPullToRefresh({
+    container: document.querySelector('.aui-refresh-content'),
+    triggerDistance: 100
+  },function(ret){
+    if(ret.status=="success"){
+      $.getJSON("http://crj.gafw.jl.gov.cn/f/cms/article/jljjTitle", { categoryId: "fb5ee698e133498387c5273926e6ba4c"},
+      function(ret){
+        // alert(ret[0].id);
+            var html = '';
+            for(var i=0;i<ret.length;i++){
+              html+='<li class="aui-list-item" onclick="showDetail(\''+ret[i].id+'\');">'+
+                          '<div class="aui-media-list-item-inner">'+
+                              '<div class="aui-list-item-inner">'+
+                                  '<div class="aui-list-item-text">'+
+                                      '<div class="aui-list-item-title" >'+ret[i].title+'</div>'+
+                                  '</div>'+
+                                  '<div class="aui-info aui-padded-b-0">'+
+                                      '<div class="aui-info-item aui-font-size-12">'+
+                                          '<img src="../image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5">'+ret[i].categoryName+'</span>'+
+                                          '</div>'+
+                                      '<div class="aui-info-item aui-font-size-12">'+ret[i].time+'</div>'+
+                                  '</div>'+
+                              '</div>'+
+                              '<div class="aui-list-item-media">'+
+                                  '<img src="http://crj.gafw.jl.gov.cn'+ret[i].image+'">'+
+                              '</div>'+
+                          '</div>'+
+                      '</li>';
+
+
+                     }
+                     $("#liContent").html(html);
+                     pullRefresh.cancelLoading(); //刷新成功后调用此方法隐藏
+
+        });
+
+    }
+  });
+
+
+  $(document).ready(function(){
+     //var languageType=$.cookie('languageType');
+     //loadProperties('strings', 'properties/',"zh");
+      $("[data-locale]").each(function(){
+          $(this).html(i18n_zh[$(this).data("locale")]);
+        });
+     $.getJSON("http://crj.gafw.jl.gov.cn/f/cms/article/jljjTitle", { categoryId: "fb5ee698e133498387c5273926e6ba4c"},
+       function(ret){
+         for(var i=0;i<ret.length;i++){
+           $("#liContent").append('<li class="aui-list-item" onclick="showDetail(\''+ret[i].id+'\');">'+
+                       '<div class="aui-media-list-item-inner">'+
+                           '<div class="aui-list-item-inner">'+
+                               '<div class="aui-list-item-text">'+
+                                   '<div class="aui-list-item-title" >'+ret[i].title+'</div>'+
+                               '</div>'+
+                               '<div class="aui-info aui-padded-b-0">'+
+                                   '<div class="aui-info-item aui-font-size-12">'+
+                                       '<img src="../image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5">'+ret[i].categoryName+'</span>'+
+                                       '</div>'+
+                                   '<div class="aui-info-item aui-font-size-12">'+ret[i].time+'</div>'+
+                               '</div>'+
+                           '</div>'+
+                           '<div class="aui-list-item-media">'+
+                               '<img src="http://crj.gafw.jl.gov.cn'+ret[i].image+'">'+
+                           '</div>'+
+                       '</div>'+
+                   '</li>'
+                       );
+               }
+
+       });
+
+
+  });
+
+  //显示详情
+  function showDetail(id){
+    var url= "new_zh_win.html?id="+id;
+    window.location.href=url;
+  }
+  function closeWin(){
+   window.history.back();
+  }
+</script>
+</html>

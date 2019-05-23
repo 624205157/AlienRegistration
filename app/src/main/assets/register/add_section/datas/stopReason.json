@@ -1,0 +1,43 @@
+{
+	"code":"000000",
+    "data":[{
+    		"beiYong1":"",
+    		"beiYong2":"",
+	    	"feiYong":"0",
+	    	"id":"73010e6e35f4e22d0b77f1474d808d6e",
+			"imgurl":"",
+			"name":"46",
+			"pid":"fb9b90367a0e6f9f6400091f36771c43",
+			"sorts":"0",
+			"tsxx":"",
+			"type":"工作/Work",
+			"ydTsxx":""
+		},
+    	{
+			"beiYong1":"",
+			"beiYong2":"",
+			"feiYong":"0",
+			"id":"676999a8cbd1d795eac00d4fb3b13bce",
+			"imgurl":"",
+			"name":"06",
+			"pid":"fb9b90367a0e6f9f6400091f36771c43",
+			"sorts":"0",
+			"tsxx":"",
+			"type":"探亲/Visit relatives",
+			"ydTsxx":"R"
+		},
+    	{
+			"beiYong1":"",
+			"beiYong2":"",
+			"feiYong":"0",
+			"id":"5296aebea6985ed784921ee73bdef7a3",
+			"imgurl":"",
+			"name":"01",
+			"pid":"fb9b90367a0e6f9f6400091f36771c43",
+			"sorts":"02",
+			"tsxx":"",
+			"type":"学习/Study",
+			"ydTsxx":""
+		}],
+    "msg":"成功"
+}

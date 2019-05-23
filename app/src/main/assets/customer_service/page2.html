@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>智能客服</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/customer_style.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/font.js"></script>
+	<script src="js/url.js"></script>
+
+</head>
+
+<body>
+	<header>
+		<div class="header">
+			<div class="back"></div>
+			<!--<div class="header_pic"></div>-->
+			<div class="menu"></div>
+		</div>
+	</header>
+	<div class="customer_content">
+		<div class="advice-box">
+			<textarea name="" id="advise" rows="8" placeholder="小主请说下您的建议吧"></textarea>
+			<div class="upload-box" id="upload-box">
+				<!-- <div class="uploaded upload-box-item">
+					<label for=""><img src="img/pic1.jpg" width="100%" alt=""></label>
+					<div class="delete-btn"></div>
+				</div> -->
+				<div class="upload-box-item" id="add-pic">
+					<label for="upfile"><img src="img/add-pic.jpg" width="100%" alt=""></label>
+					<input type="file" id="upfile" class="hide-obj">
+				</div>
+				<div class="upload-box-item" id="add-vedio">
+					<label for="upVedio"><img src="img/add-vedio.jpg" width="100%" alt=""></label>
+					<input type="file" id="upVedio" class="hide-obj">
+				</div>
+				<div class="upload-box-item" id="add-autio">
+					<label for="upAudio"><img src="img/add-audio.jpg" width="100%" alt=""></label>
+					<input type="file" id="upAudio" class="hide-obj">
+				</div>
+			</div>
+		</div>
+		<button type="button" id="submit-btn" class="submit-btn gradient-back">提交建议</button>
+	</div>
+		
+</body>
+<script src="js/common.js"></script>
+
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        #tssj { text-indent: 0px!important;  padding-left: 10px!important; padding-right: 10px!important; line-height: 1.5; }
+        .btns button { border-radius: 10px; font-size: 0.24rem}
+        .btns button:last-child { background: #ccc; color: #333; }
+        .me-name {text-indent:0!important; padding:15px 25px!important;}
+        .me-tips { position:relative!important; margin-bottom:0!important; top: 5px!important; left: 37px!important; text-align: left!important; font-size: 0.26rem; }
+        .write { width: 5rem!important; }
+        .mui-table-view { margin-bottom: 75px; }
+        .red-time { width: 150px!important; top: 35%!important; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">Visa application for foreigners</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell me-name" id="tssj">Please fill out your address, name, and telephone for the mail delivery officer to send the certificate, and you may also choose to go to the site for the certificate.
+</li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">Address (province)<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 " value="Jilin" readonly="true" />
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media btn1">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">Address (city)<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result1" value="" placeholder="Please choose" />
+                            <input type="hidden" class="me-tips write infor1" name="sls" id="sls" />
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media btn1">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">Address (area)<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result1" value="" placeholder="Please choose" />
+                            <input type="hidden" class="me-tips write infor1" id="slx" name="slx" />
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon26.jpg"></div>
+                            <div class="mui-media-body me-list-con">Detailed address<span class="me-red">*</span></div>
+                            <input type="text" class="write me-tips me-red infor1" id="postAddPpc" name="postAddPpc"  placeholder="Please enter"/>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media" >
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon8.jpg"></div>
+                            <div class="mui-media-body me-list-con">Zip code<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result" id="postCode" name="postCode" placeholder="Please enter"   style="width: 3rem!important;"/>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">Full name<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 " id="postNamePpc" name="postNamePpc" value="" placeholder="Please enter" />
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">Mobile NO<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1" id="postPhonePpc" name="postPhonePpc" value="" placeholder="Please enter" />
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="me-p-bottom btns" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="nextstep" style="margin:10px auto;">Next</button>
+                <button type="button" class="foreigner-btn"  id="same" style="margin:10px auto;">The same width Picking</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="js/add_script_english.js"></script>
+<script>
+    mui.init();
+    var btn1 = mui('.btn1');
+    var result1 = mui('.result1');
+    var crjbasePath= "<%=crjbasePath%>";
+
+    var sqid = GetQueryString('sqid');
+    var ywid = GetQueryString('ywid');
+    var sls1 = GetQueryString('sls');
+    var slx1 = GetQueryString('slx');
+    var getCode = GetQueryString('getCode');
+    var getAddPpc = GetQueryString('getAddPpc');
+    var getNamePpc = GetQueryString('getNamePpc');
+    var getPhone = GetQueryString('getPhone');
+    var ywcode = GetQueryString('ywcode');
+    var jdbt = GetQueryString('jdbt');
+
+    $(function(){
+        $.ajax({
+             url: crjbasePath+"crj/after/findMTsxxByCountry.do",
+             dateType:"json",
+             success: function(data) {
+                 data=eval("("+data+")");
+                 data=data.data;
+                 var s=[];
+                 s=data.split(",");
+                 money=s[0];
+                 qzlb=s[3];
+            }
+        });
+        // 初始化受理地所在市信息
+        var sls = document.getElementById("sls");
+        var url = crjbasePath + "webProtal/findDictionaryByType.do?random=" + Math.random();
+        var listParams = {
+                "pid" : "22000000"
+        };
+        $.getJSON(url,listParams, function(json){ 
+            $.each(json.data, function(i,result) {
+                var slscode = result.id;
+                var slsname = result.dicName;
+                postShi.push({
+                    value: slscode,
+                    text: slsname
+                })
+            }); 
+
+            btn1.each(function(i,btn) {
+                if(i == 0){
+                    var userPicker = new mui.PopPicker();
+                    userPicker.setData(postShi);
+                    btn.addEventListener('tap', function(event) {
+                        userPicker.show(function(items) {
+                            result1[i].value = items[0].text;
+                            slx.value = items[0].value;
+                            selectDictionary(1)
+                        });
+                    }, false);
+                }
+                
+            });     
+        });
+    });
+            
+    //**********************受理机构3级联动start************************
+    // 受理地所在市
+        function selectDictionary(type) {
+            var sls = document.getElementById("sls").value;
+            var slx = document.getElementById("slx");
+            var slxvalue = document.getElementById("slx").value;
+            //var sld = document.getElementById("sld");
+            if (type == 1) {
+                    // 清空受理地所在县(区)信息
+                    // var slxNode = slx.childNodes;
+                    // if(slxNode != null) {
+                    //     while(slxNode.length > 0) {
+                    //         slx.removeChild(slxNode[slxNode.length-1]);
+                    //     }
+                    // }
+                    postQv = [];
+                    var listParams = {
+                        "pid" : sls
+                    };
+                    var url = crjbasePath + "webProtal/findDictionaryByType.do";
+                    //var url1 = "/getChildCity.do?random="+Math.random();
+                    //发出请求并处理返回数据 
+                    $.getJSON(url,listParams, function(json){ 
+                        $.each(json.data, function(i,result) {
+                            var slscode = result.id;
+                            var slsname = result.dicName;
+                            postQv.push({
+                                value: slscode,
+                                text: slsname
+                            })
+                        });
+                        btn1.each(function(i,btn) {
+                            if(i == 1){
+                                var userPicker = new mui.PopPicker();
+                                userPicker.setData(postQv);
+                                btn.addEventListener('tap', function(event) {
+                                    userPicker.show(function(items) {
+                                        result1[i].value = items[0].text;
+                                        slx.value = items[0].value;
+                                        selectDictionary(2)
+                                    });
+                                }, false);
+                            }
+                            
+                        });      
+                    });
+            } else if (type == 2) {
+                if (slxvalue != null && slxvalue != "") {
+                    var listParams = {
+                        "xzqhId" : slxvalue
+                    };
+                    var url = crjbasePath + "organization/findOrganizationByXzqhId.do";
+                    //var url1 = "/getChildCity.do?random="+Math.random();
+                    //发出请求并处理返回数据
+                    $.getJSON(url,listParams, function(json){
+                        $.each(json.data, function(i,result) {
+                            var slscode = result.id;
+                            var slsname = result.jgdwName;
+                        });     
+                    });
+                } else {
+                }
+            }
+        }
+        //**********************受理机构3级联动end************************
+    
+    function sameget(){
+        
+        
+        $("#sls").siblings('input').val(sls1);
+        selectDictionary(1);
+        $("#slx").siblings('input').val(slx1);
+        $('#postCode').val(getCode);
+        $('#postAddPpc').val(getAddPpc);
+        $('#postNamePpc').val(getNamePpc);
+        $('#postPhonePpc').val(getPhone);
+    }
+    
+    function yjxxSave() {
+        var ins = 1
+        $('.infor1').each(function(i){
+            var val = $(this).val();
+            if(val == ''){
+                var con = $(this).siblings('.me-list-con').text();
+                alert(con.substring(0,con.length-1)+'can\'t be empty!')
+                ins = 0;
+                return false;
+            }
+            
+        })
+        if(ins){
+            var sqid = '<%=sqid%>';
+
+            //取件地址市
+            var qjxx_city=sls1;
+            //取件地址区
+            var qjxx_county=slx1;
+            //取件地邮编
+            var qjxx_yb=getCode;
+            //取件详细地址
+            var qjxx_dz=getAddPpc;
+            //取件姓名
+            var qjxx_xm=getNamePpc;
+            //取件电话
+            var qjxx_dh=getPhone;
+            
+            //寄件地址市
+            var yjxx_city=$('#sls').siblings('input').val();
+            //寄件地址区
+            var yjxx_county=$('#slx').siblings('input').val();
+            //寄件地邮编
+            var yjxx_yb=$('#postCode').val();
+            //寄件详细地址
+            var yjxx_dz=$('#postAddPpc').val();
+            //寄件姓名
+            var yjxx_xm=$('#postNamePpc').val();
+            //寄件电话
+            var yjxx_dh=$('#postPhonePpc').val();
+            var ywid = '<%=ywid%>';
+            var ywcode = '<%=ywcode%>';
+            var jdbt = '<%=jdbt%>';
+            //双程标记
+            var flag='1';
+            
+            /*  //取件邮寄地址
+                var getAddPpc = $("#getAddPpc").val();
+                //取件人姓名
+                var getNamePpc = $("#getNamePpc").val();
+                //取件人电话号
+                var getPhone = $("#getPhonePpc").val();
+                //邮寄地址
+                var postAddPpc = $("#postAddPpc").val();
+                //收件人姓名
+                var postNamePpc = $("#postNamePpc").val();
+                //收件人电话号
+                var postPhone = $("#postPhonePpc").val(); */
+            $.ajax({
+                url : crjbasePath + "/sfrz/wgyzxx.do",
+                data : {
+                    "qjxx_city" : qjxx_city,
+                    "qjxx_county" : qjxx_county,
+                    "qjxx_yb" : qjxx_yb,
+                    "qjxx_dz" : qjxx_dz,
+                    "qjxx_xm" : qjxx_xm,
+                    "qjxx_dh" : qjxx_dh,
+                    "yjxx_city" : yjxx_city,
+                    "yjxx_county" : yjxx_county,
+                    "yjxx_yb" : yjxx_yb,
+                    "yjxx_dz" : yjxx_dz,
+                    "yjxx_xm" : yjxx_xm,
+                    "yjxx_dh" : yjxx_dh,
+                    "money" : money,
+                    "zjName" : qzlb,
+                    "bzjd" : "041"
+                },
+                type : "post",
+                dataType : 'json',
+                success : function(){
+                    
+                    window.location.href="over_english.html";
+                },
+                error: function () {
+                    
+                    window.location.href="over_english.html";
+                }
+            });
+        }
+        
+          
+    }
+    //没有用到的函数
+    function saveget() {
+        var sqid = sqid;
+        //取件地址市
+        var qjxx_city=$("#sls").siblings('input').val();
+        //取件地址区
+        var qjxx_county=$("#slx").siblings('input').val();
+        //取件地邮编
+        var qjxx_yb=$('#code').val();
+        //取件详细地址
+        var qjxx_dz=$('#add').val();
+        //取件姓名
+        var qjxx_xm=$('#name').val();
+        //取件电话
+        var qjxx_dh=$('#getPhone').val();
+        //双程标记
+        var flag='0';
+        $.ajax({
+            url : crjbasePath + "/crj/shenqing/manager/test.do",
+            data : {
+                "qjxx_city" : qjxx_city,
+                "qjxx_county" : qjxx_county,
+                "qjxx_yb" : qjxx_yb,
+                "qjxx_dz" : qjxx_dz,
+                "qjxx_xm" : qjxx_xm,
+                "qjxx_dh" : qjxx_dh,
+                "flag" : flag,
+                "sqid" : sqid
+            },
+            type : "post",
+            dataType : 'json',
+            success : function(data, textStatus) {
+                if(data!=null && data.success=="false"){
+                
+                    msgShow("提示！",data.message);
+                }else{
+                    window.location="../shenqing/Copysqfirst1.jsp";
+                }
+            }
+        });
+    }
+
+   
+
+    mui('#nextstep')[0].addEventListener('tap',function(){
+        yjxxSave();
+        //window.location.href="over.html";
+    })
+    mui('#same')[0].addEventListener('tap',function(){
+        sameget();
+    })
+
+
+</script>
+</html>

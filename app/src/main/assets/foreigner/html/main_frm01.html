@@ -1,0 +1,508 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>index</title>
+    <link href="../css/default.css" type="text/css" rel="stylesheet" />
+    <link href="../css/comment.css" type="text/css" rel="stylesheet" />
+    <style>
+        html {height: 100%; width: 100%; font-family: 'Heiti SC', 'Microsoft YaHei'; font-size: 50px; outline: 0; -webkit-text-size-adjust:none; background-color: #efefef;}
+        body { height: 100%; -webkit-user-select: none; position: relative;}
+        div,p,span,ul,li,dl,td,dd,input,select,button,a{ font-size: 0.24rem;}
+        .gl-change{ border:1px solid #009ff2; padding: 4px 6px!important; background:transparent; color:#009ff2; outline:none;  text-align:center; border-radius:5px;}
+        .font{ font-size:0.3rem; }
+        .enter-btn{ height:2rem; background:#009ff2; text-align:center;  padding:0.2rem; color:#fff;font-size:0.5rem; box-sizing: border-box; }
+        .enter-btn .btn-box{border: 1px dashed #fff; height:100%; width:100%}
+        .enter-btn .btn-box img{ margin:0.2rem 0 0.1rem; }
+        .back-yellow { background: #ffaf44; }
+    </style>
+    <script type="text/javascript" src="../script/android.js"></script>
+    <script type="text/javascript">
+                (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=750){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+    </script>
+</head>
+<body id="formBody">
+<div id="wraps">
+    <header id="header"  data-localize="user"   data-locale="wkb" style="height: 50px;">
+        <!-- <iframe src="http://weather.qq.com/inc/ss186.htm
+
+" width="200" height="400" scrolling="no" frameborder="0"></iframe> -->
+        外客帮
+        <div class="aui-card-list aui-content-padded" style="position: absolute; line-height: 1; top: 50%; margin-top: -10px; right: 0.2rem;">
+            <div class="aui-card-list">
+                <div class="aui-list-item-inner" id="languageShow" >
+                    <div class="aui-list-item-input"  onclick="getLanguage();" >
+                        <button type="button" id="languageType" class="gl-change" value="en">English</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="top_info" style="height:60px">
+        <!-- <p class="address_text" data-locale="dqwz">当前位置:长春市朝阳区</p>-->
+        <!--  <p class="date_text" data-locale="rq">今天是2016年12月1日</p> -->
+        <iframe style="display: block; width: 100%; height:60px;" scrolling="no" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=36&icon=5&num=5"></iframe>
+    </div>
+    <div><img src="../image/image/banner_01.jpg" alt="" width="100%" /> </div>
+    <section id="section" class="section_box">
+        <div class="main_box main_jljj margin_right" tapmode onclick="openZhJljj()">
+            <div class="back">
+                <div class="main_content">
+                    <p class="main_text" data-locale="pjlwhxbshsfq">品吉林文化 享白山黑水风情</p>
+                    <h2 class="tit_text" data-locale="jljj">吉林简介</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <!--新加的滑雪和温泉模块  -->
+        <div class="main_box main_zbfw"  tapmode onclick="openHuaxue()">
+            <div class="content01">
+                <h2 class="" data-locale="swbg">温泉滑雪</h2>
+                <p class=""data-locale="ms,xxyl,jd" >感受冰雪童话世界</p>
+            </div>
+        </div>
+
+        <!--<div class="main_box main_zbfw"  tapmode onclick="openZhSwbg()">
+            <div class="content01">
+                <h2 class="" data-locale="swbg">涉外宾馆</h2>
+                <p class=""data-locale="ms,xxyl,jd" >美食、休闲娱乐、酒店</p>
+            </div>
+        </div>-->
+        <div class="main_box main_zmjd" tapmode onclick="openZhZmjq()">
+            <div class="back">
+                <div class="content01">
+                    <h2 class="" data-locale="zmjq">著名景区</h2>
+                    <p class="" data-locale="lljlfgmj">领略吉林风光美景</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="main_box main_flfg margin_right" tapmode onclick="openZhFlfg()">
+            <div class="content01">
+                <h2 class="" data-locale="flfg">法律法规</h2>
+                <p class="" data-locale="zjsf_zlhyk">遵纪守法，做良好游客</p>
+            </div>
+        </div>
+        <div class="main_box main_wxtx "  tapmode onclick="openZhWinxin()">
+            <p class="p_text" data-locale="wxtx">实用指南</p>
+            <!--<p class="p_text" data-locale="wxtx">温馨提醒</p>
+            <p class="p_text_1" data-locale="wxtxzysx">温馨提醒注意事项</p>-->
+        </div>
+        <!--<div class="enter-btn" style=""  tapmode onclick="openZhWKT()">-->
+            <!--<div class="btn-box" style="">-->
+                <!--<img src="../image/image/icon-btn.png" alt="" width="34px"  style="">-->
+                <!--<p class="font" data-locale="wgrzsdj">外国人住宿登记</p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="btn_apply enter-btn" data-locale="sqqz" onclick="openZhWKT()">
+            <div class="btn-box" style="">
+                <img src="../image/image/icon-btn.png" alt="" width="34px"  style="">
+                <p class="font" data-locale="wgrzsdj">外国人住宿登记</p>
+            </div>
+        </div>
+        <!--外国人签证中文-->
+        <div class="btn_apply enter-btn back-yellow" data-locale="sqqz" onclick="openZhWKT2()">
+            <div class="btn-box" style="">
+                <img src="../image/image/icon-btn2.png" alt="" width="34px"  style="">
+                <p class="font" data-locale="wgrzsdj">外国人签证</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+<div id="wrapse" style="display: none">
+    <header id="header"  data-localize="user"   data-locale="wkb" style="height: 50px;">
+        <!-- <iframe src="http://weather.qq.com/inc/ss186.htm
+
+    " width="200" height="400" scrolling="no" frameborder="0"></iframe> -->
+        BEST HELPER
+        <div class="aui-card-list aui-content-padded" style="position: absolute; line-height: 1; top: 50%; margin-top: -10px; right: 0.2rem;">
+            <div class="aui-card-list">
+                <div class="aui-list-item-inner" id="languageShow" >
+                    <div class="aui-list-item-input"  onclick="getLanguagey();" >
+                        <button type="button" id="language" class="gl-change" value="zh">中 文</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--<header id="header"  data-localize="user"    style="height: 60px; position: relative;">-->
+
+    <!--<span data-locale="wkb">BEST HELPER</span>-->
+    <!--<div class="aui-card-list aui-content-padded" style="position: absolute; top: -0.02rem; right: 0.2rem;">-->
+    <!--<div class="aui-card-list">-->
+    <!--<div class="aui-list-item-inner" id="languageShow" >-->
+    <!--<div class="aui-list-item-input"  onclick="getLanguagey();" >-->
+    <!--<button type="button" id="language" class="gl-change" value="zh">中 文</button>-->
+    <!--&lt;!&ndash;<select id="languageType">-->
+    <!--<option value="en">English</option>-->
+    <!--<option value="zh">中文</option>-->
+    <!--</select>&ndash;&gt;-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</header>-->
+    <div class="top_info">
+        <!--<p class="address_text" data-locale="dqwz">当前位置:长春市朝阳区</p>-->
+        <!--      <p class="date_text" data-locale="rq">今天是2016年12月1日</p> -->
+        <iframe style="display: block; width: 100%; height:60px;" scrolling="no" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=36&icon=5&num=5"></iframe>
+    </div>
+    <div><img src="../image/image/banner_01.jpg" alt="" width="100%" /> </div>
+    <section id="sectionen"  class="section_box">
+        <div class="main_box e_main_jljj margin_right" tapmode onclick="openEnJljj()">
+            <div class="back">
+                <div class="e_main_content">
+                    <h2 class="e_tit_text" data-locale="jljj">Introduction of jilin</h2>
+                    <p class="e_main_text" data-locale="pjlwhxbshsfq">Jilin customs culture enjoy mountains</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!--新加的滑雪和温泉模块 英文 -->
+        <div class="main_box main_zbfw"  tapmode onclick="openenHuaxue()">
+            <div class="content01">
+                <h2 class="" data-locale="swbg">Skiing and hot springs</h2>
+                <p class=""data-locale="ms,xxyl,jd" ></p>
+            </div>
+        </div>
+        <!--<div class="main_box main_zbfw"  tapmode onclick="openEnSwbg()">
+            <div class="content01">
+                <h2 class="" data-locale="swbg">涉外宾馆</h2>
+                <p class=""data-locale="ms,xxyl,jd" >美食、休闲娱乐、酒店</p>
+            </div>
+        </div>-->
+
+
+        <div class="main_box main_zmjd" tapmode onclick="openEnZmjq()">
+            <div class="back">
+                <div class="content01">
+                    <h2 class="" data-locale="zmjq">Famous scenic spot</h2>
+                    <p class="" data-locale="lljlfgmj">Enjoy the beautiful scenery of Jilin</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="main_box main_flfg margin_right" tapmode onclick="openEnFlfg()">
+            <div class="content01">
+                <h2 class="" data-locale="flfg">Laws and regulations</h2>
+                <p class="" data-locale="zjsf_zlhyk">Law-abiding, good for tourists</p>
+            </div>
+        </div>
+        <div class="main_box main_wxtx "  tapmode onclick="openEnWinxin()">
+            <p class="p_text" data-locale="lxzd">Practical Guide</p>
+            <!--<p class="p_text" data-locale="wxtx">温馨提醒</p>
+            <p class="p_text_1" data-locale="wxtxzysx">温馨提醒注意事项</p>-->
+        </div>
+        <!--外国人住宿登记英文-->
+        <div class="btn_apply enter-btn" data-locale="sqqz" onclick="openEnWKT()">
+            <div class="btn-box" style="">
+                <img src="../image/image/icon-btn.png" alt="" width="34px"  style="">
+                <p class="font" data-locale="wgrzsdj">Foreigners Lodging Registration</p>
+            </div>
+        </div>
+        <!--外国人签证英文-->
+        <div class="btn_apply enter-btn back-yellow" data-locale="sqqz" onclick="openEnWKT2()">
+            <div class="btn-box" style="">
+                <img src="../image/image/icon-btn2.png" alt="" width="34px"  style="">
+                <p class="font" data-locale="wgrzsdj">Foreigners Chinese visas</p>
+            </div>
+        <!--<div class="btn_apply" data-locale="sqqz" onclick="go()">外客通</div>-->
+        <!--<div class="btn_search" data-locale="jdcx" onclick="openCX()">进度查询</div>-->
+    </section>
+</div>
+<div class="customer-btn"><img src="../image/btn.png" alt=""></div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../script/jquery.i18n.properties-min-1.0.9.js"></script>
+<script type="text/javascript" src="../script/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KWe2TezxgWBDms0PYjeXBZWt"></script>
+<script type="text/javascript" src="../script/i18n.js"></script>
+
+<script type="text/javascript">
+//语言选择的方法
+	function loadProperties(name, path, lang){
+	    var lang = lang || navigator.language;
+	    jQuery.i18n.properties({
+	        name:name,
+	        path:path,
+	        mode:'map',
+	        language: lang,
+	        callback: function() {
+	        	$("[data-locale]").each(function(){
+					$(this).html($.i18n.prop($(this).data("locale")));
+				});
+	            //alert(jQuery.i18n.map["user"]);
+	        }
+	    });
+
+	}
+
+    $(document).ready(function() {
+        <!--进入智能客服按钮-->
+        $('.customer-btn').click(function(){
+		    window.location.href = '../../customer_service/page1.html';
+
+		})
+		var getLanguagetype = window.AndroidWebView.showInfoFromJs('getLanguagetype', '', '', '');
+		if (getLanguagetype && getLanguagetype == 'en') {
+           //$("[data-locale]").each(function(){
+                //$(this).html(i18n_en[$(this).data("locale")]);
+            //});
+            enJlxzs();
+		}
+
+
+    });
+
+	function openZhWKT(){
+        //window.AndroidWebView.showInfoFromJs('tiaozhuan', '', 'register/choose_roles.html', '');
+        //tiaozhuan('register/choose_roles.html');
+        location = '../../register/choose_roles.html';
+     }
+
+	function openEnWKT(){
+        var delay = 0;
+        location = '../../register/choose_roles_en.html';
+     }
+<!--外国人签注中文-->
+     function openZhWKT2(){
+
+        location = '../../register/add_section/index_entry.html';
+     }
+<!--外国人签注英文-->
+      function openEnWKT2(){
+      var delay = 0;
+        location = '../../register/add_section/index_entry_english.html';
+     }
+
+    //选择语言
+ 	function getLanguage(){
+ 	   var languageType=$("#languageType").val();
+ 	   //loadProperties('strings', 'properties/',languageType);
+ 	   if(languageType="en")
+ 	   {
+ 	   //$("[data-locale]").each(function(){
+ 	        //$(this).html(i18n_en[$(this).data("locale")]);
+            //$(this).html($.i18n.prop($(this).data("locale")));
+        //});
+ 	    return  enJlxzs();
+ 	   }
+ 	 }
+
+    function enJlxzs(){
+        $("#wraps").hide();
+        $("#wrapse").show();
+    }
+
+    function chJlxzs(){
+        $("#wraps").show();
+        $("#wrapse").hide();
+    }
+
+  	function getLanguagey(){
+ 	    //loadProperties('strings', 'properties/',"cn");
+ 	    chJlxzs();
+ 	    //if(languageType=="zh") {
+ 	        //window.location.href="main_frm.html";
+ 	        //chJlxzs();
+ 	    //}
+  	}
+
+    function openZhJljj(){
+        var delay = 0;
+        location= 'zh_jijj_win.html';
+    }
+
+    function openZhSwbg(){
+        var delay = 0;
+        location = 'zh_zbfw_win.html';
+        <!--if(api.systemType != 'ios'){-->
+            <!--delay = 300;-->
+        <!--}-->
+        <!--api.openWin({-->
+            <!--name: 'zh_zbfw_win',-->
+            <!--url: 'zh_zbfw_win.html',-->
+            <!--bounces:false,-->
+            <!--delay: delay,-->
+            <!--slidBackEnabled:true,-->
+            <!--vScrollBarEnabled:false-->
+        <!--});-->
+    }
+            // 滑雪模块的跳页
+            function openHuaxue(){
+            var delay = 0;
+            location= 'zh_huaxue_win.html';
+            }
+             // 滑雪模块的跳页  英文页
+            function openenHuaxue(){
+            var delay = 0;
+            location= 'en_huaxue_win.html';
+            }
+
+
+
+    function openZhZmjq(){
+	    var delay = 0;
+        location = 'zh_zmjq_win.html';
+	        <!--if(api.systemType != 'ios'){-->
+	            <!--delay = 300;-->
+	        <!--}-->
+	        <!--api.openWin({-->
+	            <!--name: 'zh_zmjq_win',-->
+	            <!--url: 'zh_zmjq_win.html',-->
+	            <!--bounces:false,-->
+	            <!--delay: delay,-->
+	            <!--slidBackEnabled:true,-->
+	            <!--vScrollBarEnabled:false-->
+	        <!--});-->
+	}
+
+	    function openZhFlfg(){
+	        var delay = 0;
+            location = 'zh_flfg_win.html';
+	        <!--if(api.systemType != 'ios'){-->
+	            <!--delay = 300;-->
+	        <!--}-->
+	        <!--api.openWin({-->
+	            <!--name: 'zh_flfg_win',-->
+	            <!--url: 'zh_flfg_win.html',-->
+	            <!--bounces:false,-->
+	            <!--delay: delay,-->
+	            <!--slidBackEnabled:true,-->
+	            <!--vScrollBarEnabled:false-->
+	        <!--});-->
+	    }
+ 	    function openZhWinxin(){
+	        var delay = 0;
+	        location = 'zh_wxtx_win.html';
+	        <!--if(api.systemType != 'ios'){-->
+	            <!--delay = 300;-->
+	        <!--}-->
+	        <!--api.openWin({-->
+	            <!--name: 'zh_wxtx_win',-->
+	            <!--url: 'zh_wxtx_win.html',-->
+	            <!--bounces:false,-->
+	            <!--delay: delay,-->
+	            <!--slidBackEnabled:true,-->
+	            <!--vScrollBarEnabled:false-->
+	        <!--});-->
+	    }
+	    function openEnJljj(){
+	        var delay = 0;
+	        location = 'en_jljj_win.html';
+	        <!--if(api.systemType != 'ios'){-->
+	            <!--delay = 300;-->
+	        <!--}-->
+	        <!--api.openWin({-->
+	            <!--name: 'en_jljj_win',-->
+	            <!--url: 'en_jljj_win.html',-->
+	            <!--bounces:false,-->
+	            <!--delay: delay,-->
+	            <!--slidBackEnabled:true,-->
+	            <!--vScrollBarEnabled:false-->
+	        <!--});-->
+	    }
+
+        function openEnSwbg(){
+	        var delay = 0;
+            location = 'en_zbfw_win.html';
+	        <!--if(api.systemType != 'ios'){-->
+	            <!--delay = 300;-->
+	        <!--}-->
+	        <!--api.openWin({-->
+	            <!--name: 'en_zbfw_win',-->
+	            <!--url: 'en_zbfw_win.html',-->
+	            <!--bounces:false,-->
+	            <!--delay: delay,-->
+	            <!--slidBackEnabled:true,-->
+	            <!--vScrollBarEnabled:false-->
+	        <!--});-->
+	    }
+
+        function openEnZmjq(){
+	        var delay = 0;
+	        location = 'en_zmjq_win.html';
+	        <!--if(api.systemType != 'ios'){-->
+	            <!--delay = 300;-->
+	        <!--}-->
+	        <!--api.openWin({-->
+	            <!--name: 'en_zmjq_win',-->
+	            <!--url: 'en_zmjq_win.html',-->
+	            <!--bounces:false,-->
+	            <!--delay: delay,-->
+	            <!--slidBackEnabled:true,-->
+	            <!--vScrollBarEnabled:false-->
+	        <!--});-->
+	    }
+
+	    function openEnFlfg(){
+	        var delay = 0;
+	        location = 'en_flfg_win.html';
+	        <!--if(api.systemType != 'ios'){-->
+	            <!--delay = 300;-->
+	        <!--}-->
+	        <!--api.openWin({-->
+	            <!--name: 'en_flfg_win',-->
+	            <!--url: 'en_flfg_win.html',-->
+	            <!--bounces:false,-->
+	            <!--delay: delay,-->
+	            <!--slidBackEnabled:true,-->
+	            <!--vScrollBarEnabled:false-->
+	        <!--});-->
+	    }
+ 	    function openEnWinxin(){
+	        var delay = 0;
+	        location = 'en_wxtx_win.html';
+	        <!--if(api.systemType != 'ios'){-->
+	            <!--delay = 300;-->
+	        <!--}-->
+	        <!--api.openWin({-->
+	            <!--name: 'en_wxtx_win',-->
+	            <!--url: 'en_wxtx_win.html',-->
+	            <!--bounces:false,-->
+	            <!--delay: delay,-->
+	            <!--slidBackEnabled:true,-->
+	            <!--vScrollBarEnabled:false-->
+	        <!--});-->
+	    }
+        function openSQ(){
+	        var delay = 0;
+	        location = './jit_crj/login_sq_win.html';
+	        <!--if(api.systemType != 'ios'){-->
+	            <!--delay = 300;-->
+	        <!--}-->
+	        <!--api.openWin({-->
+	            <!--name: 'en_wxtx_win',-->
+	            <!--url: './jit_crj/login_sq_win.html',-->
+	            <!--bounces:false,-->
+	            <!--delay: delay,-->
+	            <!--slidBackEnabled:true,-->
+	            <!--vScrollBarEnabled:false-->
+	        <!--});-->
+	    }
+</script>
+</html>

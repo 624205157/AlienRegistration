@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="js/1sfrz.js"></script>
+    <script src="js/duanxin.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        #tssj { text-indent: 0px!important;  padding-left: 10px!important; padding-right: 10px!important; line-height: 1.5; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">外国人签证申请</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell me-name" id="tssj">您提交的申请已通过初审，请您填写你的地址、姓名、电话方便邮递人员上门取材料</li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">地址(省)<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 " value="吉林省" readonly="true" />
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media btn1">
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">地址(市)<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result1" value="" placeholder="请选择地址" />
+                            <!-- <input type="hidden" class="me-tips write infor1" name="sls" id="sls" /> -->
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media btn1">
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">地址(区)<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result1" value="" placeholder="请选择地址" />
+                            <!-- <input type="hidden" class="me-tips write infor1" id="slx" name="slx" /> -->
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon26.jpg"></div>
+                            <div class="mui-media-body me-list-con">详细地址<span class="me-red">*</span></div>
+                            <input type="text" class="write me-tips me-red infor1" id="getAddPpc" name="getAddPpc"  placeholder="请输入详细地址"/>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media" >
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon8.jpg"></div>
+                            <div class="mui-media-body me-list-con">邮编<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1" id="getCode" name="getCode" placeholder="请输入邮编"   style="width: 3rem!important;"/>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">姓名<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 " id="getNamePpc" name="getNamePpc" value="" placeholder="请选择输入姓名" />
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">电话<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1" id="getPhone" name="getPhone" value="" placeholder="请输入电话" />
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media btn" data-options='{}'>
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon6.jpg"></div>
+                            <div class="mui-media-body me-list-con"><span>预约上门取件时间</span><span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result" id="validUntil" name="validUntil" value="" placeholder="请选择签证有效期" style="width: 2.8rem!important;"/>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="nextstep" style="margin:10px auto;">下一步</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="../js/city.data3.js"></script>
+<script src="js/add_script.js"></script>
+<script>
+mui.init();
+var btn1 = mui('.btn1');
+var result1 = mui('.result1');
+var crjbasePath= "<%=crjbasePath%>";
+    $(function(){
+
+        // 初始化受理地所在市信息
+        var sls = document.getElementById("sls");
+        var url = crjbasePath + "webProtal/findDictionaryByType.do?random=" + Math.random();
+        var listParams = {
+                "pid" : "22000000"
+        };
+        $.getJSON(url,listParams, function(json){ 
+            $.each(json.data, function(i,result) {
+                var slscode = result.id;
+                var slsname = result.dicName;
+                shi.push({
+                    value: slscode,
+                    text: slsname
+                })
+            });
+            //普通联动
+            btn1.each(function(i,btn) {
+                if(i == 0){
+                    var userPicker = new mui.PopPicker();
+                    userPicker.setData(shi);
+                    btn.addEventListener('tap', function(event) {
+                        userPicker.show(function(items) {
+                            result1[i].value = items[0].text;
+                            sls.value = items[0].value;
+
+                            selectDictionary(1);
+                            
+                        });
+                    }, false);
+                }
+                
+            });     
+        });
+    });
+        
+//**********************受理机构3级联动start************************
+// 受理地所在市
+function selectDictionary(type) {
+    var sls = document.getElementById("sls").value;
+    var slx = document.getElementById("slx");
+    var slxvalue = document.getElementById("slx").value;
+    //var sld = document.getElementById("sld");
+    if (type == 1) {
+            // 清空受理地所在县(区)信息
+            // var slxNode = slx.childNodes;
+            // if(slxNode != null) {
+            //     while(slxNode.length > 0) {
+            //         slx.removeChild(slxNode[slxNode.length-1]);
+            //     }
+            // }
+            qv = [];
+            var listParams = {
+                "pid" : sls
+            };
+            var url = crjbasePath + "webProtal/findDictionaryByType.do";
+            //var url1 = "/getChildCity.do?random="+Math.random();
+            //发出请求并处理返回数据
+            $.getJSON(url,listParams, function(json){ 
+                $.each(json.data, function(i,result) {
+                    var slscode = result.id;
+                    var slsname = result.dicName;
+                    qv.push({
+                        value: slscode,
+                        text: slsname
+                    })
+                });
+                btn1.each(function(i,btn) {
+                    if(i == 1){
+                        var userPicker = new mui.PopPicker();
+                        userPicker.setData(qv);
+                        btn.addEventListener('tap', function(event) {
+                            userPicker.show(function(items) {
+                                result1[i].value = items[0].text;
+                                slx.value = items[0].value;
+
+                                selectDictionary(1);
+                                
+                            });
+                        }, false);
+                    }
+                    
+                });      
+            });
+    } else if (type == 2) {
+        if (slxvalue != null && slxvalue != "") {
+            var listParams = {
+                "xzqhId" : slxvalue
+            };
+            var url = crjbasePath + "organization/findOrganizationByXzqhId.do";
+            //var url1 = "/getChildCity.do?random="+Math.random();
+            //发出请求并处理返回数据
+            $.getJSON(url,listParams, function(json){
+                $.each(json.data, function(i,result) {
+                    var slscode = result.id;
+                    var slsname = result.jgdwName;
+                });     
+            });
+        } else {
+        }
+    }
+}
+    //**********************受理机构3级联动end************************
+function formsubmit(){
+    var sqid = "<%=sqid%>";
+     //取件地址市
+    var qjxx_city=$("#sls").siblings('input').val();
+    //var sls=$('#sls').val();
+    //取件地址区
+    var qjxx_county=$("#slx").siblings('input').val();
+    //var slx=$('#slx').val();
+    //取件地邮编
+    var qjxx_yb=$('#getCode').val();
+    //取件详细地址
+    var qjxx_dz=$('#getAddPpc').val();
+    //取件姓名
+    var qjxx_xm=$('#getNamePpc').val();
+    //取件电话
+    var qjxx_dh=$('#getPhone').val();
+    var ins = 1
+    $('.infor1').each(function(i){
+        var val = $(this).val();
+        if(val == ''){
+            var con = $(this).siblings('.me-list-con').text();
+            alert(con.substring(0,con.length-1)+'，不能为空！')
+            ins = 0;
+            return false;
+        }
+        
+    })
+    if(ins){
+        var url='ems_send.html?sqid='+sqid+"&sls="+qjxx_city+"&slx="+qjxx_county+"&getCode="+qjxx_yb+"&getAddPpc="+qjxx_dz+"&getNamePpc="+qjxx_xm+"&getPhone="+qjxx_dh+"&ywid=<%=ywid%>"+"&ywcode=<%=ywid%>"+"&jdbt=<%=jdbt%>";
+        //location=encodeURI(url); 
+        location=url;
+    }
+    
+}
+/**********验证邮政编码的有效性***********/  
+function isZip(obj,str,allowNull){  
+    var pattern =  /^[1-9]\d{5}$/;  
+    if(!isNotNull(obj,str,allowNull)) return false;  
+    if(!(pattern.test(obj.value))&&!isNull(obj)){  
+    //  document.getElementById('doing').style.visibility='hidden';       
+        alert(str+" 不是正确的邮政编码！");  
+        obj.focus();  
+       return false;  
+    }  
+    else return true;  
+}  
+
+
+/**********验证手机号码的有效性***********/  
+function isMobile(obj,str,allowNull){  
+   var pattern = /^((\(\d{3}\))|(\d{3}\-))?13\d{9}$/;  
+    if(!isNotNull(obj,str,allowNull)) return false;  
+   if(!(pattern.test(obj.value))&&!isNull(obj)){  
+    //  document.getElementById('doing').style.visibility='hidden';     
+        alert(str+" 不是正确的手机号码！");  
+       obj.focus();  
+       return false;  
+    }  
+    else return true;  
+}  
+
+    //选择普照有效日期
+    var result = mui('.result');
+    var btns = mui('.btn');
+    btns.each(function(i, btn) {
+        btn.addEventListener('tap', function() {
+            var optionsJson = this.getAttribute('data-options') || '{}';
+            var options = JSON.parse(optionsJson);
+            var id = this.getAttribute('id');
+            /*
+             * 首次显示时实例化组件
+             * 示例为了简洁，将 options 放在了按钮的 dom 上
+             * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+             */
+            var picker = new mui.DtPicker(options);
+            picker.show(function(rs) {
+                /*
+                 * rs.value 拼合后的 value
+                 * rs.text 拼合后的 text
+                 * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+                 * rs.m 月，用法同年
+                 * rs.d 日，用法同年
+                 * rs.h 时，用法同年
+                 * rs.i 分（minutes 的第二个字母），用法同年
+                 */
+
+                result[i].setAttribute('value',rs.value);
+                /* 
+                 * 返回 false 可以阻止选择框的关闭
+                 * return false;
+                 */
+                /*
+                 * 释放组件资源，释放后将将不能再操作组件
+                 * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
+                 * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
+                 * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
+                 */
+                picker.dispose();
+            });
+        }, false);
+    });
+
+    //点击下一步按钮
+    mui('#nextstep')[0].addEventListener('tap',function(){
+        formsubmit();
+    })
+
+
+</script>
+</html>

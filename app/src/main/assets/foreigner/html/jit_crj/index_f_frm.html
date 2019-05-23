@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>申请事由</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <style type="text/css">
+        .aui-list .aui-list-item-media {
+            width: 6rem;
+        }
+        .aui-media-list .aui-list-item-inner {
+            display: block;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        .aui-list-item-input input[type='date'] { border: 1px solid #d6d6d6; padding-left: 5px;}
+        .aui-bar-nav { position: fixed;}
+    </style>
+</head>
+<body>
+	<header class="aui-bar aui-bar-nav">
+	    <a class="aui-pull-left aui-btn">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+	    <div class="aui-title">外国人签证申请</div>
+	</header>
+	<!-- <div class="aui-content" style="padding-top: 2.25rem">
+	        <section class="aui-content-padded">
+	            <div class="aui-card-list"  style="padding-bottom: 0.8%;padding-top: 0.8rem;">
+	                <div class="aui-card-list-header">
+	                    		请选择您申请的事由
+	                </div>
+	                <div class=" aui-margin-b-15">
+	                    <ul class="aui-list aui-media-list">
+	                        <li class="aui-list-item aui-list-item-middle">
+	                            <div class="aui-media-list-item-inner">
+	                                <div class="aui-list-item-media" style="width: 2.5rem;">
+	                                    <img src="../image/icon_defi.png" class="aui-img-round aui-list-img-sm">
+	                                </div>
+	                                <div class="aui-list-item-inner aui-list-item-arrow">
+	                                    		探亲
+	                                </div>
+	                            </div>
+	                        </li>
+	                        <li class="aui-list-item aui-list-item-middle">
+	                            <div class="aui-media-list-item-inner">
+	                                <div class="aui-list-item-media" style="width: 2.5rem;">
+	                                    <img src="../image/icon_defi.png" class="aui-img-round aui-list-img-sm">
+	                                </div>
+	                                <div class="aui-list-item-inner aui-list-item-arrow">
+	                                    		学习
+	                                </div>
+	                            </div>
+	                        </li>
+	                        <li class="aui-list-item aui-list-item-middle">
+	                            <div class="aui-media-list-item-inner">
+	                                <div class="aui-list-item-media" style="width: 2.5rem;">
+	                                    <img src="../image/icon_defi.png" class="aui-img-round aui-list-img-sm">
+	                                </div>
+	                                <div class="aui-list-item-inner aui-list-item-arrow">
+	                                   		 私人事物
+	                                </div>
+	                            </div>
+	                        </li>
+	                        <li class="aui-list-item aui-list-item-middle">
+	                            <div class="aui-media-list-item-inner">
+	                                <div class="aui-list-item-media" style="width: 2.5rem;">
+	                                    <img src="../image/icon_defi.png" class="aui-img-round aui-list-img-sm">
+	                                </div>
+	                                <div class="aui-list-item-inner aui-list-item-arrow">
+	                                    		寄养
+	                                </div>
+	                            </div>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </section>
+	    </div> -->
+	  
+	    <div style="display: none;">
+		是否办理护照首申 <input id='huzhao' type='text' ></input><br></br>
+		是否办理港澳首申 <input id='gangao' type='text' ></input><br></br>
+		是否办理台湾首申 <input id='taiwang' type='text' ></input><br></br>
+		
+		是否办理港澳签注 <input id='gangaoqz' type='text' ></input><br></br>
+		是否办理香港签注 <input id='gangaoxgqz' type='text' ></input><br></br>
+		是否办理香港签注种类 <input id='gangaoxgqzzl' type='text' ></input><br></br>
+		是否办理澳门签注 <input id='gangaoamqz' type='text' ></input><br></br>
+		是否办理香港签注完成 <input id='gangaoxgqzf' type='text' ></input><br></br>
+		是否办理澳门签注完成 <input id='gangaoamqzf' type='text' ></input><br></br>
+		是否办理台湾签注 <input id='taiwangqz' type='text' ></input><br></br>
+		台湾签注目的事由 <input id='taiwangqzmd' type='text' ></input><br></br>
+		台湾签注种类 <input id='twqzzl' type='text' ></input><br></br>
+		
+		我是护照首申 <input id='huzhaof' type='text' value='1'></input><br></br>
+		我是港澳首申 <input id='gangaof' type='text' value='0' ></input><br></br>
+		我是台湾首申 <input id='taiwangf' type='text' value='0'></input><br></br>
+		我是申请id<input id="sqid" type="hidden" value="" />
+		我是申请编码<input id="sqbm" type="hidden" value="" />
+		
+		<form id="ecqz_tq_hk" method="post" >
+			<!-- 申请事由 -->
+			<input id="ly" name="ly" type="hidden" value="0" /> 
+			<!-- 证件种类 字母-->
+			<input id="zjzlzm" name="zjzlzm" type="hidden"  />
+			<!-- 证件类型 -->
+			<input id="zjlx" name="zjlx" type="hidden"  />
+			<!-- 申请停留期限-->
+			<input id="Bdate" name="Bdate" type="hidden"  /> 
+			<!-- 外国人与中国人标识 -->
+			<input id="gj" name="gj" type="hidden" /> 
+			<input id="hkqzzl" name="hkqzzl" type="hidden" /> 
+			<!-- 拟发证件-->
+			<input id="nfzjlx" name="nfzjlx" type="hidden"  />
+			<input id="nfzjlx_name" name="nfzjlx_name" type="hidden"  />
+			<!-- 拟发证件材料类别-->
+			<input id="nfzjlx_cl" name="nfzjlx_cl" type="hidden"  />
+			<!-- 签注次数 -->
+			<input id="qzcs" name="qzcs" type="hidden" /> 
+			<!-- 办理天数 -->
+			<input id="flagday" name="flagday"  value="0" type="hidden" /> 
+			
+			<!--签证有效期-->
+			<input id="qzyyx" name="qzyyx" type="hidden" /> 
+			<!-- 签证种类 -->
+			<input id="zjzl" name="zjzl"  value="0" type="hidden" /> 
+			<!-- 市级单位 -->
+			<input id="sjdw" name="sjdw"  value="0" type="hidden" /> 
+			<!-- 探亲__团聚居留许可与私人事务类居留许可外国人与中国人标识 -->
+			<input id="bzjd" name="bzjd"  value="0" type="hidden" /> 
+			<!-- 全流程与非全流程标识 -->
+			<input id="rflag" name="rflag"  value="0" type="hidden" />
+			<!-- 私人事务申请事由-->
+			<input id="shiyou" name="shiyou"  value="0" type="hidden" />
+			
+			
+			
+			           <!--***********被探望人信息**********-->
+			<!-- 被探望人中文名-->
+			<input id="btwName" name="btwName" value="0" type="hidden" />
+			<!-- 被探望人姓-->
+			<input id="btwX" name="btwX"  value="0" type="hidden" />
+			<!-- 被探望人名-->
+			<input id="btwM" name="btwM"  value="0" type="hidden" />
+			<!-- 被探望人证件号码-->
+			<input id="btwZjhm" name="btwZjhm"  value="0" type="hidden" />
+			<!-- 被探望人永久居留证号码-->
+			<input id="yjjlz" name="yjjlz"  value="0" type="hidden" />
+			<!-- 被探望人证件号码标识；；1：护照号码，2：永久居留证号码和护照号码，3：身份证号-->
+			<input id="btwZjhmf" name="btwZjhmf"  value="0" type="hidden" />
+			<!-- 亲属关系标识 -->
+			<input id="sishu" name="sishu"  value="0" type="hidden" />
+			<!-- 被探望人在吉停留有效期-->
+			<input id="btwyxq" name="btwyxq"  value="0" type="hidden" /> 
+			
+			<!-- <input id="flagfc" name="flagfc"  value="0" type="hidden" /> -->
+	    </form>
+		</div>
+		<iframe height="860px" width="100%" src="ss_first_frm.html" name="topFrame" scrolling="no" noresize="noresize" id="topFrame" frameborder="0" ></iframe>
+	    <footer class="aui-bar aui-bar-tab" id="footer">
+	        <div class="aui-bar-tab-item" tapmode onclick="window.location.href='demo_news_today_frm.html'">
+	            <div class="aui-dot"></div>
+	            <i class="aui-iconfont aui-icon-home"></i>
+	            <div class="aui-bar-tab-label">来华提醒</div>
+	        </div>
+	        <div class="aui-bar-tab-item aui-active" tapmode onclick="window.location.href='index_win.html'">
+	            <i class="aui-iconfont aui-icon-edit"></i>
+	            <div class="aui-bar-tab-label">个人旅游签注</div>
+	        </div>
+	    </footer>
+    <!--<div style="position: fixed; left: 50% ;bottom: -15px; margin-left: -40px; width: 80px; height: 80px; z-index: 10;"><img src="../../image/menu_icon1.png" alt="" style="width: 100%"/> </div>-->
+
+</body>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		
+	};
+</script>
+</html>

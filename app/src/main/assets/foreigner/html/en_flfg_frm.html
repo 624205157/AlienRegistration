@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aui-pull-refresh.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aui-1.css" />
+		 <style type="text/css">
+        .aui-list .aui-list-item-media {
+	            width: 6rem;
+	        }
+	        .aui-content { padding-bottom: 3rem; }
+	        .aui-media-list .aui-list-item-inner {
+	            display: block;
+	            padding-top: 0.8rem;
+	            padding-bottom: 0.8rem;
+	        }
+	        .aui-bar-nav { position: fixed;}
+	    </style>
+	</head>
+	<body>
+		<section class="aui-refresh-content">
+		    <div id="content" >	
+			    <div class="aui-content">
+			        <ul class="aui-list aui-media-list" id="liContent">
+			        </ul>
+			    </div>
+		    </div>
+	<body>
+	    <!--  </section>
+	      <footer class="aui-bar aui-bar-tab" id="footer">
+		        <div class="aui-bar-tab-item aui-active" tapmode onclick="openParentWin('index')">
+		            <div class="aui-dot"></div>
+		            <i class="aui-iconfont aui-icon-home"></i>
+		            <div class="aui-bar-tab-label" data-locale="lhtx">来华提醒</div>
+		        </div>
+		        <div class="aui-bar-tab-item" tapmode onclick="openWin('lyqz_form_win')">
+		            <i class="aui-iconfont aui-icon-edit"></i>
+		            <div class="aui-bar-tab-label" data-locale="grlyqz">个人旅游签注</div>
+		        </div>
+		        <div class="aui-bar-tab-item" tapmode onclick="openWin('index_win')">
+		            <i class="aui-iconfont aui-icon-edit"></i>
+		            <div class="aui-bar-tab-label" data-locale="grlyqz">签证证件办理</div>
+		        </div>
+	    </footer>
+	    <div style="position: fixed; left: 50% ;bottom: -15px; margin-left: -40px; width: 80px; height: 80px; z-index: 10;"><img src="../image/menu_icon1.png" alt="" style="width: 100%"/> </div>
+ -->
+	<script type="text/javascript" src="../script/api.js" ></script>
+	<script type="text/javascript" src="../script/aui-pull-refresh.js"></script>
+	<script type="text/javascript" src="../script/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="../script/jquery.i18n.properties-min-1.0.9.js"></script>
+    <script type="text/javascript" src="../script/jquery.cookie.js"></script>
+	<script type="text/javascript">
+	    //语言选择的方法
+		    apiready = function(){
+	    	api.parseTapmode();
+			jljjTitle();
+	    };
+		var pullRefresh = new auiPullToRefresh({
+			container: document.querySelector('.aui-refresh-content'),
+			triggerDistance: 100
+		},function(ret){
+			if(ret.status=="success"){
+				setTimeout(function(){
+//					var wrap = document.getElementById("content")
+//					var lis = wrap.querySelectorAll('.aui-list-item-text');
+//					for (var i = lis.length, length = i + 10; i < length; i++) {
+//						var html = '<div class="aui-card-list">'+
+//					            '<div class="aui-card-list-header">'+
+//					                '卡片布局头部区域'+(i+1)+''+
+//					            '</div>'+
+//					            '<div class="aui-card-list-content-padded">'+
+//					                '内容区域，卡片列表布局样式可以实现APP中常见的各类样式'+
+//					            '</div>'+
+//					            '<div class="aui-card-list-footer">'+
+//					                '底部区域'+
+//					            '</div>'+
+//					        '</div>';
+//						wrap.insertAdjacentHTML('afterbegin', html);
+//					}
+					pullRefresh.cancelLoading(); //刷新成功后调用此方法隐藏
+				},1500)
+			}
+		});
+				function jljjTitle(){
+			api.ajax({
+			    url: 	'http://crj.gafw.jl.gov.cn/f/cms/article/jljjTitle',
+			    method: 'get',
+			    data: { 
+	    		      values: { 
+	    		      	"categoryId":"c3e0af8830b248adaac1430ddc827a4e"
+						        	}
+	    		     }
+				},function(ret, err){
+			    for(var i=0;i<ret.length;i++){
+				    $("#liContent").append('<li class="aui-list-item" onclick="showDetail(\''+ret[i].id+'\');">'+
+				                '<div class="aui-media-list-item-inner">'+
+				                    '<div class="aui-list-item-inner">'+
+				                        '<div class="aui-list-item-text">'+
+				                            '<div class="aui-list-item-title" >'+ret[i].title+'</div>'+
+				                        '</div>'+
+				                        '<div class="aui-info aui-padded-b-0">'+
+				                            '<div class="aui-info-item aui-font-size-12">'+
+				                                '<img src="../image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5">'+ret[i].categoryName+'</span>'+
+				                                '</div>'+
+				                            '<div class="aui-info-item aui-font-size-12">'+ret[i].time+'</div>'+
+				                        '</div>'+
+				                    '</div>'+
+				                    '<div class="aui-list-item-media">'+
+				                        '<img src="http://crj.gafw.jl.gov.cn'+ret[i].image+'">'+
+				                    '</div>'+
+				                '</div>'+
+				            '</li>' 
+                        ); 
+                }
+			});
+		}
+				function openWin(name){
+	        var delay = 0;
+	        if(api.systemType != 'ios'){
+	            delay = 300;
+	        }
+	        api.openWin({
+	            name: './jit_crj/'+name+'',
+	            url: './jit_crj/'+name+'.html',
+	            bounces:false,
+	            delay: delay,
+	            slidBackEnabled:true,
+	            vScrollBarEnabled:false
+	        });
+	    }
+	    function showDetail(id){
+	    	var delay = 0;
+	        if(api.systemType != 'ios'){
+	            delay = 300;
+	        }
+	        api.openWin({
+	            name: 'new_info_win',
+	            url: 'new_info_win.html',
+	            pageParam: {  
+			        id: id 
+			    },
+	            bounces:false,
+	            delay: delay,
+	            slidBackEnabled:true,
+	            vScrollBarEnabled:false
+	        });
+	    }
+	    function openParentWin(name){
+	        var delay = 0;
+	        if(api.systemType != 'ios'){
+	            delay = 300;
+	        }
+	        api.openWin({
+	            name: ''+name+'',
+	            url: '../'+name+'.html',
+	            bounces:false,
+	            delay: delay,
+	            slidBackEnabled:true,
+	            vScrollBarEnabled:false
+	        });
+	    }
+	</script>
+</html>

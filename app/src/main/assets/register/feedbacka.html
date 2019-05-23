@@ -1,0 +1,834 @@
+<!doctype html>
+<html class="esp">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/reset.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="css/app.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/SG_area_select.css" />
+	<script src="./js/jquery.min.js"></script>
+	<script src="js/font.js"></script>
+	<script src="js/SG_area_select.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/cookie.js"></script>
+	<!--派出所三级联动JS-->
+	<script src="js/dataP.js"></script>
+	<!--定位Start-->
+	<script type="text/javascript" src='js/dingwei.js'></script>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=f83767d3fe2ebc3695bb3fa4761f372f"></script>
+	<script type="text/javascript" src="js/android.js"></script>
+	<!--定位END-->
+</head>
+
+<body>
+<div class="big-box" style="display:block;">
+	<header>
+		<div class="top-box black-back">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+			<h1 class="main-title">住宿登记</h1>
+		</div>
+		<div class="me-nav-right">
+			<!--<div class="nav-reight-item"><img src="img/again.png" class="me-block" width="26px" height="26px"  onclick="openluxiang()" alt=""></div>-->
+			<div class="nav-reight-item"><img src="img/photo.png" class="me-block" width="26px" height="26px" onclick="openzhaoxiang()" alt=""></div>
+		</div>
+	</header>
+
+	<div class="mui-content" style="margin-top:48px;">
+		<div class="navigator">
+			<div class="sec active"><span class="active">1</span></div>
+			<div class="sec"><span class="">2</span></div>
+		</div>
+
+		<form>
+			<div class="tab-box">
+				<div class="tab-item">
+					<ul class="mui-table-view me-padding-reset" id="box">
+						<li class="mui-table-view-cell me-name">请确认识别信息是否正确</li>
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon1.jpg"></div>
+								<div class="mui-media-body me-list-con">英文姓名<span class="me-red">*</span></div>
+								<!-- <input type="text" class="write me-tips" name="ywm" id="ywm" value="" /> -->
+								<input type="text" class="me-tips write infor1 " name="ywm" id="ywm" value="" placeholder="" />
+							</a>
+						</li>
+
+						<!-- <li class="mui-table-view-cell mui-media">
+                            <a>
+                                <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon2.jpg"></div>
+                                <div class="mui-media-body me-list-con">英文姓<span class="me-red">*</span></div>
+                                    <input  type="text" class="me-tips write infor " name="ywx" id="ywx" value="" placeholder="" />
+                            </a>
+                        </li> -->
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon3.jpg"></div>
+								<div class="mui-media-body me-list-con">性别<span class="me-red">*</span></div>
+								<div class="radios me-tips" id="radios">
+									<div class="radios-each selected" id="nanclass">
+										<span>男</span>
+										<input type="radio" name="xb" id="nan" value="男" checked="true"/>
+									</div>
+									<div class="radios-each" id="nvclass">
+										<span>女</span>
+										<input type="radio" name="xb" id="nv" value="女" />
+										<input type="hidden" name="xb" id="xb" value="女" />
+									</div>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media btn" data-options='{"type":"date","beginYear":1907}' id="csrq_li">
+							<a class="mui-navigate-right">
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon26.jpg"></div>
+								<div class="mui-media-body me-list-con">出生日期<span class="me-red">*</span></div>
+								<input type="text" class="write me-tips me-red infor1" name="by3" id="by3" readonly="true" placeholder="请选择" />
+								<!-- <span class="me-tips result">2017-10-02</span> -->
+							</a>
+						</li>
+						<!-- <li class="mui-table-view-cell mui-media">
+                            <a>
+                                <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon4.jpg"></div>
+                                <div class="mui-media-body me-list-con">性别<span class="me-red">*</span></div>
+                                <input type="text" class="write me-tips me-red" name="xb" id="xb" />
+                            </a>
+                        </li> -->
+						<li class="mui-table-view-cell mui-media btn1">
+							<a class="mui-navigate-right" onclick="addItems()">
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon5.jpg"></div>
+								<div class="mui-media-body me-list-con">国家/地区<span class="me-red">*</span></div>
+								<input type="hidden" class="me-tips write infor1" name="gjdq" id="gjdq" value="" placeholder="" />
+								<span class="me-tips result1" id="gjdqtext">请选择</span>
+							</a>
+							<!-- <input type="hidden" class="write me-tips" name="gjdq" id="gjdq" value=""/> -->
+
+						</li>
+
+						<li class="mui-table-view-cell mui-media btn2">
+							<!-- <a class="mui-navigate-right" onclick="addzjlx()"> -->
+							<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon7.jpg"></div>
+							<div class="mui-media-body me-list-con">证件类型<span class="me-red">*</span></div>
+							<input type="hidden" class="me-tips write infor1" name="zjlx" id="zjlx" value="普通护照" placeholder="" />
+							<span class="me-tips result2" id="zjlxtext">普通护照</span>
+							<!-- <input class="write me-tips" name="zjlx" id="zjlx" value="" readonly="ture"/> -->
+							</a>
+
+						</li>
+
+
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon6.jpg"></div>
+								<div class="mui-media-body me-list-con">证件号码<span class="me-red">*</span></div>
+								<!-- <input type="text" class="write me-tips" name="zjhm" id="zjhm" value="" /> -->
+								<input type="text" class="me-tips write infor1 " name="zjhm" id="zjhm" value="" placeholder="" />
+							</a>
+						</li>
+
+
+						<li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}' id="zjdqD">
+							<a class="mui-navigate-right">
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon8.jpg"></div>
+								<div class="mui-media-body me-list-con">证件到期<span class="me-red">*</span></div>
+								<input type="hidden" class="me-tips write infor1 " name="zjdq" id="zjdq" value="" placeholder="" />
+								<span class="me-tips me-red result" id="zjdqtext">请选择</span>
+							</a>
+							<!-- <input type="text" class="write me-tips" name="zjdq" id="zjdq" readonly="true" /> -->
+
+						</li>
+					</ul>
+					<!-- <ul class="mui-table-view me-top me-padding-reset"  id = "box">
+                        <li class="mui-table-view-cell mui-media" id='showCityPicker3'>
+                            <a class="mui-navigate-right">
+                                <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon21.jpg"></div>
+                                <div class="mui-media-body me-list-con">省/市/县(区)<span class="me-red">*</span></div>
+                                <input  type="hidden" class="me-tips write infor"  id="cityR3"  name ="xxdz" placeholder="请选择地址"/>
+                                <span class="me-tips" id="cityResult3" style="width:200px;" >请选择</span>
+
+                            </a>
+                        </li>
+
+
+                        <li class="mui-table-view-cell mui-media">
+                            <a>
+                                <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon22.jpg"></div>
+                                <div class="mui-media-body me-list-con">详细地址<span class="me-red">*</span></div>
+                                <textarea type="text" wrap="off" class="en-item infor"  rows="1" id="xxdz" placeholder="请填写" ></textarea>
+                            </a>
+                        </li>
+
+
+                        <li class="mui-table-view-cell mui-media" id="selectBtn">
+                        <a class="mui-navigate-right btn-eap">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon22.jpg"></div>
+                            <div class="mui-media-body me-list-con">所属派出所<span class="me-red">*</span></div>
+                                        <input type="text" class="me-tips write infor result-eap " name="sspcsName" id="sspcsName" placeholder="请选择" readonly="true"/>
+                                        <input type="hidden" class="me-tips write" name="sspcs" id="sspcs"  value="" placeholder="" />
+                        </a>
+                    </li>
+
+                    </ul> -->
+					<ul class="mui-table-view me-top me-padding-reset sh-box" id="box2" style="display: none;">
+						<!-- <li class="mui-table-view-cell me-name">补填信息</li> -->
+
+						<li class="mui-table-view-cell mui-media btn3">
+							<a class="mui-navigate-right">
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon10.jpg"></div>
+								<div class="mui-media-body me-list-con">停留事由<span class="me-red">*</span></div>
+								<input type="hidden" class="me-tips write infor2" name="tlsy" id="tlsy" value="" placeholder="请填写" />
+								<span class="me-tips result3" id="tlsytext">请选择</span>
+							</a>
+						</li>
+
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon24.jpg"></div>
+								<div class="mui-media-body me-list-con">国内联系人<span class="me-red">*</span></div>
+								<!-- <input type="text" class="write me-tips" name="gnlxr" id="gnlxr" value="" /> -->
+								<input type="text" class="me-tips write infor2 " name="gnlxr" id="gnlxr" value="" placeholder="请填写" />
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon25.jpg"></div>
+								<div class="mui-media-body me-list-con">国内联系人电话<span class="me-red">*</span></div>
+
+								<!-- <input type="text" class="write me-tips me-red" name="gnlxdh" id="gnlxdh" value="" /> -->
+								<input type="number" class="me-tips write infor2 " name="gnlxdh" id="gnlxdh" value="" placeholder="请填写" />
+
+							</a>
+						</li>
+
+
+						<li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}' id="nlksjD">
+							<a class="mui-navigate-right">
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon26.jpg"></div>
+								<div class="mui-media-body me-list-con">拟离开时间<span class="me-red">*</span></div>
+								<input type="text" class="write me-tips me-red infor2" name="nlksj" id="nlksj" readonly="true" placeholder="请选择" />
+								<!-- <span class="me-tips result">2017-10-02</span> -->
+							</a>
+
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon2.jpg"></div>
+								<div class="mui-media-body me-list-con">中文名</div>
+								<input type="text" class="write me-tips" name="zwxm" id="zwxm" value="" />
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a>
+								<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon4.jpg"></div>
+								<div class="mui-media-body me-list-con">联系电话</div>
+								<!-- <input type="text" class="write me-tips me-red" name="lxdh" id="lxdh" value="" /> -->
+								<input type="number" class="write me-tips " name="lxdh" id="lxdh" value="" />
+							</a>
+						</li>
+
+					</ul>
+					<button type="button" class="foreigner-btn auto-btn change-btn" id="login" data-state="0" style="margin-top:20px;margin-bottom:20px; min-width:100px;">确认无误 补充其它信息</button>
+					<div>
+						<input type="hidden" id="zjzppath" name="zjzppath">
+						<input type="hidden" id="ywpath" name="ywpath">
+					</div>
+
+				</div>
+				<!-- <div class="me-p-bottom">
+                    <button type="button" class="foreigner-btn auto-btn change-btn" data-state="1" id="login" style="margin:10px auto; ">确认完毕，补充其它信息</button>
+                </div> -->
+				<div class="tab-item" style="margin-bottom:80px; display:none;">
+					<div class="mui-content">
+
+						<div id="container" style="margin-top:3px;width:100%;height:160px;"></div>
+
+						<ul class="mui-table-view me-top" id="box1">
+
+							<li class="mui-table-view-cell mui-media" id='showCityPicker3'>
+								<a class="mui-navigate-right">
+									<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon21.jpg"></div>
+									<div class="mui-media-body me-list-con">省/市/县(区)<span class="me-red">*</span></div>
+									<input type="hidden" class="me-tips write infor3" id="cityR3" name="xxdz" placeholder="请选择地址" />
+									<span class="me-tips" id="cityResult3" style="width:200px;">请选择</span>
+
+								</a>
+							</li>
+
+
+							<!-- <li class="mui-table-view-cell mui-media" id='showCityPicker3'>
+                                <a class="mui-navigate-right">
+                                    <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon21.jpg"></div>
+                                    <div class="mui-media-body me-list-con">省/市/县(区)<span class="me-red">*</span></div>
+                                    <span class="me-tips" id="cityResult3">请选择地址</span>//刚开始没有这行
+                                    <input  type="text" class="write me-tips infor " style="width:200px!important" name="ssqx" id="cityResult3"  placeholder="请选择地址" / >
+                                </a>
+                            </li>  -->
+
+							<!--<li class="mui-table-view-cell mui-media">
+                                <a class="">
+                                    <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon11.jpg"></div>
+                                    <div class="mui-media-body me-list-con">小区名称<span class="me-red">*</span></div>
+                                    <input type="text" class="write me-tips infor3" name="xqmc" id="xqmc" placeholder="请输入小区名" />
+                                </a>
+                            </li> -->
+							<!-- 2017-09-26 -->
+							<li class="mui-table-view-cell mui-media">
+								<a>
+									<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon22.jpg"></div>
+									<div class="mui-media-body me-list-con">详细地址<span class="me-red">*</span></div>
+									<textarea type="input" class="en-item infor3" name="xxdz" rows="1" id="xxdz" placeholder="请填写详细地址"></textarea>
+								</a>
+							</li>
+							<li class="mui-table-view-cell mui-media" id="selectBtn">
+								<a class="mui-navigate-right btn-eap">
+									<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon22.jpg"></div>
+									<div class="mui-media-body me-list-con">所属派出所<span class="me-red">*</span></div>
+									<input type="text" class="write me-tips infor3 result-eap" name="sspcsName" id="sspcsName" placeholder="请选择" readonly="true" />
+									<input type="hidden" class="write me-tips result-eapvalue" name="sspcs" id="sspcs" value="" placeholder="请选择派出所" />
+								</a>
+							</li>
+
+							<!--<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right">
+									<div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="img/icon/icon22.jpg"></div>
+									<div class="mui-media-body me-list-con">采集人像<span class="me-red"></span></div>
+									&lt;!&ndash;<img src="img/again.png" class="me-tips write infor3" width="26px" height="26px"  onclick="openluxiang()" alt="">&ndash;&gt;
+									<button type="button" class="" style="" onclick="preview()">回放</button>
+									<button type="button" class="write me-tips infor3" style="" onclick="startView()">采集</button>
+								</a>
+							</li>-->
+
+						</ul>
+						<div class="btns">
+							<button type="button" class="foreigner-btn f06" id="go" style="margin-bottom:20px;">上一步</button>
+							<button type="button" class="foreigner-btn" id="take">下一步</button>
+							<!--<button type="button" class="foreigner-btn" id="take">采集人像声纹</button>-->
+						</div>
+						<!-- <button type="button" class="foreigner-btn" id="goto" style="margin-top:50px;">采集人像声纹</button> -->
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<div class="mui-backdrop" style="display:none;">
+		<div class="scan-box">
+			<div class="scan-pic"><img src="img/scan.png" width="100%" /></div>
+			<p>请进行声纹 人像采集</p>
+			<button type="button" class="scan-btn">去采集</button>
+		</div>
+	</div>
+	<!-- 成功提示层 -->
+	<div class="mui-backdrop" id="mask" style="display: none;">
+		<div class="scan-box">
+			<div class="scan-pic">< img src="img/backto.jpg" width="80%" /></div>
+			<h1>住宿登记申报成功</h1>
+			<p>公安民警将在48小时内与您联系</p >
+			<p>并上门对申报登记信息进行核实，信息确认无误后，住宿登记申报即生效</p >
+			<button type="button" class="scan-btn scan2-btn" onclick="fanhui()">返回首页</button>
+		</div>
+	</div>
+	<!-- 成功提示层 end -->
+	<!-- 加载样式 -->
+	<div class="mui-backdrop" id="mask1" style="display: none;">
+		<div class="me-p-center p-center"><img src="img/loading.gif" width="100%" class="me-block" alt=""><p>证件识别中</p></div>
+	</div>
+	<div class="mui-backdrop" id="mask9" style="display: none;">
+		<div class="me-p-center p-center"><img src="img/loading.gif" width="100%" class="me-block" alt=""><p>登记中</p></div>
+	</div>
+	<!-- 加载样式 end -->
+</div>
+<!-- 人像采集录像回显 -->
+<div class="video-box" style="display:none;">
+	<video src="/i/movie.ogg" controls="controls" style="width:96%;margin:0 auto; margin-top: 40px; display:block;">
+		您的浏览器不支持此项视频功能
+	</video>
+	<div class="btns">
+		<button type="button" class="foreigner-btn f06" id="go1" style="margin-bottom:20px;">重新录制</button>
+		<button type="button" class="foreigner-btn" id="comp" >完成登记</button>
+	</div>
+</div>
+<!-- 人像采集录像回显-end -->
+<!-- 人像采集页面 -->
+<div class="mui-content back-white btn-scan" style="display:none;">
+	<img src="img/scan-en.jpg" width="100%"/>
+	<ul class="num-box" id="num-box">
+		<li class="num">1</li>
+		<li class="num">2</li>
+		<li class="num">3</li>
+		<li class="num">4</li>
+	</ul>
+	<input type="file" name="upload" style="position: absolute; top: 99999px;">
+	<label class="label-btn scan-b" onclick="gosx()"><button class="foreigner-btn ss-btn" type="button">开始录制</button></label>
+</div>
+<!-- 人像采集页面-end -->
+<!-- 人像采集页面-end -->
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/mui.picker.min.js"></script>
+<script src="js/data.js" charset="utf-8"></script>
+<script src="js/city.data3.js"></script>
+<script src="./js/api.js"></script>
+<script src="js/url.js"></script>
+<script type="text/javascript">
+
+	// 证件信息自动采集部分
+	var imgSrc = "";
+	var sheng = "";
+	var shi = "";
+	var qu = "";
+	var luxiang = "";
+	var text = "13";
+	//-----------------------------------------------------------------------------
+	window.onload = (function($, doc) {
+		$.init();
+		//  拟离开时间
+		var nlksjD = document.getElementById("nlksjD");
+		nlksjD.addEventListener('tap', function() {
+			var optionsJson = this.getAttribute('data-options') || '{}';
+			var options = JSON.parse(optionsJson);
+			var picker = new $.DtPicker(options);
+			picker.show(function(rs) {
+				document.getElementById("nlksj").value = rs.text
+				picker.dispose();
+			});
+		}, false);
+		//-证件到期时间---------------------------------------------------------------
+
+		var nlksjD = document.getElementById("zjdqD");
+		zjdqD.addEventListener('tap', function() {
+			var optionsJson = this.getAttribute('data-options') || '{}';
+			var options = JSON.parse(optionsJson);
+			var picker = new $.DtPicker(options);
+			picker.show(function(rs) {
+				document.getElementById("zjdq").value = rs.text;
+				jQuery("#zjdqtext").html(rs.text);
+				picker.dispose();
+			});
+		}, false);
+
+		//-出生日期时间---------------------------------------------------------------
+		var csrqLi = document.getElementById("csrq_li");
+		csrqLi.addEventListener('tap', function() {
+			var optionsJson = this.getAttribute('data-options') || '{}';
+			var options = JSON.parse(optionsJson);
+			//-马赫修改当前日期为起始日期---------------------------------------------------------------
+			//首先获取到当前的年月日
+
+			//初始化end
+			var picker = new $.DtPicker(options);
+			//-马赫修改当前日期为起始日期--
+
+			picker.show(function(rs) {
+				document.getElementById("by3").value = rs.text;
+				picker.dispose();
+			});
+		}, false);
+		//-出生日期时间----------------------------------------------------------------
+
+		//--国家地区----------------------------------------------------------------
+		var btn1 = jQuery('.btn1');
+		var result1 = jQuery('.result1');
+		btn1.each(function(i, btn) {
+			//普通联动
+			var userPicker = new $.PopPicker();
+			userPicker.setData(dataAdd[i]);
+			btn.addEventListener('tap', function(event) {
+
+				userPicker.show(function(items) {
+					result1[i].innerText = items[0].text;
+					//返回 false 可以阻止选择框的关闭
+					//	return false;
+					document.getElementById('gjdq').value = items[0].text;
+				});
+			}, false);
+		});
+
+		//-护照类型-------------------------------------------------------------------
+		var btn2 = jQuery('.btn2');
+		var result2 = jQuery('.result2');
+		btn2.each(function(i, btn) {
+			//普通联动
+			var userPicker = new $.PopPicker();
+			userPicker.setData(dataAdd[i + 1]);
+			btn.addEventListener('tap', function(event) {
+				userPicker.show(function(zjlx) {
+					result2[0].innerText = zjlx[0].text;
+					document.getElementById('zjlx').value = zjlx[0].text;
+
+				});
+
+			}, false);
+		});
+
+		//控制单选按钮
+		jQuery('#radios .radios-each').click(function() {
+			if (!jQuery(this).hasClass('selected')) {
+				jQuery(this).addClass('selected').siblings().removeClass('selected');
+				jQuery(this).find('input').prop('checked', true);
+				jQuery(this).siblings().find('input').prop('checked', false);
+			}
+		});
+
+		//点击上一步
+		 jQuery('#go').click(function(){
+			 jQuery(this).parents('.tab-item').hide();
+			 jQuery(this).parents('.tab-item').siblings('.tab-item').show();
+			 jQuery('.navigator .sec').eq(1).addClass('active');
+			 jQuery('.navigator .sec').eq(1).find('span').addClass('active');
+		 });
+
+		//  点击登录按钮
+		jQuery('#take').click(function(){
+		    var val = document.querySelectorAll('#box1 .infor3');
+			var mark = 0;
+			for (var i = 0; i < val.length; i++) {
+				val[i].value == '' ? mark = 1 : mark = 0;
+				if (mark) {
+					var con = val[i].previousElementSibling.innerText;
+					var conR = con.substring(0, con.length - 1);
+					//	alert(con);
+					mui.alert(conR + '不能为空!', '提示', '确定', null, 'div');
+					return false;
+				}
+			}
+			<!--jQuery('.big-box').hide();-->
+			<!--jQuery('.btn-scan').show();-->
+			<!--var oBox = document.getElementById('num-box');-->
+			<!--var oLi = oBox.getElementsByTagName('li');-->
+			<!--for( var i=0; i<oLi.length; i++){-->
+				<!--oLi[i].firstChild.nodeValue = Math.ceil(Math.random()*9);-->
+			<!--}-->
+			var xxdz = jQuery("#cityResult3").val() + jQuery("#xxdz").val();
+			var ywm = jQuery("#ywm").val();
+			var ywx = "";
+			var zwxm = jQuery("#zwxm").val();
+			<!--var xb = jQuery("#xb").val();-->
+			var xb = jQuery("input[type='radio']:checked").val();
+			var lxdh = jQuery("#lxdh").val();
+			var gjdq = jQuery("#gjdq").val();
+			var zjhm = jQuery("#zjhm").val();
+			var zjlx = jQuery("#zjlx").val();
+			var zjdq = jQuery("#zjdq").val();
+			var tlsy = jQuery("#tlsytext").html();
+			var sspcs = jQuery("#sspcs").val();
+			var gnlxr = jQuery("#gnlxr").val();
+			var gnlxdh = jQuery("#gnlxdh").val();
+			var nlksj = jQuery("#nlksj").val();
+			var type = '0';
+			var csrq = jQuery("#by3").val();
+
+			save(xxdz, ywm, ywx, zwxm, xb, lxdh, gjdq, zjhm, zjlx, zjdq, tlsy, sspcs, gnlxr, gnlxdh, nlksj, type, '', '', csrq);
+		});
+
+		//-----------------------------------------------------------------------------
+
+		 //点击确认信息按钮
+		jQuery('#login')[0].addEventListener('tap', function() {
+			var state = this.getAttribute('data-state');
+			var val = document.querySelectorAll('#box .infor1');
+			var mark = 0;
+			for (var i = 0; i < val.length; i++) {
+				val[i].value == '' ? mark = 1 : mark = 0;
+				if (mark) {
+					var con = val[i].previousElementSibling.innerText;
+					var conR = con.substring(0, con.length - 1);
+					//	alert(con);
+					mui.alert(conR + '不能为空!', '提示', '确定', null, 'div');
+					return false;
+				}
+			}
+			if(state==2){
+
+			} else if (state==0) {
+				jQuery('.sh-box').show();
+				jQuery(this).text('补充住宿信息');
+				jQuery(this).attr('data-state',1);
+			} else if(state==1){
+				//进行表单的非空验证
+				<!--var val = document.querySelectorAll('#box1 .infor');-->
+				<!--var mark = 0;-->
+				//  点击 补充住宿信息，进行非空验证
+				var val = document.querySelectorAll('#box2 .infor2');
+				var mark = 0;
+				for (var i = 0; i < val.length; i++) {
+					val[i].value == '' ? mark = 1 : mark = 0;
+					if (mark) {
+						var con = val[i].previousElementSibling.innerText;
+						var conR = con.substring(0, con.length - 1);
+						//	alert(con);
+						mui.alert(conR + '不能为空!', '提示', '确定', null, 'div');
+						return false;
+					}
+				}
+				showMap('#xxdz','#cityResult3');
+				jQuery(this).parents('.tab-item').hide();
+				jQuery(this).parents('.tab-item').siblings('.tab-item').show();
+				jQuery('.navigator .sec').eq(1).addClass('active');
+				jQuery('.navigator .sec').eq(1).find('span').addClass('active');
+				// for(var i=0; i<val.length; i++){
+				// 		val[i].value == '' ? mark = 1 : mark = 0;
+				// 		if(mark){
+				// 			var con = val[i].previousElementSibling.innerText;
+				// 			var conR = con.substring(0,con.length-1);
+				// 		//	alert(con);
+				// 			mui.alert(conR+'不能为空!','提示','确定',null,'div');
+				// 			return false;
+				// 		}
+				// }
+			}
+		 });
+
+
+		//-提留事由-------------------------------------------------------------------
+		var btn3 = jQuery('.btn3');
+		var result3 = jQuery('.result3');
+		btn3.each(function(i, btn) {
+			//普通联动
+			var userPicker = new $.PopPicker();
+			userPicker.setData(dataAdd[i + 2]);
+			btn.addEventListener('tap', function(event) {
+
+				userPicker.show(function(tlsy) {
+					result3[0].innerText = tlsy[0].text;
+					document.getElementById('tlsy').value = tlsy[0].value;
+					document.getElementById('tlsytext').innerText = tlsy[0].text;
+				});
+			}, false);
+		});
+
+		//---------------------------------------------------------------------
+		//3级联示例
+
+		var cityPicker3 = new $.PopPicker({
+			layer: 3
+		});
+		cityPicker3.setData(cityData3);
+		var showCityPickerButton = doc.getElementById('showCityPicker3');
+		var cityResult3 = doc.getElementById('cityResult3');
+		var cityText = cityResult3.innerText; //这行代码新加的0929
+		showCityPickerButton.addEventListener('tap', function(event) {
+			cityPicker3.show(function(items) {
+				//.innerText = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+				cityResult3.value = (items[0] || {}).text + (items[1] || {}).text + (items[2] || {}).text;
+				jQuery("#cityResult3").html((items[0] || {}).text + (items[1] || {}).text + (items[2] || {}).text);
+				jQuery("#cityR3").val((items[0] || {}).text + (items[1] || {}).text + (items[2] || {}).text);
+
+				//返回 false 可以阻止选择框的关闭
+				//return false;
+				//联动方法的调用-----------------------------------------------------
+				if (cityResult3.value != cityText) {
+					liandong();
+				}
+				//---------------------------------------------------------------------------
+			});
+		}, false);
+		// 派出所联动的具体方法-----------------------------------------------------------
+		function liandong() {
+			var address1 = document.getElementById('cityResult3').value;
+			//特殊处理长白山 10-14HWL
+			if(address1.indexOf('长白山') >= 0){
+			 address1 = address1.replace('长白山', '长白山市')
+			}
+			//特殊处理长白山 10-14HWL
+			var qsString1 = address1.split('省')[1]; // 留的是省后面的内容
+			var regionName1 = "";
+
+			//cityName =qsString.split('市')[1].split('区')[0]+"区分局";    //  取得是市和区 之间的内容
+			var a = "";
+			var b = "";
+			//qsString1.split('市')[1];
+			//qxname =qsString.split('区');
+
+
+
+
+			if (qsString1.split("州")[1] != undefined) {
+				regionName1 = qsString1.split('州')[0] + "州公安局"; //  州前面的内容
+				b = qsString1.split('州')[1];
+			} else {
+				regionName1 = qsString1.split('市')[0] + "市公安局"; //  市前面的内容
+				b = qsString1.split('市')[1];
+			}
+
+
+
+			if (b.split("区")[1] != undefined) {
+				cityName1 = b.split('区')[0] + "区分局";
+
+			} else if (b.split("县")[1] != undefined) {
+				cityName1 = b.split('县')[0] + "县公安局";
+
+			} else {
+				if(b.split("市")[0] != undefined){
+					cityName1 = b.split('市')[0] + "市公安局";
+				}else{
+					cityName1 = b + "市公安局";
+				}
+
+			}
+			for (var j = 0; j < CityJson.length; j++) {
+				if (CityJson[j].region.text == regionName1) {
+					for (var k = 0; k < CityJson[j].region.state.length; k++) {
+						if (CityJson[j].region.state[k].text == cityName1) {
+							// alert(dataP)
+							dataP = CityJson[j].region.state[k].city;
+							///dataS=CityJson[j].region.state[k].city.value;
+
+						}
+
+					}
+
+				}
+			};
+			jQuery("#sspcs").val("");
+			jQuery("#sspcsName").val("");
+
+		}
+		//联动方法结束-------------------------------------------------------------------
+	})(mui, document);
+
+
+	//------------------------------------------------------------------------------
+
+	window.onload = (function($) {
+
+	}(jQuery))
+	//-----------------------------------------------------------------------------
+
+	//	获取扫描信息
+	$(document).ready(function() {
+		var btnArray = ['否', '是'];
+		var $dataStr = userInfoNew();
+		if ($dataStr) {
+			var $data = eval('(' + $dataStr + ')');
+			if($data.zjhm==undefined || $data.zjhm==''){
+				mui.confirm('证件识别失败,是否重新拍摄?','提示',btnArray,function(e){
+					if (e.index == 1) {
+						openzhaoxiang();
+					}
+				});
+			}
+			$("#ywm").val($data.ywxm);
+			$("#zjhm").val($data.zjhm.replace("NO","No"));
+			if ($data.xb == '女') {
+				$("#nvclass").attr("class", "radios-each selected");
+				$("#nanclass").attr("class", "radios-each");
+				$("#nv").prop('checked', true);
+			} else {
+				$("#nvclass").attr("class", "radios-each");
+				$("#nanclass").attr("class", "radios-each selected");
+				$("#nan").prop('checked', true);
+			}
+			$("#by3").val($data.csrq);
+			$("#xb").val($data.xb);
+			var gjdq = $data.gjdq
+			if (gjdq == 'CHN') {
+				$("#gjdq").val("中国");
+				$("#gjdqtext").html("中国");
+			} else if (gjdq == 'KOR') {
+				$("#gjdq").val("韩国");
+				$("#gjdqtext").html("韩国");
+			} else if (gjdq == 'USA') {
+				$("#gjdq").val("美国");
+				$("#gjdqtext").html("美国");
+			} else if (gjdq == 'GBR') {
+				$("#gjdq").val("英国");
+				$("#gjdqtext").html("英国");
+			} else if (gjdq == 'PRK') {
+				$("#gjdq").val("朝鲜");
+				$("#gjdqtext").html("朝鲜");
+			} else if (gjdq == 'DEU') {
+				$("#gjdq").val("德国");
+				$("#gjdqtext").html("德国");
+			} else if (gjdq == 'FRA') {
+				$("#gjdq").val("法国");
+				$("#gjdqtext").html("法国");
+			} else if (gjdq == 'JPN') {
+				$("#gjdq").val("日本");
+				$("#gjdqtext").html("日本");
+			} else {
+				var gjdqArr = dataAdd[0];
+				for (var i = 0; i < gjdqArr.length; i++) {
+					if (gjdq == gjdqArr[i]['value']) {
+						$("#gjdq").val(gjdqArr[i]['text']);
+						$("#gjdqtext").html(gjdqArr[i]['text']);
+						break;
+					}
+				}
+			}
+			$("#zjdq").val($data.zjdq);
+			$("#zjdqtext").html($data.zjdq);
+
+			//护照类型------------------------------------------------
+			var hz = $data.zjlx;
+			var hzlx = "";
+			if (hz == "P") { //因公普通护照
+				hzlx = "因公普通护照";
+			} else if ((hz == "S")||(hz == "O")) { //公务护照
+				hzlx = "公务护照";
+			} else if (hz == "D") { //外交护照
+				hzlx = "外交护照";
+			} else { //因私普通护照
+				hzlx = "普通护照";
+			}
+			$("#zjlx").val(hzlx);
+			$("#zjlxtext").html(hzlx);
+		} else {
+			mui.confirm('证件识别失败,是否重新拍摄?','提示',btnArray,function(e){
+				if (e.index == 1) {
+					openzhaoxiang();
+				}
+			});
+		}
+	})
+	function fanhui(){
+		location = 'choose_roles.html';
+	}
+	function openluxiang(){
+		 location = 'scan.html';
+	}
+	function openzhaoxiang(){
+		 //location = 'photo_hint.html';
+		 scan();
+	}
+
+	// 无论定位与否，派出所与省市县的联动
+	//================================================================================
+	(function($, doc) {
+
+		$.init();
+
+		var btn1 = $('.btn-eap');
+		var result1 = $('.result-eap');
+		var result2 = $('.result-eapvalue');
+		btn1.each(function(i, btn) {
+			//普通联动
+			var userPicker = new $.PopPicker();
+			//		console.log(dataP)
+
+			btn.addEventListener('tap', function(event) { //=============================
+				userPicker.setData(dataP); //================================他们俩个的顺序互换了一下
+				userPicker.show(function(items) {
+					result1[i].value = items[0].text;
+					result2[i].value = items[0].value;
+					//    alert(items[0].value)
+
+
+
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+		});
+	})(mui, document);
+
+	//表单的非空验证----------------------------------------------------------------
+
+</script>
+
+</html>

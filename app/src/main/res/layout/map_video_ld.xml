@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <SurfaceView
+        android:id="@+id/arc_hf_video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/video_background"
+        />
+    <RelativeLayout
+        android:id="@+id/rl_random"
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#e0000000"
+        android:layout_alignParentTop="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:letterSpacing="1.5"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:id="@+id/num"
+            />
+        <TextView
+            android:id="@+id/tv_remind"
+            android:text="@string/remind"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+    <ProgressBar
+        android:layout_below="@id/rl_random"
+        android:id="@+id/progress_horizontal_color"
+        android:indeterminate="false"
+        style="@style/progressBarHorizontal_color"
+        android:layout_width="match_parent"
+        android:layout_height="6dip"
+        android:max="5" android:progress="0" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/btn_video_start"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/video_btn"/>
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        .btns button { border-radius: 50px; }
+        .btns button:last-child { background: #ccc; color: #333; }
+        #tssj { text-indent: 0px!important;  padding-left: 10px!important; padding-right: 10px!important; line-height: 1.5; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">外国人签证申请</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:10px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box" style="margin-top: 50px!important;">
+                    <li class="mui-table-view-cell me-name" id="tssj">
+                        <div id="ts"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="me-p-bottom btns" id="btn" style=" background: #fff;">
+                <!-- <button type="button" class="foreigner-btn" style="margin:10px auto;">下一步</button>
+                <button type="button" class="foreigner-btn" style="margin:10px auto;">下一步</button> -->
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="js/add_script.js"></script>
+
+<script>
+var crjbasePath=  'http://221.8.52.247:8445/jit_crj/';
+    // 标示是否显示护照首申
+var ywcode = GetQueryString('ywbh');
+var type = GetQueryString('type');
+    // 标示是否显示港澳首申
+var ly = GetQueryString('ly');
+    // 标示是否显示台湾首申
+var zjlx = GetQueryString('xcyzjlx');
+var sishu= GetQueryString('sishu');
+var gj = GetQueryString('gj');
+var day = GetQueryString('flagday');
+var nfzjlx = GetQueryString('nfzjlx');
+var Bdate = GetQueryString('sorts');
+var birthday=GetQueryString('birthday');
+var djdwxzqh=GetQueryString('djdwxzqh');
+var xcyzjlx = GetQueryString('xcyzjlx');
+var xcyqzUntil = GetQueryString('xcyqzUntil');
+var qzyyx = GetQueryString('qzyyx');
+var surname = GetQueryString('surname');
+var givenName = GetQueryString('givenName');
+var passportNo = GetQueryString('passportNo');
+var njld = GetQueryString('njld');
+var ywcode = GetQueryString('ywbh');
+var gj = GetQueryString('gj');
+var birthday = GetQueryString('birthday');
+var djdwxzqh = GetQueryString('djdwxzqh');
+var dateB= GetQueryString('dateB');
+var valid_until= GetQueryString('btwrzhqx');
+var nfzjlx_cl= GetQueryString('nfzjlx_cl');
+
+
+var rflag="";
+var str="";
+    $(function() {
+        
+        var ts="";
+        var sjdw = "" ;
+        var bzdt="";
+        str=Bdate.substr(0,4)+'年'+Bdate.substr(5,2)+'月'+Bdate.substr(8,2)+'日的';
+        str=str+GetQueryString('nfzjlx_name');
+        
+        var nfzjlx_cl = GetQueryString('nfzjlx_cl');
+        //var url1 = 'datas/noname.json';
+        //var url2 = 'datas/noname2.json';
+        var crjbasePath = 'http://221.8.52.247:8445/jit_crj/';
+         $.ajax({
+            url: crjbasePath+"crj/after/findcrjNamebytype.do",
+            //url: url1,
+            data:{
+                djdwxzqh : djdwxzqh.substring(0,4)
+            },
+            dateType:"json",
+            success: function(data) {
+                 var data1=eval("("+data+")");
+                sjdw = data1.data;
+                bzdt=data1.data;
+            }
+        }); 
+        var crjbasePath = 'http://221.8.52.247:8445/jit_crj/';
+        $.ajax({
+             url: crjbasePath+"crj/gccry/findBypassport.do",
+             //url:url2,
+             type:"post",
+             dateType:"json",
+             success: function(data) {
+                if(data==1){
+                     
+                    var arr1=birthday.substring(0,10);
+                    var myDate = new Date();
+                    var date2=myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate();
+                    var arrDate, objDate1, objDate2, d;
+
+                    objDate1 = new Date();
+                    objDate2 = new Date();
+
+                    arrDate = arr1.split("-");
+                    objDate1.setFullYear(arrDate[0], arrDate[1], arrDate[2]);
+
+                    arrDate = date2.split("-");
+                    objDate2.setFullYear(arrDate[0], arrDate[1], arrDate[2]);
+
+                    d = parseInt(Math.abs(objDate2-objDate1) / 1000 / 60 / 60 / 24);
+                    var pjstr="";
+
+
+                    var sjdw = GetQueryString('sjdw');
+                    var qz = decodeURI(GetQueryString('nfzjlx_name'));
+                    var qzsplit=[];
+                    qzsplit=qz.split("/");
+                    if(d<(16*365)){
+                        pjstr="您好，您申请编号是"+ywcode+"。请上传申请材料进行在线预审核,上传材料为图片格式，请提前准备，正确的材料有助于提高办证成功率。";
+                        var btnstr = '<button type="button" class="foreigner-btn" style="margin:10px auto; background : #3891e5 ;">网上材料预审核</button>';
+                        $("#btn").append(btnstr);
+                    }else if(d>(60*365)){
+                         pjstr="您好，您申请编号是"+ywcode+"。请上传申请材料进行在线预审核,上传材料为图片格式，请提前准备，正确的材料有助于提高办证成功率。";
+                        var btnstr = '<button type="button" class="foreigner-btn" style="margin:10px auto; background : #3891e5 ;">网上材料预审核</button>';
+                        $("#btn").append(btnstr);
+                    }else{
+                        //非全流程办理
+                       pjstr="您好，您申请编号是"+ywcode+"。请上传申请材料进行在线预审核,上传材料为图片格式，请提前准备，正确的材料有助于提高办证成功率。";
+                        var btnstr = '<button type="button" class="foreigner-btn" style="margin:10px auto; background : #3891e5 ;" >网上材料预审核</button>';
+                        $("#btn").append(btnstr);
+                    }
+                }else if(data==0){
+                     pjstr="您好，您申请编号是"+ywcode+"。请上传申请材料进行在线预审核,上传材料为图片格式，请提前准备，正确的材料有助于提高办证成功率。";
+                    var btnstr = '<button type="button" class="foreigner-btn" style="margin:10px auto; background : #3891e5 ;">网上材料预审核</button>';
+                    $("#btn").append(btnstr);
+                }
+                $("#ts").html(pjstr);
+                //点击按钮
+                mui('.foreigner-btn')[0].addEventListener('tap',function(){
+
+		          window.location.href = 'update.html?nfzjlx_cl='+nfzjlx_cl+'&ywcode='+ywcode;
+                });
+              // mui('.foreigner-btn')[1].addEventListener('tap',function(){
+                   // window.location.href = '../../foreigner/html/main_frm.html';
+                //});
+            }
+        });
+        
+        
+    });
+</script>
+</html>

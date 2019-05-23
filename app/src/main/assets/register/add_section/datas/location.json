@@ -1,0 +1,13 @@
+{"code":"000000",
+ "data":[{"dicCode":"220100","dicHierarchy":0,"dicName":"长春市","dicOrder":10,"dicRemark":"行政区划划分","dicType":"1","id":"22010000","pid":"22000000"},{"dicCode":"220200","dicHierarchy":0,"dicName":"吉林市","dicOrder":20,"dicRemark":"行政区划划分","dicType":"1","id":"22020000","pid":"22000000"},
+ 	{"dicCode":"220300","dicHierarchy":0,"dicName":"四平市","dicOrder":30,"dicRemark":"行政区划划分","dicType":"1","id":"22030000","pid":"22000000"},
+ 	{"dicCode":"220400","dicHierarchy":0,"dicName":"辽源市","dicOrder":40,"dicRemark":"行政区划划分","dicType":"1","id":"22040000","pid":"22000000"},
+ 	{"dicCode":"220500","dicHierarchy":0,"dicName":"通化市","dicOrder":50,"dicRemark":"行政区划划分","dicType":"1","id":"22050000","pid":"22000000"},
+ 	{"dicCode":"220600","dicHierarchy":0,"dicName":"白山市","dicOrder":60,"dicRemark":"行政区划划分","dicType":"1","id":"22060000","pid":"22000000"},
+ 	{"dicCode":"220700","dicHierarchy":0,"dicName":"松原市","dicOrder":70,"dicRemark":"行政区划划分","dicType":"1","id":"22070000","pid":"22000000"},
+ 	{"dicCode":"220800","dicHierarchy":0,"dicName":"白城市","dicOrder":80,"dicRemark":"行政区划划分","dicType":"1","id":"22080000","pid":"22000000"},
+ 	{"dicCode":"222400","dicHierarchy":0,"dicName":"延边州","dicOrder":90,"dicRemark":"行政区划划分","dicType":"1","id":"22240000","pid":"22000000"},
+ 	{"dicCode":"220381","dicHierarchy":0,"dicName":"公主岭市","dicOrder":304,"dicRemark":"行政区划划分","dicType":"1","id":"220381000","pid":"22000000"},
+ 	{"dicCode":"220581","dicHierarchy":0,"dicName":"梅河口市","dicOrder":505,"dicRemark":"行政区划划分","dicType":"1","id":"22402100","pid":"22000000"},
+ 	{"dicCode":"229438","dicHierarchy":0,"dicName":"珲春市","dicOrder":910,"dicRemark":"行政区划划分","dicType":"1","id":"22943800","pid":"22000000"}],
+"msg":"成功"}

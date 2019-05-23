@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>入口</title>
+	<link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+    <link rel="stylesheet" href="css/add_style.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="../js/font.js"></script>
+    <script src="js/getQueryString.js"></script>
+    <script src="js/url.js"></script>
+    <style>
+        #days { float: right; background: transparent; padding-right: 20px!important; color: red; }
+        #days::after { display: none; }
+        #tssj { text-indent: 0px!important;  padding-left: 10px!important; padding-right: 10px!important; line-height: 1.5; }
+    </style>
+</head>
+<body>
+	<header>
+        <div class="top-box black-back">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left me-white me-top icon-pos"></a>
+            <h1 class="main-title">外国人签证申请</h1>
+        </div>
+    </header>
+    <div class="mui-content" style="margin-top:43px;">
+        <div class="tab-box">
+            <div class="tab-item">
+                <ul class="mui-table-view me-top me-padding-reset" id ="box">
+                    <li class="mui-table-view-cell me-name" id="tssj"></li>
+                    
+                    <li class="mui-table-view-cell mui-media btn" data-options='{"type":"date"}'>
+                        <a class="mui-navigate-right">
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon6.jpg"></div>
+                            <div class="mui-media-body me-list-con">在吉停留时限<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 result"   placeholder="请选择" style="width: 2rem!important;"/>
+                            <input type="hidden" name="sorts" id="sorts" data-kind="1">
+                        </a>
+                    </li>
+                    <!--<li class="mui-table-view-cell me-name" id="days"></li>-->
+                    <li class="mui-table-view-cell mui-media" id="private" data-state="0" style="display: none;">
+                        <a>
+                            <div class="me-media-pic mui-pull-left"><img class="mui-media-object" src="../img/icon/icon1.jpg"></div>
+                            <div class="mui-media-body me-list-con">申请事由<span class="me-red">*</span></div>
+                            <input  type="text" class="me-tips write infor1 " name="shenqingshiyou" id="shenqingshiyou" value="" placeholder="请输入申请事由" />
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="me-p-bottom" style=" background: #fff;">
+                <button type="button" class="foreigner-btn" id="blwjbtn" data-state="1" style="margin:10px auto;">下一步</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="datas/papers_json.js" charset="utf-8"></script>
+<script src="js/add_script.js"></script>
+<script>
+    mui.init();
+    //当前日期
+    var nowdate= (new Date()).getTime();
+    var xcyqzUntil=(new Date(GetQueryString('xcyqzUntil'))).getTime();
+    var xcyzjlx= GetQueryString('xcyzjlx');
+    var crjbasePath= 'http://221.8.52.247:8445/jit_crj/';
+    // 标示是否显示护照首申
+    var type = GetQueryString('type');
+    // 标示是否显示港澳首申
+    var ly = GetQueryString('ly');
+   var xcyzjlx = GetQueryString('xcyzjlx');
+var xcyqzUntil = GetQueryString('xcyqzUntil');
+var qzyyx = GetQueryString('qzyyx');
+var surname = GetQueryString('surname');
+var givenName = GetQueryString('givenName');
+var passportNo = GetQueryString('passportNo');
+var njld = GetQueryString('njld');
+var ywbh = GetQueryString('ywbh');
+var gj = GetQueryString('gj');
+var birthday = GetQueryString('birthday');
+var djdwxzqh = GetQueryString('djdwxzqh');
+    // 标示是否显示台湾首申
+    var zjlx = GetQueryString('zjlx');
+    var sishu= GetQueryString('sishu');
+    //不知明变量
+    var dateB= GetQueryString('dateB');
+    var valid_until= GetQueryString('btwrzhqx');
+    // 关系（暂且不明什么用途）
+    var btwrtlts = GetQueryString('btwrtlts');
+
+    var day="0";
+    var tishistr="";
+
+    dateTips();
+
+    (function($){
+        //初始化页面
+       
+        //选择普照有效日期
+        var result = mui('.result');
+        var btns = mui('.btn');
+       /* btns.each(function(i, btn) {
+            btn.addEventListener('tap', function() {
+                var optionsJson = this.getAttribute('data-options') || '{}';
+                var options = JSON.parse(optionsJson);
+                var id = this.getAttribute('id');
+
+
+                var picker = new mui.DtPicker(options);
+                picker.show(function(rs) {
+
+
+                    result[i].setAttribute('value',rs.value);
+                    changeDate();
+
+                      返回 false 可以阻止选择框的关闭
+                      return false;
+
+
+                    picker.dispose();
+                });
+            }, false);
+        });
+*/
+            var userPicker = new mui.PopPicker();
+            userPicker.setData(timeD);
+            btns[0].addEventListener('tap', function(event) {
+                userPicker.show(function(items) {
+                    result[0].value = items[0].text;
+                    document.getElementById('sorts').value = items[0].value;
+                    <!--initDitu();-->
+                });
+            }, false);
+
+        //点击下一步按钮
+        mui('.foreigner-btn')[0].addEventListener('tap',function(){
+            CheckDate();
+
+        })
+    })(jQuery)
+</script>
+</html>

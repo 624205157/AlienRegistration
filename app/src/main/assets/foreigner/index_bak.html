@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>APP_来华提醒</title>
+    <link rel="stylesheet" type="text/css" href="./css/aui.2.0.css" />
+    <style type="text/css">
+        .aui-list .aui-list-item-media {
+            width: 6rem;
+        }
+        .aui-content { padding-bottom: 3rem; padding-top: 2.25rem;}
+        .aui-media-list .aui-list-item-inner {
+            display: block;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        .aui-bar-nav { position: fixed;}
+    </style>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+    <div class="aui-title"> </div>
+</header>
+</body>
+<body>
+    <div id="content" >	
+    <div class="aui-content">
+        <ul class="aui-list aui-media-list" id="liContent">
+            <li class="aui-list-item" style="display:none;">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title" onclick="window.location.href='news_info.html'">湖南“透明厕所”：挑战游客尊严底线</div>
+                        </div>
+                        <div class="aui-info aui-padded-b-0">
+                            <div class="aui-info-item aui-font-size-12">
+                                <img src="./image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5">重要提醒</span>
+                                </div>
+                            <div class="aui-info-item aui-font-size-12">2015-07-14 10:31</div>
+                        </div>
+                    </div>
+                    <div class="aui-list-item-media">
+                        <img src="./image/demo/4.jpg">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+ 
+    <footer class="aui-bar aui-bar-tab" id="footer">
+        <div class="aui-bar-tab-item aui-active" tapmode onclick="window.location.href='demo_news_today_frm.html'">
+            <div class="aui-dot"></div>
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-bar-tab-label">来华提醒</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode onclick="window.location.href='lyqz_form.html'">
+            <i class="aui-iconfont aui-icon-edit"></i>
+            <div class="aui-bar-tab-label">个人旅游签注</div>
+        </div>
+    </footer>
+<body>
+<div style="position: fixed; left: 50% ;bottom: -15px; margin-left: -40px; width: 80px; height: 80px; z-index: 10;"><img src="./image/menu_icon1.png" alt="" style="width: 100%"/> </div>
+
+<script type="text/javascript" src="./script/api.js" ></script>
+<script type="text/javascript" src="./script/zepto.js" ></script>
+<script type="text/javascript">
+  apiready = function(){
+        api.parseTapmode();
+        var header = $api.byId('aui-header');
+        $api.fixStatusBar(header);
+        var headerPos = $api.offset(header);
+        var body_h = $api.offset($api.dom('body')).h;
+        api.openFrame({
+            name: 'index',
+            url: 'index.html',
+            bounces: false,
+            rect: {
+                x: 0,
+                y: headerPos.h,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+
+
+    };
+    function closeWin(){
+        api.closeWin({
+        });
+    }
+  apiready = function(){
+	 	   		api.ajax({
+			    url: 	'http://192.168.31.235:8099/jeesite/f/cms/article/searchTitle',
+			    method: 'get',
+			    data: { 
+	    		      values: { 
+				            //sfzhm :$("#sfzhm").val(),
+				    	    //oilType: $('input[name="oilType"]:checked').val(),
+				    	    //oilQuantity:$("#oilQuantity").val(),
+				    	    //remarks:$("#remarks").val()
+			        	}
+	    		     }
+				},function(ret, err){
+			    for(var i=0;i<ret.length;i++){
+				    $("#liContent").append('<li class="aui-list-item">'+
+				                '<div class="aui-media-list-item-inner">'+
+				                    '<div class="aui-list-item-inner">'+
+				                        '<div class="aui-list-item-text">'+
+				                            '<div class="aui-list-item-title" onclick="showDetail('+ret[i].id+');">'+ret[i].title+'</div>'+
+				                        '</div>'+
+				                        '<div class="aui-info aui-padded-b-0">'+
+				                            '<div class="aui-info-item aui-font-size-12">'+
+				                                '<img src="./image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5">'+ret[i].categoryName+'</span>'+
+				                                '</div>'+
+				                            '<div class="aui-info-item aui-font-size-12">'+ret[i].time+'</div>'+
+				                        '</div>'+
+				                    '</div>'+
+				                    '<div class="aui-list-item-media">'+
+				                        '<img src="http://192.168.31.235:8099'+ret[i].image+'">'+
+				                    '</div>'+
+				                '</div>'+
+				            '</li>' 
+                        ); 
+                }
+			});
+ 	    }
+    function showDetail(id){
+        window.location.href="html/news_info.html?id="+id;       
+    }
+</script>
+</html>

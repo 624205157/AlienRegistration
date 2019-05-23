@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/reset.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="js/font.js"></script>
+    <style>
+    	html,body { height: 100%; }
+    	.mui-content.back-white{background: #837c76;}
+    	img { position: absolute; bottom: 0px;}
+    </style>
+</head>
+<body>
+	<div class="mui-content back-white">
+	    <img src="img/passport.jpg" width="100%"/>
+	</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  	mui.init();
+    mui('body')[0].addEventListener('tap',function(){
+        window.location.href = 'add_section/add_visa_list_english.html'
+    })
+</script>
+</html>

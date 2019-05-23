@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/reset.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <script src="../js/font.js"></script>
+    <script src="../js/cookie.js"></script>
+	<script type="text/javascript" src="../js/android.js"></script>
+	<script src="js/getQueryString.js"></script>
+	<script src="js/url.js"></script>
+    <style>
+    	html,body { height: 100%; background: #fff; overflow: hidden;}
+    	.mui-content{ background: #fff;}
+      .btns button {
+  			display: inline-block;
+  			width: calc(50% - 30px);
+  			margin-left: 0px!important;
+  		}
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+	    <div class="home-box">
+	    	<div class="home-title" style="margin-top:50px;">
+	    		<h1>请您拍摄护照资料页照片</h1>
+	    	</div>
+	    	<div class="deco-pic" style="margin-top:-10px;"><img src="../img/visa.png" width="100%" alt="" /></div>
+	    	<div class="hint">
+	    		<p class="hint-each">拍摄时注意光照的影响，尽量避免反光和黑影，尤其是证件有薄膜覆盖的时候；</p>
+	    		<p class="hint-each">拍摄时做好聚焦，以免图像模糊不清；</p>
+	    		<p class="hint-each">尽量不要使拍摄角度倾斜过大，以免造成图像变形。</p>
+	    	</div>
+	    	<button type="button" class="foreigner-btn" style="margin: 25px auto 25px;" >开始拍照</button>
+	    </div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script type="text/javascript" src="../js/api.js"></script>
+<script type="text/javascript" charset="utf-8">
+  mui.init();
+  //调用照相机拍摄照片
+  mui('button')[0].addEventListener('tap',function(){
+  	window.AndroidWebView.showInfoFromJs('visa','ch','','');
+    //window.location.href = '../passport.html';
+  })
+</script>
+</html>
