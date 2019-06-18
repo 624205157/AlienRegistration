@@ -298,7 +298,16 @@ h4 small,h5 small,h6 small {
 	font-size: 75%;
 }
 .aui-font-size-12 {
-	font-size: 0.6rem !important;
+	font-size: 0.7rem !important;
+	color:#999;
+	font-family:"微软雅黑";
+}
+.aui-font-size-10 {
+	font-size: 0.5rem !important;
+	color:#ccc;
+	font-family:"微软雅黑";
+	display:block;
+	float:left;
 }
 .aui-font-size-14 {
 	font-size: 0.7rem !important;
@@ -586,14 +595,14 @@ img.aui-img-round {
 button, .aui-btn {
 	position: relative;
 	display: inline-block;
-	font-size: 0.7rem;
+	font-size: 0.9rem;
 	font-weight: 400;
 	font-family: inherit;
 	text-decoration: none;
 	text-align: center;
 	margin: 0;
 	background: #e0e0e0;
-	padding: 0.25rem 0.6rem;
+	padding: 0.3rem 0.6rem;
 	border-radius: 0.2rem;
 	-webkit-box-sizing: border-box;
 			box-sizing: border-box;
@@ -721,7 +730,7 @@ textarea {
     width: 100%;
     min-height: 2.2rem;
     color: #424242;
-    font-size: 0.8rem;
+    font-size:0.8rem;
     font-family: inherit;
     box-sizing: border-box;
     -webkit-user-select: text;
@@ -730,6 +739,7 @@ textarea {
             appearance: none;
     -webkit-appearance: none;
 }
+textarea span{ margin-left:10px;}
 input[type="search"]::-webkit-search-cancel-button {
 	display: none;
 }
@@ -871,14 +881,20 @@ input[type="search"]::-webkit-search-cancel-button {
     font-size: 0.8rem;
     position: relative;
     max-width: 100%;
-    color: #212121;
+    color: #000;
+	font-family:"微软雅黑";
+}
+.aui-list .aui-list-item-title p {
+    font-size: 0.8rem;
+    color: #000;
+	font-family:"微软雅黑";
 }
 .aui-list .aui-list-item-right,
 .aui-list-item-title-row em {
 	max-width: 50%;
 	position: relative;
     font-size: 0.6rem;
-    color: #757575;
+    color: #999;
     margin-left: 0.25rem;
 }
 .aui-list .aui-list-item-inner p {
@@ -1476,6 +1492,8 @@ input[type="search"]::-webkit-search-cancel-button {
 	text-align: center;
 	display: table;
 }
+.aui-bar .add{ margin-right:0.7rem;  
+	}
 .aui-bar-nav {
 	top: 0;
 	line-height: 2.25rem;

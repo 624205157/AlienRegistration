@@ -31,17 +31,21 @@
 
 
 				<div class="btn-each"  onclick="openZhWKT()">
-					<div class="btn-pic"></div>
+					<div ><img style="width:60px;height:60px" src="../img02/btn0.png"></div>
 					<h1>住宿登记</h1>
 					<p>临住信息登记管理</p>
 				</div>
 
-
-
 				<div class="btn-each"  onclick="openZhQIANZHENG()">
-					<div class="btn-pic"></div>
+					<div ><img style="width:60px;height:60px" src="../img02/btn1.png"></div>
 					<h1>签证申请</h1>
 					<p>快速在线办理签证</p>
+				</div>
+				
+				<div class="btn-each" onclick="openLyzx()">
+					<div ><img style="width:60px;height:60px" src="../img02/btn2.png"></img></div>
+					<h1>留言咨询</h1>
+					<p>方便提问与解答</p>
 				</div>
 			</div>
 			<div class="enter-box">
@@ -94,7 +98,7 @@
 
                <!--住宿登记英文-->
 				<div class="btn-each"  onclick="openEnWKT()">
-					<div class="btn-pic"></div>
+					<div><img style="width:80px;height:80px" src="../img02/btn0.png"></div>
 					<h1>Accommodation registration</h1>
 					<p>Registration and management of impending information</p>
 				</div>
@@ -102,10 +106,17 @@
 
                <!--签证申请 英文-->
 				<div class="btn-each"  onclick="openQIANZHENG()">
-					<div class="btn-pic"></div>
+					<div><img style="width:80px;height:80px" src="../img02/btn1.png"></div>
 					<h1>visa application</h1>
 					<p>A quick online visa</p>
 				</div>
+				
+				<div class="btn-each" onclick="">
+					<div ><img style="width:80px;height:80px" src="../img02/btn2.png"></img></div>
+					<h1>Message consultation</h1>
+					<p>Convenient questions and answers</p>
+				</div>
+				
 			</div>
 			<div class="enter-box">
 
@@ -153,6 +164,12 @@ location = '../../register/choose_roles.html';
 // 在线办理签证的中文跳转页面
 function openZhQIANZHENG(){
 location = '../../register/add_section/index_entry.html';
+}
+
+// 留言咨询的中文跳转页面
+function openLyzx(){
+var phoneSid = AndroidWebView.getMyIMEI();
+location = '../html/lyzx_list.html';
 }
 // 吉林简介中文版
  function openZhJljj(){

@@ -1,6 +1,7 @@
 package com.zhhl.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,9 +15,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.webkit.CookieManager;
@@ -127,6 +132,7 @@ public class FirstActivity extends Activity implements MyWebChomeClient.OpenFile
         fixDirPath();
 
         checkVersion();
+
     }
 
     private void checkVersion() {
@@ -231,6 +237,40 @@ public class FirstActivity extends Activity implements MyWebChomeClient.OpenFile
             }
             return "";
         }
+
+        @JavascriptInterface
+        public String getMyIMEI(){
+            String IMEI = getDeviceId(FirstActivity.this);
+            if (TextUtils.isEmpty(IMEI)){
+                Toast.makeText(FirstActivity.this,"未获取到设备编号，请点击允许获取权限",Toast.LENGTH_LONG).show();
+            }
+            return IMEI;
+        }
+    }
+
+
+
+    public final static int REQUEST_READ_PHONE_STATE = 1;
+
+
+    @SuppressLint("HardwareIds")
+    public static String getDeviceId(Context context) {
+        String deviceId = "";
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (null != tm) {
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+            } else {
+                if (tm.getDeviceId() != null) {
+                    deviceId = tm.getDeviceId();
+                } else {
+                    deviceId = Settings.Secure.getString(context.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+                }
+            }
+            Log.d("deviceId--->", deviceId);
+            return deviceId;
+        }
+        return "";
     }
 
     public class MyWebViewClient extends WebChromeClient {
@@ -577,6 +617,13 @@ public class FirstActivity extends Activity implements MyWebChomeClient.OpenFile
                 restoreUploadMsg();
                 break;
 
+            case REQUEST_READ_PHONE_STATE:
+                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    getDeviceId(this);
+                } else {
+                    Toast.makeText(this, "权限已被用户拒绝", Toast.LENGTH_SHORT).show();
+                }
+                break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }

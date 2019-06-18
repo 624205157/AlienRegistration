@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>问题咨询详情</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+    <style type="text/css">
+        .aui-list .aui-list-item-media {
+            width: 6rem;
+        }
+        .aui-content { padding-bottom: 3rem;}
+        .aui-media-list .aui-list-item-inner {
+            display: block;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        .pad_top { padding: 10px 0;}
+        .aui-bar-nav { position: fixed;}
+    </style>
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title" >详细信息</div>
+    </header>
+
+    <div class="aui-content" style="margin-top:40px">
+        <ul class="aui-list aui-media-list" >
+       <li class="aui-list-item" id="wrapInfo">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title"><p>问题描述：</p></div>
+                <div class="aui-info  aui-padded-t-0 aui-padded-r-15">
+                    <div class="aui-info-item aui-font-size-12">
+                        <span class="aui-margin-l-5" id="categoryName"></span>
+                    </div>
+                </div>
+                <div class="aui-row aui-row-padded aui-margin-t-5">
+                   <p>回复内容：</p>
+                </div>
+                <p id="content">
+					
+                </p>
+            </div>
+        </li>
+        </ul>
+    </div>
+
+
+</body>
+<!-- <script type="text/javascript" src="../script/api.js"></script> -->
+<script type="text/javascript" src="../script/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../script/jquery.i18n.properties-min-1.0.9.js"></script>
+<script type="text/javascript" src="../script/jquery.cookie.js"></script>
+<script type="text/javascript" src="../script/i18n.js"></script>
+<script type="text/javascript">
+
+
+ //获取参数
+  function getParams(key) {
+  		var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+  		var r = window.location.search.substr(1).match(reg);
+  		if (r != null) {
+  			return unescape(r[2]);
+  		}
+  		return null;
+  	};
+
+    $(function($) {
+      //var languageType=$.cookie('languageType');
+
+      //loadProperties('strings', 'properties/',"zh");
+      $("[data-locale]").each(function(){
+      $(this).html(i18n_zh[$(this).data("locale")]);
+    });
+      var id = getParams("id");
+	  var consultIssue = getParams("consultIssue");
+	  var revertContent = getParams("revertContent");
+          $("#categoryName").html(consultIssue);
+          $("#content").html(revertContent);
+          
+       
+    });
+
+    function closeWin(){
+      window.history.back();
+    }
+</script>
+</html>
