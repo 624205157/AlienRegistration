@@ -59,35 +59,40 @@
 <script type="text/javascript">
 
 
- //获取参数
-  function getParams(key) {
-  		var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-  		var r = window.location.search.substr(1).match(reg);
-  		if (r != null) {
-  			return unescape(r[2]);
-  		}
-  		return null;
-  	};
+    
 
     $(function($) {
       //var languageType=$.cookie('languageType');
 
       //loadProperties('strings', 'properties/',"zh");
       $("[data-locale]").each(function(){
-      $(this).html(i18n_zh[$(this).data("locale")]);
+        $(this).html(i18n_zh[$(this).data("locale")]);
+      });
+      var urlParams = getParamsArr(window.location.href);
+      var issure = decodeURI(urlParams['issure']);
+      var answer = decodeURI(urlParams['answer']);
+      // $("#titleInfo").html(issure);
+      $("#categoryName").html(issure);
+      $("#content").html(answer);
     });
-      var id = getParams("id");
-      $.getJSON("http://crj.gafw.jl.gov.cn/f/cms/article/searchContent", { id: id}, function(ret){
+    //获取参数
+    function getParamsArr(url){
+      var vars = [], hash;
+      var q = url.split('?')[1];
+      if(q != undefined){
+           q = q.split('&');
+           for(var i = 0; i < q.length; i++){
+                hash = q[i].split('=');
+                vars.push(hash[1]);
+                vars[hash[0]] = hash[1];
+           }
+           return vars;
+      };
 
-          $("#titleInfo").html(ret[0].title);
-          $("#categoryName").html(ret[0].categoryName);
-          $("#content").html(ret[0].content);
-          
-        });
-    });
+    }  
 
-    function closeWin(){
-      window.history.back();
-    }
+      function closeWin(){
+        window.history.back();
+      }
 </script>
 </html>

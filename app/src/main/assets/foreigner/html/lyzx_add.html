@@ -5,10 +5,17 @@
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
-    <link href="../css/mui.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/aui-pull-refresh.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aui-pull-refresh.css" />
 		<link rel="stylesheet" type="text/css" href="../css/aui-1.css" />
+		
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+	
+	<style type="text/css">
+	 html,body { height: 100%; }
+	 .mui-content { min-height: 100%; overflow: hidden;}
+	 .me-clear { clear: both; width:100%;}
+	</style>
     <style type="text/css">
        .aui-list .aui-list-item-media {
              width: 6rem;
@@ -52,32 +59,38 @@
 <script type="text/javascript" src="../script/jquery.cookie.js"></script>
 <script type="text/javascript" src="../script/aui-pull-refresh.js"></script>
 <script type="text/javascript" src="../script/i18n.js"></script>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
 <script type="text/javascript">
   
   function add(){
 		var consultIssue = $('#consultIssue').val();
+		//var phoneSid="867030030518012";
 		var phoneSid = AndroidWebView.getMyIMEI();
 		$.ajax({
 		url:"http://crj.gafw.jl.gov.cn/jeecg/consultInfoController/save.do",    //请求的url地址
-		dataType:"json",    //返回格式为json
-		async:true,         //请求是否异步，默认为异步，这也是ajax重要特性
+		dataType:"json",    													//返回格式为json
+		async:true,         													//请求是否异步，默认为异步，这也是ajax重要特性
 		data:{"consultIssue":consultIssue,
 			  "phoneSid":phoneSid},                   
-		type:"POST",             //请求方式
+		type:"POST",            												 //请求方式
 	   
 		success:function(req){
-		    mui.alert(req.msg,'提示','确定',null,'div');
-
-			location = '../html/lyzx_list.html';
+			mui.alert(req.msg,'提示','确定',open,'div'); 
+			
 		},
 		complete:function(){
-			//请求完成的处理
+																				//请求完成的处理
 		},
 		error:function(){
-			//请求出错处理
+																				//请求出错处理
 		}
   });
 	
+  }
+  //回调函数
+  function open(){
+	location = '../html/lyzx_list.html';
   }
   function closeWin(){
    window.history.back();

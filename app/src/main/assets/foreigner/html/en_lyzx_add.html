@@ -7,6 +7,15 @@
     <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
 		<link rel="stylesheet" type="text/css" href="../css/aui-pull-refresh.css" />
 		<link rel="stylesheet" type="text/css" href="../css/aui-1.css" />
+		
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+	
+	<style type="text/css">
+	 html,body { height: 100%; }
+	 .mui-content { min-height: 100%; overflow: hidden;}
+	 .me-clear { clear: both; width:100%;}
+	</style>
     <style type="text/css">
        .aui-list .aui-list-item-media {
              width: 6rem;
@@ -32,7 +41,9 @@
 		    <div id="content" >
 			    <div style="width:auto; height:300px;">
 					
-			        <textarea style="width:90%; height:80%; overflow:scroll; line-height:40px; border:solid 0px #e5e5e5;background:#fff; border-radius:6px;resize:none;margin-left:20px; padding-left:10px; padding-top:10px;" >Hello, you need to bring your account book, identity card, real estate certificate and other documents when you enter or leave the country.</textarea>
+			        <textarea id="consultIssue" onKeyDown="textdown(event)"
+    onKeyUp="textup()" onfocus="if(value=='Hello, you need to bring your account book, identity card, real estate certificate and other documents when you enter or leave the country.'){value=''}"
+    onblur="if (value ==''){value='Hello, you need to bring your account book, identity card, real estate certificate and other documents when you enter or leave the country.'}" style="width:90%; height:80%; line-height:40px; border:solid 0px #e5e5e5;background:#fff; border-radius:6px;resize:none;margin-left:20px; padding-left:10px; padding-top:10px;" >Hello, you need to bring your account book, identity card, real estate certificate and other documents when you enter or leave the country.</textarea>
 			    </div>
 		    </div>
 			<center>
@@ -48,13 +59,42 @@
 <script type="text/javascript" src="../script/jquery.cookie.js"></script>
 <script type="text/javascript" src="../script/aui-pull-refresh.js"></script>
 <script type="text/javascript" src="../script/i18n.js"></script>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
 <script type="text/javascript">
   
   function add(){
-    location = '../html/lyzx_list.html';
+		var consultIssue = $('#consultIssue').val();
+		//var phoneSid="867030030518012";
+		var phoneSid = AndroidWebView.getMyIMEI();
+		$.ajax({
+		url:"http://crj.gafw.jl.gov.cn/jeecg/consultInfoController/save.do",    //请求的url地址
+		dataType:"json",    													//返回格式为json
+		async:true,         													//请求是否异步，默认为异步，这也是ajax重要特性
+		data:{"consultIssue":consultIssue,
+			  "phoneSid":phoneSid},                   
+		type:"POST",            												 //请求方式
+	   
+		success:function(req){
+			mui.alert(req.msg,'Tips','OK',open,'div'); 
+			
+		},
+		complete:function(){
+																				//请求完成的处理
+		},
+		error:function(){
+																				//请求出错处理
+		}
+  });
+	
+  }
+  //回调函数
+  function open(){
+	location = '../html/en_lyzx_list.html';
   }
   function closeWin(){
    window.history.back();
+   
   }
 </script>
 </html>

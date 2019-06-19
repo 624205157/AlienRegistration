@@ -111,7 +111,7 @@
 					<p>A quick online visa</p>
 				</div>
 				
-				<div class="btn-each" onclick="">
+				<div class="btn-each" onclick="enopenLyzx()">
 					<div ><img style="width:80px;height:80px" src="../img02/btn2.png"></img></div>
 					<h1>Message consultation</h1>
 					<p>Convenient questions and answers</p>
@@ -171,6 +171,13 @@ function openLyzx(){
 var phoneSid = AndroidWebView.getMyIMEI();
 location = '../html/lyzx_list.html';
 }
+
+// 留言咨询的中文跳转页面
+function enopenLyzx(){
+var phoneSid = AndroidWebView.getMyIMEI();
+location = '../html/en_lyzx_list.html';
+}
+
 // 吉林简介中文版
  function openZhJljj(){
         var delay = 0;

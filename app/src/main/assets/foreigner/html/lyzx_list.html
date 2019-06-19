@@ -19,7 +19,15 @@
          }
          .aui-bar-nav { position: fixed;}
 		 .time {padding-left:5px; float:right;}
-		 
+		 .btn1{
+			width:120px;height:40;margin-top:15px;margin-left:50px; border-bottom: solid 3px #03a9f4; border-left:0; border-right:0;color:#03a9f4; border-radius:0; border-top:0; background:none; font-size:1rem;
+		 }
+		 .btn2{
+			width:120px;height:60px;margin-top:15px;margin-left:50px;background:none;border:0;font-size:1rem;
+		 }
+		 .active{
+			border-bottom: solid 3px #03a9f4; border-left:0; border-right:0;color:#03a9f4; border-radius:0; border-top:0; background:none; font-size:1rem;
+		 }
      </style>
 </head>
 <body>
@@ -34,10 +42,10 @@
     <section class="aui-refresh-content" style="margin-top:45px">
 		    <div id="content" >
 			    <div class="aui-content">
-					<button onclick="select1()" align="left" style="width:120px;height:40;margin-top:15px;margin-left:50px; border-bottom: solid 3px #03a9f4; border-left:0; border-right:0;color:#03a9f4; border-radius:0; border-top:0; background:none; font-size:1rem;">
+					<button onclick="select1()" align="left" class="btn1" >
 						全部
 					</button>
-					<button onclick="select2()" align="left" style="width:120px;height:40px;margin-top:15px;margin-left:50px;background:none;border:0;font-size:1rem;">
+					<button onclick="select2()" align="left" class="btn2" >
 						我的
 					</button>
 			        <ul class="aui-list aui-media-list" id="liContent">
@@ -64,111 +72,138 @@
     triggerDistance: 100
   },function(ret){
     if(ret.status=="success"){
-     
-
+      select1();
     }
   });
 
 
   $(document).ready(function(){
-     //var languageType=$.cookie('languageType');
-     //loadProperties('strings', 'properties/',"zh");
      $("[data-locale]").each(function(){
           $(this).html(i18n_zh[$(this).data("locale")]);
         });
-     $.getJSON("http://crj.gafw.jl.gov.cn/jeecg/consultInfoController/findInfo.do", {},
-       function(ret){
-       var obj=ret.obj;
-	  
-         for(var i=0;i<obj.length;i++){	
-          $("#liContent").append('<li class="aui-list-item" onclick="showDetail(\''+obj[i].id+'\',\''+obj[i].consultIssue+'\',\''+obj[i].revertContent+'\');">'+
+
+
+	  $.ajax({
+      url:'http://crj.gafw.jl.gov.cn/jeecg/consultInfoController/findInfo.do',
+      data:{},
+      type:'post',
+      success:function(resp){
+        
+        var resp = JSON.parse(resp);
+        var data = JSON.parse(resp.jsonStr);
+        var ret = null;
+        $("#liContent").html('');
+        if(!data.success){
+          $("#liContent").html('暂无数据');
+          return false;
+        }
+        ret = data.obj;
+        for(var i=0;i<ret.length;i++){
+          $("#liContent").append('<li class="aui-list-item" onclick="showDetail(\''+ret[i].consultIssue+'\',\''+ret[i].revertContent+'\');">'+
                       '<div class="aui-media-list-item-inner">'+
                           '<div class="aui-list-item-inner">'+
                               '<div class="aui-list-item-text">'+
-                                  '<div class="aui-list-item-title" >'+'咨询问题：'+obj[i].consultIssue+'</div>'+
+                                  '<div class="aui-list-item-title" >'+'咨询问题：'+ret[i].consultIssue+'</div>'+
                               '</div>'+
                               '<div class="aui-info aui-padded-b-0">'+
                                   '<div class="aui-info-item aui-font-size-12">'+
-                                      '<span class="aui-margin-l-5">'+'回复：'+obj[i].revertContent+'</span>'+
+                                      '<span class="aui-margin-l-5">'+'回复：'+ret[i].revertContent+'</span>'+
                                       '</div>'+
-                                  '<div class="aui-info-item aui-font-size-10 ">'+'回复时间：'+obj[i].revertDate+'</div>'+
+                                  
                               '</div>'+
+                '<div class="aui-info-item aui-font-size-10 time">'+substringTime(ret[i].consultDate)+'</div>'+
                           '</div>'+
                       '</div>'+
                   '</li>'
                        );
                }
-
-       });
-
-	
-	$("#S1").bind("click",function(){
-    location = '../html/lyzx_add.html';
+      }
+     });
+	 
+	 $("#S1").bind("click",function(){
+      location = '../html/lyzx_add.html';
     });
 	
   });
   function select1(){
-	$("#liContent").empty();
-	$.getJSON("http://crj.gafw.jl.gov.cn/jeecg/consultInfoController/findInfo.do", {},
-       function(ret){
-       var obj=ret.obj;
-         for(var i=0;i<obj.length;i++){	
-          $("#liContent").append('<li class="aui-list-item" onclick="showDetail(\''+obj[i].id+','+obj[i].consultIssue+','+obj[i].revertContent+'\');">'+
-                      '<div class="aui-media-list-item-inner">'+
-                          '<div class="aui-list-item-inner">'+
-                              '<div class="aui-list-item-text">'+
-                                  '<div class="aui-list-item-title" >'+'咨询问题：'+obj[i].consultIssue+'</div>'+
-                              '</div>'+
-                              '<div class="aui-info aui-padded-b-0">'+
-                                  '<div class="aui-info-item aui-font-size-12">'+
-                                      '<span class="aui-margin-l-5">'+'回复：'+obj[i].revertContent+'</span>'+
-                                      '</div>'+
-                                  '<div class="aui-info-item aui-font-size-10 ">'+'回复时间：'+obj[i].revertDate+'</div>'+
-                              '</div>'+
-                          '</div>'+
-                      '</div>'+
-                  '</li>'
-                       );
-               }
-
-       });
+    window.location.reload();
   } 
-	
+  // 截取时间字符串
+	function substringTime(str){
+    return str.substring(0,str.indexOf(' '));
+  }
   function select2(){
-  $("#liContent").empty();
-  var phoneSid = AndroidWebView.getMyIMEI();
+	$('.btn2').addClass('active');
+	$('.btn1').removeClass('btn1').addClass('btn2');
+	//var phoneSid="867030030518012";
+    var phoneSid = AndroidWebView.getMyIMEI();
+	$.ajax({
+      url:'http://crj.gafw.jl.gov.cn/jeecg/consultInfoController/findInfo.do',
+      data:{
+        'phoneSid':phoneSid
+      },
+      type:'post',
+      success:function(resp){
 
-		$.getJSON("http://crj.gafw.jl.gov.cn/jeecg/consultInfoController/findInfo.do", {phoneSid:phoneSid},
-       function(ret){
-       var obj=ret.obj;
-         for(var i=0;i<obj.length;i++){	
-          $("#liContent").append('<li class="aui-list-item" onclick="showDetail(\''+obj[i].id+','+obj[i].consultIssue+','+obj[i].revertContent+'\');">'+
+        var resp = JSON.parse(resp);
+        var data = JSON.parse(resp.jsonStr);
+        var ret = null;
+        $("#liContent").html('');
+        if(!data.success){
+          $("#liContent").html('暂无数据');
+          return false;
+        }
+        ret = data.obj;
+        for(var i=0;i<ret.length;i++){
+			//判断回复状态
+			if(ret[i].auditType=="未回复"){
+			
+				 $("#liContent").append('<li class="aui-list-item" onclick="showDetail(\''+ret[i].consultIssue+'\',\''+ret[i].auditType+'\');">'+
                       '<div class="aui-media-list-item-inner">'+
                           '<div class="aui-list-item-inner">'+
                               '<div class="aui-list-item-text">'+
-                                  '<div class="aui-list-item-title" >'+'咨询问题：'+obj[i].consultIssue+'</div>'+
+                                  '<div class="aui-list-item-title" >'+'咨询问题：'+ret[i].consultIssue+'</div>'+
                               '</div>'+
                               '<div class="aui-info aui-padded-b-0">'+
                                   '<div class="aui-info-item aui-font-size-12">'+
-                                      '<span class="aui-margin-l-5">'+'回复：'+obj[i].revertContent+'</span>'+
+                                      '<span class="aui-margin-l-5">'+'回复：'+ret[i].auditType+'</span>'+
                                       '</div>'+
-                                  '<div class="aui-info-item aui-font-size-10 ">'+'回复时间：'+obj[i].revertDate+'</div>'+
+                                  
                               '</div>'+
+                '<div class="aui-info-item aui-font-size-10 time">'+ret[i].consultDate+'</div>'+
                           '</div>'+
                       '</div>'+
                   '</li>'
                        );
+			}else{
+				 $("#liContent").append('<li class="aui-list-item" onclick="showDetail(\''+ret[i].consultIssue+'\',\''+ret[i].revertContent+'\');">'+
+                      '<div class="aui-media-list-item-inner">'+
+                          '<div class="aui-list-item-inner">'+
+                              '<div class="aui-list-item-text">'+
+                                  '<div class="aui-list-item-title" >'+'咨询问题：'+ret[i].consultIssue+'</div>'+
+                              '</div>'+
+                              '<div class="aui-info aui-padded-b-0">'+
+                                  '<div class="aui-info-item aui-font-size-12">'+
+                                      '<span class="aui-margin-l-5">'+'回复：'+ret[i].revertContent+'</span>'+
+                                      '</div>'+
+                                  
+                              '</div>'+
+                '<div class="aui-info-item aui-font-size-10 time">'+ret[i].consultDate+'</div>'+
+                          '</div>'+
+                      '</div>'+
+                  '</li>'
+                       );
+			}
+         
                }
-
-       });
-	
-   
+      }
+     });
   } 
 	
 	
   //显示详情
-  function showDetail(id,consultIssue,revertContent){
-    var url= "lyzx.html?id="+id+"&consultIssue="+consultIssue+"&revertContent="+revertContent;
+  function showDetail(issure,answer){
+    var url= "lyzx.html?issure="+encodeURI(issure)+'&answer='+encodeURI(answer);
     window.location.href=url;
   }
   function closeWin(){
